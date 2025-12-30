@@ -59,7 +59,7 @@ export function SiteNavbar() {
       </Navbar>
 
       {/* Mobile Navbar */}
-      <MobileNav className="lg:hidden fixed top-4 z-50">
+      <MobileNav className="lg:hidden">
         <MobileNavHeader>
           <div className="flex items-center gap-2">
             <Link href="/#" className="font-bold text-xl text-white" onClick={(e) => handleScroll(e as any, "/#")}>

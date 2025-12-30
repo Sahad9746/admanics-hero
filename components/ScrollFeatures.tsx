@@ -65,20 +65,20 @@ export function ScrollFeatures() {
         // 4 items * 100vh = 400vh is a safe bet for full screen scrolling feel.
         className="h-[400vh] bg-neutral-950 font-sans text-white relative"
     >
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+      <div className="sticky top-0 min-h-screen lg:h-screen flex items-center overflow-visible lg:overflow-hidden py-12 lg:py-0">
+        <div className="max-w-7xl mx-auto w-full px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* Left Content - Text */}
             <div className="flex flex-col justify-center order-2 lg:order-1 relative z-10">
-                <div className="mb-12">
+                <div className="mb-8 lg:mb-12">
                    <span className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block">Promise</span>
                    <TextGenerateEffect
                         words={"Systems that scale your growth automatically"}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight"
+                        className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 lg:mb-6 leading-tight"
                    />
                 </div>
                 
-                <div className="relative h-64"> {/* Fixed height container for text transitions */}
+                <div className="relative h-48 md:h-64"> {/* Reduced height for mobile */}
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
@@ -95,7 +95,7 @@ export function ScrollFeatures() {
                                 <span className="text-xl font-bold text-neutral-600">{feature.step}.</span>
                                 <h3 className="text-3xl font-bold text-white">{feature.title}</h3>
                              </div>
-                             <p className="text-lg text-neutral-400 leading-relaxed max-w-md">
+                             <p className="text-base md:text-lg text-neutral-400 leading-relaxed max-w-md">
                                 {feature.description}
                              </p>
                              {/* Optional Buttons mentioned in screenshot "Explore", "Learn" */}
@@ -106,8 +106,8 @@ export function ScrollFeatures() {
             </div>
 
             {/* Right Content - Images */}
-            <div className="order-1 lg:order-2 h-[50vh] lg:h-[70vh] w-full relative">
-                 <div className="w-full h-full relative overflow-hidden rounded-3xl bg-neutral-900 border border-white/5">
+            <div className="order-1 lg:order-2 h-[35vh] md:h-[45vh] lg:h-[70vh] w-full relative">
+                 <div className="w-full h-full relative overflow-hidden rounded-2xl md:rounded-3xl bg-neutral-900 border border-white/5">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
