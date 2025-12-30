@@ -10,9 +10,9 @@ export default function Hero() {
     <div className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-center items-center font-sans py-20">
       <Vortex
         backgroundColor="transparent"
-        rangeY={800}
-        particleCount={500}
-        baseHue={200}
+        // rangeY={800}
+        // particleCount={500}
+        // baseHue={200}
         className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
       >
       
