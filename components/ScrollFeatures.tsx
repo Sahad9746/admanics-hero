@@ -107,7 +107,7 @@ export function ScrollFeatures() {
 
             {/* Right Content - Images */}
             <div className="order-1 lg:order-2 h-[35vh] md:h-[45vh] lg:h-[70vh] w-full relative">
-                 <div className="w-full h-full relative overflow-hidden rounded-2xl md:rounded-3xl bg-neutral-900 border border-white/5">
+                 <div className="w-full h-full relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}

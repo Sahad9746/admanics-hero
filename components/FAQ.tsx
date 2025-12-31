@@ -29,7 +29,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="bg-neutral-950 py-24 px-4 font-sans text-white border-t border-neutral-900">
+    <section id="faq" className="bg-neutral-950 py-24 px-4 font-sans text-white">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         
         {/* Header - Center Aligned */}
@@ -49,7 +49,7 @@ export function FAQ() {
         </div>
 
         {/* Q&A List */}
-        <div className="space-y-12 mb-24">
+        <div className="space-y-6 mb-24">
             {faqs.map((faq, idx) => (
                 <motion.div
                     key={idx}
@@ -57,7 +57,7 @@ export function FAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.1 }}
-                    className="flex flex-col gap-3"
+                    className="flex flex-col gap-3 p-6 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm transition-colors hover:bg-white/10"
                 >
                     <h3 className="text-xl font-bold text-white">{faq.question}</h3>
                     <p className="text-neutral-400 leading-relaxed text-base">{faq.answer}</p>
@@ -72,7 +72,7 @@ export function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center bg-neutral-900/50 rounded-2xl p-8 md:p-12 border border-white/5"
+            className="text-center"
         >
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Still have questions?</h3>
             <p className="text-neutral-400 mb-8 max-w-xl mx-auto">

@@ -20,7 +20,7 @@ export function AboutSection() {
         {/* Main Headline with TextGenerateEffect for consistency */}
         <TextGenerateEffect 
             words="At Admanics, performance isn't a buzzword — it's the baseline."
-            className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-4xl leading-tight uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-4xl leading-tight"
         />
 
         {/* Description Text */}

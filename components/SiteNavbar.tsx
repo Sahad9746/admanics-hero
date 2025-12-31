@@ -29,7 +29,7 @@ export function SiteNavbar() {
 
   const navItems = [
     { name: "About", link: "/#about" },
-    { name: "Solutions", link: "/#solutions" },
+
     { name: "Services", link: "/#services" },
     { name: "Promise", link: "/#promise" },
     { name: "Contact", link: "/contact" },

@@ -19,7 +19,7 @@ export function Footer() {
           <nav className="flex flex-wrap justify-center gap-8">
             {[
               { name: "About", link: "/#about" },
-              { name: "Solutions", link: "/#solutions" },
+
               { name: "Services", link: "/#services" },
               { name: "Promise", link: "/#promise" },
               { name: "Contact", link: "/contact" },
@@ -52,11 +52,7 @@ export function Footer() {
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-sm text-neutral-500">
             <span>&copy; 2025 Admanics. All rights reserved.</span>
-            <div className="flex gap-6">
-                <a href="#" className="hover:text-white transition-colors underline decoration-neutral-800 underline-offset-4">Privacy policy</a>
-                <a href="#" className="hover:text-white transition-colors underline decoration-neutral-800 underline-offset-4">Terms of service</a>
-                <a href="#" className="hover:text-white transition-colors underline decoration-neutral-800 underline-offset-4">Cookie settings</a>
-            </div>
+
         </div>
 
       </div>
