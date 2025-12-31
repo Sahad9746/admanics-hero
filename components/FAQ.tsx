@@ -36,7 +36,7 @@ export function FAQ() {
         <div className="max-w-3xl mb-16 mx-auto text-center">
             <TextGenerateEffect 
                 words="Questions"
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight"
             />
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -67,12 +67,12 @@ export function FAQ() {
 
         {/* Footer actions - Still have questions? */}
         <motion.div 
-            id="contact"
+            id="ready"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center bg-neutral-900/50 rounded-2xl p-12 border border-white/5"
+            className="text-center bg-neutral-900/50 rounded-2xl p-8 md:p-12 border border-white/5"
         >
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Still have questions?</h3>
             <p className="text-neutral-400 mb-8 max-w-xl mx-auto">

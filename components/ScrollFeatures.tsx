@@ -74,7 +74,7 @@ export function ScrollFeatures() {
                    <span className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block">Promise</span>
                    <TextGenerateEffect
                         words={"Systems that scale your growth automatically"}
-                        className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 lg:mb-6 leading-tight"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 lg:mb-6 leading-tight"
                    />
                 </div>
                 

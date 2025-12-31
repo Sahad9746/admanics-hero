@@ -10,9 +10,9 @@ export default function Hero() {
     <div className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-center items-center font-sans py-20">
       <Vortex
         backgroundColor="transparent"
-        // rangeY={800}
-        // particleCount={500}
-        // baseHue={200}
+        rangeY={200}
+        particleCount={500}
+        baseHue={200}
         className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
       >
       
@@ -25,8 +25,8 @@ export default function Hero() {
           className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6 flex flex-col items-center justify-center font-sans"
         >
           <span className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-2 md:gap-4">
-            <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="Growth Systems" />
-            <span className=""> that Scale</span>
+            <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" />
+            <span className="">Growth Systems that Scale</span>
           </span>
           {/* <span className="block md:inline ml-0 md:ml-4">Systems that Scale</span> */}
         </motion.h1>

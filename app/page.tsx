@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero"
+import { AboutSection } from "@/components/AboutSection"
 import { Solutions } from "@/components/Solutions"
 import { Services } from "@/components/Services"
 import { ScrollFeatures } from "@/components/ScrollFeatures"
@@ -10,10 +11,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-950">
       <Hero />
+      <AboutSection />
       <Solutions />
       <Services />
       <ScrollFeatures />
-      {/* <Results /> */}
       <FAQ />
       <Footer />
     </main>

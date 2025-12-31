@@ -11,14 +11,15 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
           
           {/* Logo */}
-          <div className="text-2xl font-bold italic tracking-tighter">
-            Logo
+          <div className="h-12 w-48 relative overflow-hidden flex items-center justify-center -ml-4">
+              <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
           </div>
 
           {/* Navigation */}
           <nav className="flex flex-wrap justify-center gap-8">
             {[
               { name: "About", link: "/#about" },
+              { name: "Solutions", link: "/#solutions" },
               { name: "Services", link: "/#services" },
               { name: "Promise", link: "/#promise" },
               { name: "Contact", link: "/contact" },

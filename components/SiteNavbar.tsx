@@ -29,6 +29,7 @@ export function SiteNavbar() {
 
   const navItems = [
     { name: "About", link: "/#about" },
+    { name: "Solutions", link: "/#solutions" },
     { name: "Services", link: "/#services" },
     { name: "Promise", link: "/#promise" },
     { name: "Contact", link: "/contact" },
@@ -43,8 +44,10 @@ export function SiteNavbar() {
       <Navbar className="hidden lg:flex fixed top-4 z-50">
         <NavBody>
           <div className="flex items-center gap-2 relative z-50">
-            <Link href="/#" className="font-bold text-xl text-white hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e as any, "/#")}>
-              Admanics
+            <Link href="/#" className="hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e as any, "/#")}>
+              <div className="h-12 md:h-16 w-48 md:w-64 relative overflow-hidden flex items-center justify-center -ml-4 md:-ml-8">
+                <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
+              </div>
             </Link>
           </div>
           <NavItems items={navItems.filter(item => item.name !== "Contact")} /> 
@@ -62,8 +65,10 @@ export function SiteNavbar() {
       <MobileNav className="lg:hidden">
         <MobileNavHeader>
           <div className="flex items-center gap-2">
-            <Link href="/#" className="font-bold text-xl text-white" onClick={(e) => handleScroll(e as any, "/#")}>
-              Admanics
+            <Link href="/#" onClick={(e) => handleScroll(e as any, "/#")}>
+              <div className="h-10 w-40 relative overflow-hidden flex items-center justify-center -ml-4">
+                <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
+              </div>
             </Link>
           </div>
           <MobileNavToggle
