@@ -25,7 +25,9 @@ export default function Hero() {
           className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6 flex flex-col items-center justify-center font-sans"
         >
           <span className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-2 md:gap-4">
-            <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" />
+            <span className="inline-flex items-center justify-center px-4 py-1 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm">
+              <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" />
+            </span>
             <span className="">Growth Systems that Scale</span>
           </span>
           {/* <span className="block md:inline ml-0 md:ml-4">Systems that Scale</span> */}

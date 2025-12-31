@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
+import { StickySocials } from "@/components/StickySocials";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,7 @@ export default function RootLayout({
       >
         <SmoothScrolling>
           <SiteNavbar />
+          <StickySocials />
           {children}
         </SmoothScrolling>
       </body>
