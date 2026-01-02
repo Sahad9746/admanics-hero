@@ -2,7 +2,8 @@ import Hero from "@/components/Hero"
 import { BrandSlider } from "@/components/BrandSlider";
 import { AboutSection } from "@/components/AboutSection"
 import { Solutions } from "@/components/Solutions"
-import { Services } from "@/components/Services"
+import { Services } from "@/components/Services";
+import { StatsSection } from "@/components/StatsSection";
 import { ScrollFeatures } from "@/components/ScrollFeatures"
 import { Results } from "@/components/Results"
 import { FAQ } from "@/components/FAQ"
@@ -15,6 +16,7 @@ export default function Home() {
       <BrandSlider />
       <Solutions />
       <AboutSection />
+      <StatsSection />
       <Services />
       <ScrollFeatures />
       <FAQ />

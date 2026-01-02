@@ -4,37 +4,40 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { GradientText } from "@/components/ui/GradientText";
+import WorldMap from "@/components/ui/world-map";
 
 export default function ContactPage() {
   return (
     <div className="bg-neutral-950 min-h-screen w-full text-white font-sans selection:bg-neutral-800 selection:text-white flex flex-col">
-      <main className="flex-1 flex items-center justify-center pt-24 pb-12 px-4 md:px-8">
+      <main className="flex-1 flex items-center justify-center py-24 px-4 md:px-8">
         
         <div className="max-w-7xl w-full mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 
                 {/* Left Column: Contact Details */}
                 <div className="flex flex-col justify-center">
-                    <motion.span 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
-                    >
-                        Connect
-                    </motion.span>
-                    
-                    <GradientText
-                        words="Get in touch"
-                        className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
-                        as="h1" // Semantic h1 for page title
-                    />
+                    <div className="flex flex-col items-start gap-8 mb-8">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-sm font-bold tracking-widest uppercase text-neutral-500 block"
+                        >
+                            Connect
+                        </motion.span>
+                        
+                        <GradientText
+                            words="Get in touch"
+                            className="text-4xl md:text-5xl lg:text-6xl"
+                            as="h1"
+                        />
+                    </div>
 
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="text-lg text-neutral-400 mb-10 max-w-lg"
+                        className="text-lg text-neutral-400 mb-8 max-w-lg"
                     >
                         Let&apos;s talk about your growth strategy.
                     </motion.p>
@@ -93,18 +96,33 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                {/* Right Column: Image */}
+                {/* Right Column: World Map Vector */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.8, ease: "circOut" }}
-                    className="h-[50vh] lg:h-[80vh] w-full rounded-3xl overflow-hidden relative"
+                    className="h-full w-full rounded-3xl overflow-hidden relative flex items-center justify-center min-h-[400px]"
                 >
-                    <div className="absolute inset-0 bg-neutral-900 animate-pulse" />
-                    <img 
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
-                        alt="Admanics Office Building" 
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                    <WorldMap
+                      dots={[
+                        {
+                          start: { lat: -33.8688, lng: 151.2093 }, // Sydney
+                          end: { lat: 34.0522, lng: -118.2437 }, // LA
+                        },
+                        {
+                          start: { lat: -33.8688, lng: 151.2093 }, // Sydney
+                          end: { lat: 51.5074, lng: -0.1278 }, // London
+                        },
+                        {
+                          start: { lat: -33.8688, lng: 151.2093 }, // Sydney
+                          end: { lat: 25.2048, lng: 55.2708 }, // Dubai
+                        },
+                         {
+                          start: { lat: -33.8688, lng: 151.2093 }, // Sydney
+                          end: { lat: 1.3521, lng: 103.8198 }, // Singapore
+                        },
+                      ]}
+                      lineColor="#ffffff" 
                     />
                 </motion.div>
 

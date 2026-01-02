@@ -1,6 +1,6 @@
 "use client";
 
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 export function Footer() {
@@ -40,10 +40,7 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
             <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
-            <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Twitter size={20} /></a> 
-            {/* Note: 'X' icon usually replaced by Twitter icon in Lucide or custom SVG. Using Twitter for now or X specific if available/custom. Lucide has 'X' icon? No, but Twitter is standard fallback or 'X' char. Let's use Twitter icon for simplicity or X text. Screenshot shows X logo. Lucide might not have X logo yet. Let's use Twitter icon as placeholder or an X text. Check lucide availability. Lucide v0.4+ has X? Actually let's use Twitter icon but maybe call it X visually? No, let's just use icons available. Screenshot shows Facebook, Instagram, X, LinkedIn, Youtube. */}
             <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
-            <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Youtube size={20} /></a>
           </div>
         </div>
 

@@ -5,6 +5,8 @@ import { GradientText } from "@/components/ui/GradientText";
 import Image from "next/image";
 import { Megaphone, Monitor, Code, Target, Mail, Layout, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 const services = [
   {
@@ -84,10 +86,18 @@ export function Services() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         
         {/* Header */}
-        <div className="mb-16">
+        <div className="flex flex-col items-start gap-8 mb-16">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
+          >
+            Services
+          </motion.span>
           <GradientText 
             words="What We do"
-            className="text-5xl md:text-6xl mb-4"
+            className="text-5xl md:text-6xl"
           />
         </div>
 
@@ -107,38 +117,44 @@ export function Services() {
                 key={idx} 
                 variants={itemVariants}
                 className={`
-                  bg-[#0a0a0a] border border-white/5 rounded-2xl p-8 flex flex-col items-start hover:border-white/20 transition-colors duration-300
-                  ${isContentCreation ? 'lg:row-span-2 lg:h-full justify-between' : 'h-full'}
+                  ${isContentCreation ? 'lg:row-span-2 lg:h-full' : 'h-full'}
                 `}
               >
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 text-black shrink-0">
-                  <service.icon size={24} strokeWidth={2} />
-                </div>
-                
-                <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">{service.description}</p>
-                
+                <CardSpotlight className={`
+                  p-8 rounded-2xl border-white/5 bg-neutral-900/50 flex flex-col items-start h-full
+                  ${isContentCreation ? 'justify-between' : ''}
+                `}>
+                  <div className="relative z-20">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 text-black shrink-0">
+                      <service.icon size={24} strokeWidth={2} />
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
+                    <p className="text-neutral-400 text-sm leading-relaxed mb-6">{service.description}</p>
+                  </div>
 
-
-                {isContentCreation && service.image && (
-                   <div className="w-full mt-auto pt-4 rounded-lg overflow-hidden h-48 md:h-64 lg:h-auto lg:grow relative">
-                      <Image 
-                        src={service.image} 
-                        alt="Content Creation Studio" 
-                        fill
-                        className="object-cover rounded-lg opacity-80"
-                      />
-                   </div>
-                )}
+                  {isContentCreation && service.image && (
+                     <div className="w-full mt-auto pt-4 rounded-lg overflow-hidden h-48 md:h-64 lg:h-auto lg:grow relative z-20">
+                        <Image 
+                          src={service.image} 
+                          alt="Content Creation Studio" 
+                          fill
+                          className="object-cover rounded-lg opacity-80"
+                        />
+                     </div>
+                  )}
+                </CardSpotlight>
               </motion.div>
             );
           })}
         </motion.div>
 
         <div className="mt-12">
-            <Button className="bg-neutral-100 text-neutral-950 hover:bg-white rounded-full px-8 py-6 text-lg font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                Work with us
-            </Button>
+            <Link href="/contact">
+              <Button className="bg-neutral-100 text-neutral-950 hover:bg-white rounded-full px-8 py-6 text-lg font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                  Work with us
+              </Button>
+            </Link>
         </div>
       </div>
     </section>
