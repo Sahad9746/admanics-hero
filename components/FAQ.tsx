@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { GradientText } from "@/components/ui/GradientText";
+import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
@@ -27,13 +29,55 @@ const faqs = [
   },
 ];
 
+const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void }) => {
+  return (
+    <motion.div 
+      initial={false}
+      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'bg-neutral-900/50 border-white/10' : 'bg-transparent border-white/5 hover:bg-white/5'}`}
+    >
+      <button 
+        onClick={onClick}
+        className="flex items-center justify-between w-full p-6 text-left"
+      >
+        <span className="text-lg md:text-xl font-bold text-white pr-8">{question}</span>
+        <div className={`p-2 rounded-full border border-white/10 transition-colors ${isOpen ? 'bg-white text-black' : 'bg-transparent text-white'}`}>
+             {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+        </div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="px-6 pb-6 pt-0">
+               <p className="text-neutral-400 leading-relaxed text-base border-t border-white/5 pt-4">
+                {answer}
+               </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section id="faq" className="bg-neutral-950 py-24 px-4 font-sans text-white">
-      <div className="max-w-4xl mx-auto px-4 md:px-8">
+      <div className="max-w-3xl mx-auto px-4 md:px-8">
         
         {/* Header - Center Aligned */}
-        <div className="max-w-3xl mb-16 mx-auto text-center">
+        <div className="mb-16 text-center">
             <GradientText 
                 words="Questions"
                 className="text-3xl md:text-4xl lg:text-5xl mb-6"
@@ -49,41 +93,30 @@ export function FAQ() {
         </div>
 
         {/* Q&A List */}
-        <div className="space-y-6 mb-24">
+        <div className="space-y-4 mb-24">
             {faqs.map((faq, idx) => (
-                <motion.div
+                <FAQItem 
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="flex flex-col gap-3 p-6 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm transition-colors hover:bg-white/10"
-                >
-                    <h3 className="text-xl font-bold text-white">{faq.question}</h3>
-                    <p className="text-neutral-400 leading-relaxed text-base">{faq.answer}</p>
-                </motion.div>
+                    question={faq.question}
+                    answer={faq.answer}
+                    isOpen={openIndex === idx}
+                    onClick={() => toggleFAQ(idx)}
+                />
             ))}
         </div>
 
         {/* Footer actions - Still have questions? */}
-        <motion.div 
-            id="ready"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-center"
-        >
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Still have questions?</h3>
-            <p className="text-neutral-400 mb-8 max-w-xl mx-auto">
+        <div className="text-center">
+            <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
+            <p className="text-neutral-400 mb-8">
                 Reach out and let&apos;s talk about your growth
             </p>
             <a href="/contact">
-                <Button className="bg-neutral-100 text-black hover:bg-white rounded-lg px-10 py-4 text-lg font-bold shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all cursor-pointer">
-                    Contact
+                <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-3 text-base font-bold transition-all">
+                    Contact Us
                 </Button>
             </a>
-        </motion.div>
+        </div>
 
       </div>
     </section>
