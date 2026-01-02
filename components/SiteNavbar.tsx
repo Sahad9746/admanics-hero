@@ -3,7 +3,6 @@ import {
   Navbar,
   NavBody,
   NavItems,
-  NavbarButton,
   MobileNav,
   MobileNavHeader,
   MobileNavToggle,
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { useLenis } from "lenis/react";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export function SiteNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,13 +40,12 @@ export function SiteNavbar() {
 
   return (
     <>
-      {/* Desktop Navbar */}
       <Navbar className="hidden lg:flex fixed top-4 z-50">
-        <NavBody>
+        <NavBody className="py-1">
           <div className="flex items-center gap-2 relative z-50">
-            <Link href="/#" className="hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e as any, "/#")}>
-              <div className="h-12 md:h-16 w-48 md:w-64 relative overflow-hidden flex items-center justify-center -ml-4 md:-ml-8">
-                <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
+            <Link href="/#" className="hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e, "/#")}>
+              <div className="h-14 w-48 relative overflow-hidden flex items-center justify-start">
+                <Image src="/logo.png" alt="Admanics" fill className="object-contain object-left scale-[3] origin-left" priority />
               </div>
             </Link>
           </div>
@@ -65,9 +64,9 @@ export function SiteNavbar() {
       <MobileNav className="lg:hidden">
         <MobileNavHeader>
           <div className="flex items-center gap-2">
-            <Link href="/#" onClick={(e) => handleScroll(e as any, "/#")}>
-              <div className="h-10 w-40 relative overflow-hidden flex items-center justify-center -ml-4">
-                <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
+            <Link href="/#" onClick={(e) => handleScroll(e, "/#")}>
+              <div className="h-14 w-40 relative overflow-hidden flex items-center justify-start">
+                <Image src="/logo.png" alt="Admanics" fill className="object-contain object-left scale-[3] origin-left" />
               </div>
             </Link>
           </div>

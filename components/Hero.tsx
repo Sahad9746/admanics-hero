@@ -1,13 +1,13 @@
 "use client"
 
-import { Button } from "@/components/ui/Button"
 import { motion } from "framer-motion"
 import { Vortex } from "@/components/ui/vortex"
+import { GradientText } from "@/components/ui/GradientText";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip"
 
 export default function Hero() {
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-center items-center font-sans py-20">
+    <div className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-center items-center font-sans py-24">
       <Vortex
         backgroundColor="transparent"
         rangeY={200}
@@ -28,7 +28,7 @@ export default function Hero() {
             <span className="inline-flex items-center justify-center px-4 py-1 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm">
               <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" />
             </span>
-            <span className="">Growth Systems that Scale</span>
+            <GradientText words="Growth Systems that Scale" as="span" className="block mt-2" />
           </span>
           {/* <span className="block md:inline ml-0 md:ml-4">Systems that Scale</span> */}
         </motion.h1>

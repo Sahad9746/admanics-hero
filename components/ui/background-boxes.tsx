@@ -6,13 +6,14 @@ import { cn } from "@/lib/utils";
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const rows = new Array(150).fill(1);
   const cols = new Array(100).fill(1);
-  let colors = [
+  const colors = [
     "#60A5FA", // blue-400
     "#34D399", // emerald-400
     "#F472B6", // pink-400
   ];
-  const getRandomColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
+  /* Deterministic color selection to prevent hydration mismatch */
+  const getColor = (r: number, c: number) => {
+      return colors[(r + c) % colors.length];
   };
 
   return (
@@ -34,7 +35,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
           {cols.map((_, j) => (
             <motion.div
               whileHover={{
-                backgroundColor: `${getRandomColor()}`,
+                backgroundColor: `${getColor(i, j)}`,
                 transition: { duration: 0 },
               }}
               animate={{

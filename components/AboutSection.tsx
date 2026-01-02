@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GradientText } from "@/components/ui/GradientText";
 
 export function AboutSection() {
   return (
@@ -17,10 +16,10 @@ export function AboutSection() {
           About
         </motion.span>
         
-        {/* Main Headline with TextGenerateEffect for consistency */}
-        <TextGenerateEffect 
-            words="At Admanics, performance isn't a buzzword — it's the baseline."
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-4xl leading-tight"
+        {/* Replaced with verified GradientText component */}
+        <GradientText 
+            words={<>AI-Powered Growth Systems<br className="hidden md:block" /> Built to Scale</>}
+            className="text-3xl md:text-4xl lg:text-5xl max-w-4xl"
         />
 
         {/* Description Text */}
@@ -32,7 +31,12 @@ export function AboutSection() {
             className="max-w-3xl"
         >
             <p className="text-lg md:text-xl text-neutral-400 leading-relaxed">
-                We build paid media strategies, automation systems, and content engines that don&apos;t just look good — they convert. Every move we make is designed to scale, sell, and support real business growth. From the first click to the final conversion, we help businesses show up and glow up — brilliantly, consistently, and at scale.
+              Admanics is an AI marketing and technology agency that builds automated, scalable growth systems for businesses operating in global markets.
+               We help companies replace fragmented marketing and manual processes with structured, performance-driven workflows that connect advertising, websites, CRM, and sales operations into a single system.
+
+By combining performance marketing, ecommerce growth, web development, content, social media, and AI-powered automation using tools like Zoho and Zapier, we ensure every lead is tracked, nurtured, and converted efficiently.
+
+Admanics focuses on building long-term growth infrastructure—not short-term campaigns—so businesses can scale predictably, operate efficiently, and grow without operational chaos.
             </p>
         </motion.div>
       </div>

@@ -1,6 +1,9 @@
 "use client";
 
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+// Icons cleaned up if unused, but wait, they are used in the snippet?
+// No, looking at snippet: import { Facebook, Instagram, Linkedin } from "lucide-react";
+// But JSX uses text: "Instagram", "LinkedIn", "Facebook". No <Facebook /> used.
+// So yes, remove import.
 
 export function StickySocials() {
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { GradientText } from "@/components/ui/GradientText";
 
 const stats = [
   {
@@ -32,15 +33,10 @@ export function Results() {
           >
             Results
           </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight"
-          >
-            Growth that speaks for itself
-          </motion.h2>
+          <GradientText
+            words="Growth that speaks for itself"
+            className="text-3xl md:text-4xl lg:text-5xl mb-6"
+          />
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

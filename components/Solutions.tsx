@@ -1,9 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GradientText } from "@/components/ui/GradientText";
 
 export function Solutions() {
   return (
@@ -18,9 +16,10 @@ export function Solutions() {
           Solutions
         </motion.span>
         
-        <TextGenerateEffect 
-            words="Replace fragmented processes with connected automation"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-4xl leading-tight"
+        {/* Replaced with verified GradientText component */}
+        <GradientText 
+            words="Admanics isn’t just an agency — it’s an automated growth system."
+            className="text-3xl md:text-4xl lg:text-5xl max-w-4xl"
         />
 
         <motion.p
@@ -30,7 +29,10 @@ export function Solutions() {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-neutral-400 max-w-2xl"
         >
-            We eliminate manual bottlenecks by connecting your entire tech stack—from CRM to ad platforms—into a unified engine that runs while you sleep.
+            Admanics is an AI-driven marketing and technology agency built to eliminate manual effort from growth.
+We don’t just run campaigns — we design automated workflows that connect traffic, leads, sales, and follow-ups using performance marketing, CRM, and AI-powered automation.
+
+Every process we build is engineered to scale without chaos.
         </motion.p>
 
         

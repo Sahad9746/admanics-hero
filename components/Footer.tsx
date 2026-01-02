@@ -1,6 +1,7 @@
 "use client";
 
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -11,8 +12,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
           
           {/* Logo */}
-          <div className="h-12 w-48 relative overflow-hidden flex items-center justify-center -ml-4">
-              <img src="/logo.png" alt="Admanics" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-auto max-w-none object-contain" />
+          <div className="h-24 w-64 relative overflow-hidden flex items-center justify-center">
+              <Image src="/logo.png" alt="Admanics" fill className="object-contain scale-[3]" />
           </div>
 
           {/* Navigation */}

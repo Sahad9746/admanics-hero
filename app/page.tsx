@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero"
+import { BrandSlider } from "@/components/BrandSlider";
 import { AboutSection } from "@/components/AboutSection"
 import { Solutions } from "@/components/Solutions"
 import { Services } from "@/components/Services"
@@ -11,8 +12,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-950">
       <Hero />
-      <AboutSection />
+      <BrandSlider />
       <Solutions />
+      <AboutSection />
       <Services />
       <ScrollFeatures />
       <FAQ />

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GradientText } from "@/components/ui/GradientText";
 
 const faqs = [
   {
@@ -34,9 +34,9 @@ export function FAQ() {
         
         {/* Header - Center Aligned */}
         <div className="max-w-3xl mb-16 mx-auto text-center">
-            <TextGenerateEffect 
+            <GradientText 
                 words="Questions"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl mb-6"
             />
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -76,7 +76,7 @@ export function FAQ() {
         >
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Still have questions?</h3>
             <p className="text-neutral-400 mb-8 max-w-xl mx-auto">
-                Reach out and let's talk about your growth
+                Reach out and let&apos;s talk about your growth
             </p>
             <a href="/contact">
                 <Button className="bg-neutral-100 text-black hover:bg-white rounded-lg px-10 py-4 text-lg font-bold shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all cursor-pointer">

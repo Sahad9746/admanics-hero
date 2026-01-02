@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GradientText } from "@/components/ui/GradientText";
 
 export default function ContactPage() {
   return (
@@ -24,9 +24,10 @@ export default function ContactPage() {
                         Connect
                     </motion.span>
                     
-                    <TextGenerateEffect
+                    <GradientText
                         words="Get in touch"
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight"
+                        className="text-4xl md:text-5xl lg:text-6xl text-white mb-6"
+                        as="h1" // Semantic h1 for page title
                     />
 
                     <motion.p
@@ -35,7 +36,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.3 }}
                         className="text-lg text-neutral-400 mb-10 max-w-lg"
                     >
-                        Let's talk about your growth strategy.
+                        Let&apos;s talk about your growth strategy.
                     </motion.p>
 
                     <div className="space-y-8">

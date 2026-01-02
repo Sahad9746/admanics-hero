@@ -1,33 +1,60 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
+import { GradientText } from "@/components/ui/GradientText";
+import Image from "next/image";
+import { Megaphone, Monitor, Code, Target, Mail, Layout, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const services = [
   {
-    type: "image",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop",
-    title: "Performance marketing and paid advertising",
-    description: "Intelligent campaigns that optimize spend, target the right audience, and deliver measurable ROI at every stage.",
-    className: "md:col-span-1"
+    icon: Target, // Representing Media Buys/Ads
+    title: "Media Buys",
+    description: "Maximize your reach with strategic ad placements that deliver measurable results and connect your brand with the right audience.",
   },
   {
-    type: "image",
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop",
-    title: "Ecommerce growth and conversion optimization",
-    description: "Structured systems that turn traffic into customers and customers into repeat buyers through data-driven strategies.",
-    className: "md:col-span-1"
+    icon: Layout, // Representing UI/UX
+    title: "UI/UX Design",
+    description: "From initial concepts to final delivery, we craft visually stunning, user-friendly designs that captivate audiences and elevate your brand.",
   },
   {
-    type: "image",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop",
-    title: "Web development and technical infrastructure",
-    description: "Fast, scalable websites built to convert, integrated seamlessly with your CRM and marketing automation tools.",
-    className: "md:col-span-1"
+    icon: Monitor, // Representing SEO
+    title: "SEO",
+    description: "Boost your online presence with tailored strategies that drive organic traffic, enhance visibility, and grow your brand.",
   },
-  
+  {
+    icon: Megaphone, // Representing Content Creation
+    title: "Content Creation",
+    description: "Captivating content tailored to your brand, designed to engage audiences and tell your story with authenticity.",
+    isLarge: true, // Example flag if we want one card to be taller or different, though grid suggests uniform size usually. But design might have one large card?
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop" // Optional image for "Content Creation" if design implies it. The uploaded image shows the last card has an image inside or is an image card? 
+    // Wait, looking at the user request image (Step 0):
+    // "Content Creation" card has an image at the bottom!
+    // And it spans 2 rows? Or is just taller? 
+    // It looks like a standard grid of 4 columns, 2 rows.
+    // Row 1: Media Buys, UI/UX, SEO, Content Creation
+    // Row 2: Web Dev, AI Automation, Email Marketing, (Empty? or Content Creation spans down?)
+    // Actually, looking at the image provided in Step 0:
+    // It's 4 columns.
+    // Top Row: Media Buys, UI/UX Design, SEO, Content Creation (Long card?)
+    // Bottom Row: Web Development, AI Automation, Email Marketing.
+    // The "Content Creation" card seems to be tall and spans 2 rows (row-span-2).
+  },
+  {
+    icon: Code,
+    title: "Web Development",
+    description: "Transform your vision into reality with scalable, cutting-edge websites that deliver seamless user experiences.",
+  },
+  {
+    icon: Sparkles, // AI Automation
+    title: "Ai Automation",
+    description: "Optimize your operations with AI-driven solutions that automate tasks, improve efficiency, and enhance decision-making.",
+  },
+  {
+    icon: Mail,
+    title: "Email Marketing",
+    description: "Build meaningful relationships with your audience through impactful email campaigns that drive engagement and conversions.",
+  },
 ];
 
 const containerVariants = {
@@ -35,19 +62,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: -50 }, // Start above (falling effect)
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      stiffness: 100,
-      damping: 20,
+      duration: 0.5,
     },
   },
 };
@@ -58,28 +84,11 @@ export function Services() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         
         {/* Header */}
-        <div className="max-w-3xl mb-16 ml-auto text-right">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
-          >
-            Services
-          </motion.span>
-          <TextGenerateEffect 
-            words="Everything you need to scale without chaos"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight"
+        <div className="mb-16">
+          <GradientText 
+            words="What We do"
+            className="text-5xl md:text-6xl mb-4"
           />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }} 
-            className="text-lg text-neutral-400"
-          >
-            From performance marketing to AI automation, we build the complete infrastructure your business needs to grow predictably and operate efficiently.
-          </motion.p>
         </div>
 
         {/* Grid */}
@@ -87,45 +96,50 @@ export function Services() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {services.map((service, idx) => (
-            <motion.div 
-              key={idx} 
-              variants={itemVariants}
-              className={`flex flex-col h-full ${service.className}`}
-            >
-              {service.type === "image" && (
-                <div className="w-full h-64 mb-8 overflow-hidden rounded-2xl border border-white/10">
-                   <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+          {services.map((service, idx) => {
+            const isContentCreation = service.title === "Content Creation";
+            
+            return (
+              <motion.div 
+                key={idx} 
+                variants={itemVariants}
+                className={`
+                  bg-[#0a0a0a] border border-white/5 rounded-2xl p-8 flex flex-col items-start hover:border-white/20 transition-colors duration-300
+                  ${isContentCreation ? 'lg:row-span-2 lg:h-full justify-between' : 'h-full'}
+                `}
+              >
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 text-black shrink-0">
+                  <service.icon size={24} strokeWidth={2} />
                 </div>
-              )}
-              
-              {/* Spacer for text-only col to align titles if needed, or just let it flow top-aligned */}
-              {service.type === "text" && <div className="hidden md:block md:h-64 md:mb-8" />} 
-              {/* Actually, looking at screenshot, the text col title aligns with image bottoms? 
-                  No, usually text col is just top aligned. 
-                  But screenshot shows the Text Title "Performance..." is aligned with the **Images** in other cols?
-                  Wait, looking at screenshot:
-                  Col 1: Title is roughly at the same vertical level as the Images in Col 2 & 3? 
-                  OR Col 1 Title is at top, and Col 2/3 Images are at top.
-                  Ah, screenshot: 
-                  Col 1: Text "Performance..." is visible. 
-                  Col 2: Image is visible. Title "Ecommerce..." is BELOW image.
-                  Col 3: Image is visible. Title "Web..." is BELOW image.
-                  So Col 1 title is Top Aligned. Col 2/3 have Image at Top.
-                  This means Col 1 title will be way higher than Col 2/3 titles.
-                  Let's stick to standard flow first.
-               */}
-              
-               <div className="flex flex-col">
-                  <h3 className="text-3xl font-bold mb-4 text-white leading-tight">{service.title}</h3>
-                  <p className="text-neutral-400 leading-relaxed text-base">{service.description}</p>
-               </div>
-            </motion.div>
-          ))}
+                
+                <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6">{service.description}</p>
+                
+
+
+                {isContentCreation && service.image && (
+                   <div className="w-full mt-auto pt-4 rounded-lg overflow-hidden h-48 md:h-64 lg:h-auto lg:grow relative">
+                      <Image 
+                        src={service.image} 
+                        alt="Content Creation Studio" 
+                        fill
+                        className="object-cover rounded-lg opacity-80"
+                      />
+                   </div>
+                )}
+              </motion.div>
+            );
+          })}
         </motion.div>
+
+        <div className="mt-12">
+            <Button className="bg-neutral-100 text-neutral-950 hover:bg-white rounded-full px-8 py-6 text-lg font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                Work with us
+            </Button>
+        </div>
       </div>
     </section>
   );

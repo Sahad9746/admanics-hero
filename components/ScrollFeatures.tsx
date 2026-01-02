@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GradientText } from "@/components/ui/GradientText";
 
 const features = [
   {
@@ -72,9 +72,9 @@ export function ScrollFeatures() {
             <div className="flex flex-col justify-center order-2 lg:order-1 relative z-10">
                 <div className="mb-8 lg:mb-12">
                    <span className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block">Promise</span>
-                   <TextGenerateEffect
+                   <GradientText
                         words={"Systems that scale your growth automatically"}
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 lg:mb-6 leading-tight"
+                        className="text-3xl md:text-4xl lg:text-5xl mb-4 lg:mb-6"
                    />
                 </div>
                 
