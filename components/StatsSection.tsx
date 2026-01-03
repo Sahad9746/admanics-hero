@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useSpring, useTransform, useInView } from "framer-motion";
 import { GradientText } from "@/components/ui/GradientText";
+import { useEffect, useRef } from "react";
 
 const stats = [
   {
@@ -21,6 +22,37 @@ const stats = [
     label: "Years of Experience",
   },
 ];
+
+function Counter({ value, className }: { value: string; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  // Parse value
+  const match = value.match(/^([^0-9]*)([0-9.,]+)(.*)$/);
+  const prefix = match ? match[1] : "";
+  const numberPart = match ? parseFloat(match[2].replace(/,/g, "")) : 0;
+  const suffix = match ? match[3] : "";
+  const decimalPlaces = (match?.[2].split('.')[1] || []).length;
+
+  // Smoother spring configuration
+  const spring = useSpring(0, { mass: 1, stiffness: 50, damping: 30 });
+  const display = useTransform(spring, (current) => {
+      // Format number with commas and correct decimal places
+      const formatted = current.toLocaleString('en-US', { 
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces 
+      });
+      return `${prefix}${formatted}${suffix}`;
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      spring.set(numberPart);
+    }
+  }, [isInView, spring, numberPart]);
+
+  return <motion.span ref={ref} className={className}>{display}</motion.span>;
+}
 
 export function StatsSection() {
   return (
@@ -69,7 +101,7 @@ export function StatsSection() {
                 className="flex flex-col gap-2"
               >
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
-                  {stat.value}
+                  <Counter value={stat.value} />
                 </h3>
                 <p className="text-neutral-400 text-sm md:text-base font-medium">
                   {stat.label}
