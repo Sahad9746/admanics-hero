@@ -1,35 +1,49 @@
 "use client";
 
+import Image from "next/image";
+
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 const brands = [
   {
-    name: "Vortex",
-    logo: <span className="text-xl md:text-2xl font-bold font-sans tracking-tight text-white">vortex</span>,
+    name: "Client 2",
+    logo: <Image src="/images/clients_logo/2.jpg" alt="Client 2" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "Soma Pilates",
-    logo: <span className="text-xl md:text-2xl font-serif italic text-white">Soma Pilates</span>,
+    name: "Client 3",
+    logo: <Image src="/images/clients_logo/3.jpg" alt="Client 3" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "Club Sudo",
-    logo: <span className="text-xl md:text-2xl font-mono uppercase text-white tracking-widest">CLUB SŪDŌ</span>,
+    name: "Client 4",
+    logo: <Image src="/images/clients_logo/4.jpg" alt="Client 4" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "ACE Performance",
-    logo: <span className="text-xl md:text-2xl font-black italic text-white">ACE</span>,
+    name: "Client 5",
+    logo: <Image src="/images/clients_logo/5.jpg" alt="Client 5" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "Club Well",
-    logo: <span className="text-xl md:text-2xl font-serif text-white">club well</span>,
+    name: "Client 6",
+    logo: <Image src="/images/clients_logo/6.jpg" alt="Client 6" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "Function Studios",
-    logo: <span className="text-xl md:text-2xl font-sans font-light text-white">functiön</span>,
+    name: "Client 7",
+    logo: <Image src="/images/clients_logo/7.jpg" alt="Client 7" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
   {
-    name: "Tone Pilates",
-    logo: <span className="text-xl md:text-2xl font-thin tracking-[0.2em] text-white">TONE</span>,
+    name: "Client 9",
+    logo: <Image src="/images/clients_logo/9.jpg" alt="Client 9" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
+  },
+  {
+    name: "Client 10",
+    logo: <Image src="/images/clients_logo/10.jpg" alt="Client 10" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
+  },
+  {
+    name: "Client 11",
+    logo: <Image src="/images/clients_logo/11.jpg" alt="Client 11" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
+  },
+  {
+    name: "Client 12",
+    logo: <Image src="/images/clients_logo/12.jpg" alt="Client 12" width={200} height={100} className="h-20 w-auto object-contain grayscale invert mix-blend-screen" />,
   },
 ];
 
