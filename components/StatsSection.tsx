@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 
 const stats = [
   {
-    value: "10+",
+    value: "50+",
     label: "Happy Clients",
   },
   {
@@ -14,7 +14,7 @@ const stats = [
     label: "Revenue Generated",
   },
   {
-    value: "500K+",
+    value: "1m+",
     label: "Ad Spend",
   },
   {
