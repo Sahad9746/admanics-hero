@@ -13,14 +13,13 @@ export function Footer() {
           
           {/* Logo */}
           <div className="h-24 w-64 relative overflow-hidden flex items-center justify-center">
-              <Image src="/logo.png" alt="Admanics" fill className="object-contain scale-[3]" />
+              <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain" />
           </div>
 
           {/* Navigation */}
           <nav className="flex flex-wrap justify-center gap-8">
             {[
               { name: "About", link: "/#about" },
-
               { name: "Services", link: "/#services" },
               { name: "Promise", link: "/#promise" },
               { name: "Contact", link: "/contact" },
@@ -38,9 +37,9 @@ export function Footer() {
 
           {/* Social Icons */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
-            <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
-            <a href="#" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
+            <a href="https://www.facebook.com/share/1DuFmzUNXb/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
+            <a href="https://www.instagram.com/admanics._" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
+            <a href="https://www.linkedin.com/company/admanics" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
           </div>
         </div>
 

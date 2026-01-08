@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useLenis } from "lenis/react";
 
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -45,7 +46,7 @@ export function SiteNavbar() {
           <div className="flex items-center gap-2 relative z-50">
             <Link href="/#" className="hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e, "/#")}>
               <div className="h-14 w-48 relative overflow-hidden flex items-center justify-start">
-                <Image src="/logo.png" alt="Admanics" fill className="object-contain object-left scale-[3] origin-left" priority />
+                <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-left origin-left" priority />
               </div>
             </Link>
           </div>
@@ -66,7 +67,7 @@ export function SiteNavbar() {
           <div className="flex items-center gap-2">
             <Link href="/#" onClick={(e) => handleScroll(e, "/#")}>
               <div className="h-14 w-40 relative overflow-hidden flex items-center justify-start">
-                <Image src="/logo.png" alt="Admanics" fill className="object-contain object-left scale-[3] origin-left" />
+                <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-left origin-left" />
               </div>
             </Link>
           </div>

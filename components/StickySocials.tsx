@@ -13,21 +13,27 @@ export function StickySocials() {
 
       <div className="flex flex-col gap-12 items-center">
          <a 
-            href="#" 
+            href="https://www.instagram.com/admanics._" 
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
          >
             Instagram
          </a>
          <a 
-            href="#" 
+            href="https://www.linkedin.com/company/admanics" 
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
          >
             LinkedIn
          </a>
          <a 
-            href="#" 
+            href="https://www.facebook.com/share/1DuFmzUNXb/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
          >

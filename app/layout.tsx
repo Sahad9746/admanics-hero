@@ -43,10 +43,11 @@ export const metadata: Metadata = {
     description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
     images: ["https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"],
   },
+
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/icon.png?v=2",
+    shortcut: "/icon.png?v=2",
+    apple: "/icon.png?v=2",
   },
 };
 
