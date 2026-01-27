@@ -37,9 +37,9 @@ export function Footer() {
 
           {/* Social Icons */}
           <div className="flex items-center gap-6">
-            <a href="https://www.facebook.com/share/1DuFmzUNXb/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
-            <a href="https://www.instagram.com/admanics._" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
-            <a href="https://www.linkedin.com/company/admanics" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
+            <a href="https://www.facebook.com/share/1AHvaKahvD/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
+            <a href="https://www.instagram.com/admanics.io?igsh=MWxpOHRhd2dlOXZnYQ==" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
+            <a href="https://www.linkedin.com/company/admanics/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
           </div>
         </div>
 

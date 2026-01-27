@@ -13,7 +13,7 @@ export function StickySocials() {
 
       <div className="flex flex-col gap-12 items-center">
          <a 
-            href="https://www.instagram.com/admanics._" 
+            href="https://www.instagram.com/admanics.io?igsh=MWxpOHRhd2dlOXZnYQ==" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
@@ -22,7 +22,7 @@ export function StickySocials() {
             Instagram
          </a>
          <a 
-            href="https://www.linkedin.com/company/admanics" 
+            href="https://www.linkedin.com/company/admanics/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
@@ -31,7 +31,7 @@ export function StickySocials() {
             LinkedIn
          </a>
          <a 
-            href="https://www.facebook.com/share/1DuFmzUNXb/" 
+            href="https://www.facebook.com/share/1AHvaKahvD/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white text-[10px] font-bold tracking-[0.2em] hover:text-neutral-400 transition-colors uppercase"
