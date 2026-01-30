@@ -49,6 +49,21 @@ export const metadata: Metadata = {
     shortcut: "/icon.png?v=2",
     apple: "/icon.png?v=2",
   },
+  metadataBase: new URL("https://admanics.com"),
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Admanics",
+  "alternateName": ["Admanics AI", "admanics.com"],
+  "url": "https://admanics.com",
+  "description": "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://admanics.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 };
 
 export default function RootLayout({
@@ -58,6 +73,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

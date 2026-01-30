@@ -14,15 +14,15 @@ export const GradientText = ({
   as?: any;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-20%" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
   
   const MotionComponent = useMemo(() => motion(Component), [Component]);
 
   return (
     <MotionComponent
       ref={ref}
-      initial={{ opacity: 0, y: 10 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+      initial={{ opacity: 0.5, y: 5 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.5, y: 5 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
         "text-gradient font-bold tracking-tight leading-tight pb-2",
