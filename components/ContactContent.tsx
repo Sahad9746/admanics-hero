@@ -54,8 +54,8 @@ export function ContactContent() {
                                 <Mail className="w-5 h-5" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-1">Email</h3>
-                            <a href="mailto:hello@admanics.com" className="text-base font-medium text-neutral-300 hover:text-white transition-all">
-                                hello@admanics.com
+                            <a href="mailto:contact@admanics.com" className="text-base font-medium text-neutral-300 hover:text-white transition-all">
+                                contact@admanics.com
                             </a>
                         </motion.div>
 
@@ -70,8 +70,8 @@ export function ContactContent() {
                                 <Phone className="w-5 h-5" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-1">Phone</h3>
-                            <a href="tel:+18442362642" className="text-base font-medium text-neutral-300 hover:text-white transition-all">
-                                +1 (844) 236-2642
+                            <a href="tel:9900454378" className="text-base font-medium text-neutral-300 hover:text-white transition-all">
+                                9900454378
                             </a>
                         </motion.div>
 
@@ -87,7 +87,7 @@ export function ContactContent() {
                             </div>
                             <h3 className="text-xl font-bold text-white mb-1">Office</h3>
                             <p className="text-base text-neutral-300 mb-2">
-                                Sydney, NSW 2000, Australia
+                                Banglore India nn itta m madhi
                             </p>
                             <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold text-white hover:text-neutral-300 transition-colors uppercase tracking-wider">
                                 Get directions <ArrowRight className="w-3 h-3 ml-1" />
