@@ -87,25 +87,27 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
+      initial={{ y: -20, opacity: 0 }}
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
+        backdropFilter: visible ? "blur(24px)" : "blur(8px)",
         boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "40%" : "100%",
+          ? "0 0 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset"
+          : "0 0 0 1px rgba(255, 255, 255, 0.03) inset",
+        width: visible ? "45%" : "100%",
         y: visible ? 20 : 0,
+        opacity: 1,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 150,
+        damping: 30,
       }}
       style={{
-        minWidth: "800px",
+        minWidth: visible ? "800px" : "100%",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
-        visible && "bg-neutral-950/60 backdrop-blur-md border border-white/10 shadow-lg",
+        "relative z-[60] mx-auto hidden flex-row items-center justify-between self-start rounded-full bg-neutral-950/20 px-8 py-3 lg:flex transition-colors duration-500",
+        visible && "bg-neutral-950/40 border border-white/5",
         className,
       )}
     >
@@ -121,13 +123,10 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
     if (onItemClick) onItemClick();
     
-    // Smooth scroll if on home page and link is an anchor
     if (link.startsWith("/#") && window.location.pathname === "/") {
       e.preventDefault();
       const targetId = link.replace("/", "");
       lenis?.scrollTo(targetId);
-      // Optional: Update URL hash without jump? 
-      // window.history.pushState({}, "", targetId); 
     }
   };
 
@@ -135,27 +134,33 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-white transition duration-200 hover:text-blue-400 lg:flex lg:space-x-2",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-6 text-base font-bold tracking-tight transition duration-200 lg:flex",
         className,
       )}
     >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={(e) => handleScroll(e, item.link)}
-          className="relative px-4 py-2 text-white"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-white/10"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
+      <AnimatePresence>
+        {items.map((item, idx) => (
+          <motion.a
+            key={`link-${idx}`}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.1, duration: 0.5 }}
+            onMouseEnter={() => setHovered(idx)}
+            onClick={(e) => handleScroll(e, item.link)}
+            className="relative px-6 py-2 text-neutral-400 hover:text-white transition-colors duration-300"
+            href={item.link}
+          >
+            {hovered === idx && (
+              <motion.div
+                layoutId="hovered-nav"
+                className="absolute inset-0 h-full w-full rounded-full bg-blue-500/10 border border-blue-500/20"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className="relative z-20">{item.name}</span>
+          </motion.a>
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -215,11 +220,11 @@ export const MobileNavMenu = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-neutral-900/90 backdrop-blur-md px-4 py-8 shadow-xl border border-white/10",
+            "fixed inset-0 top-0 left-0 z-[100] h-screen w-screen flex flex-col items-center justify-center gap-8 bg-neutral-950/95 backdrop-blur-2xl px-8 shadow-2xl overflow-hidden",
             className,
           )}
         >
@@ -238,9 +243,9 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <IconX className="text-white" onClick={onClick} />
+    <IconX className="text-white w-8 h-8" onClick={onClick} />
   ) : (
-    <IconMenu2 className="text-white" onClick={onClick} />
+    <IconMenu2 className="text-white w-8 h-8" onClick={onClick} />
   );
 };
 

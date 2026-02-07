@@ -59,9 +59,22 @@ interface CategoryDetailProps {
   services: Service[];
 }
 
+import { useLenis } from "lenis/react";
+import { useEffect } from "react";
+// ... existing imports
+
 export function CategoryDetail({ category, services }: CategoryDetailProps) {
   const metadata = pillarMetadata[category];
   const containerRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [lenis, category]);
 
   return (
     <div ref={containerRef} className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-blue-500/30 overflow-x-hidden">
@@ -82,33 +95,52 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
         </nav>
 
         {/* Hero Section - Typography First */}
-        <section className="relative pb-48 px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="max-w-5xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-blue-500 mb-8">
-                System Pillar / {category}
-              </span>
-              
-              <GradientText 
-                words={metadata.title}
-                className="text-6xl md:text-8xl font-bold leading-[1.1] tracking-tight mb-12 block"
-              />
-              
-              <div className="flex flex-col md:flex-row gap-12 md:items-start">
-                  <p className="text-xl md:text-2xl text-neutral-400 leading-relaxed font-medium max-w-2xl">
-                    {metadata.description}
-                  </p>
-                  
-                  <div className="flex-1 border-l border-white/10 pl-8 py-2">
-                     <span className="block text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-600 mb-2">Target Outcome</span>
-                     <span className="text-2xl font-bold tracking-tight text-white">{metadata.outcome}</span>
-                  </div>
-              </div>
-            </motion.div>
+        <section className="relative pb-48 px-6 md:px-12 max-w-7xl mx-auto"> 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
+            <div className="max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-blue-500 mb-8">
+                  System Pillar / {category}
+                </span>
+                
+                <GradientText 
+                  words={metadata.title}
+                  className="text-6xl md:text-8xl font-bold leading-[1.1] tracking-tight mb-12 block"
+                />
+                
+                <div className="flex flex-col gap-8 md:gap-12">
+                    <p className="text-xl md:text-2xl text-neutral-400 leading-relaxed font-medium max-w-2xl">
+                      {metadata.description}
+                    </p>
+                    
+                    <div className="flex-1 border-l-2 border-blue-500/30 pl-8 py-2">
+                       <span className="block text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-500 mb-2">Target Outcome</span>
+                       <span className="text-3xl font-bold tracking-tight text-white">{metadata.outcome}</span>
+                    </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] max-h-[600px] w-full ml-auto rounded-3xl overflow-hidden border border-white/10 glow-box"
+              >
+                 <Image 
+                    src={metadata.image || "/images/services/marketing-v3.png"} 
+                    alt={metadata.title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-1000"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
+              </motion.div>
+            </div>
           </div>
         </section>
 

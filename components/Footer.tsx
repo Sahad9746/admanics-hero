@@ -5,30 +5,31 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-950 py-12 px-4 font-sans text-white border-t border-neutral-900">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <footer className="bg-neutral-950 py-24 px-6 md:px-12 font-sans text-white border-t border-white/5 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_rgba(59,130,246,0.05),_transparent_70%)] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Top Row */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-20">
           
           {/* Logo */}
-          <div className="h-24 w-64 relative overflow-hidden flex items-center justify-center">
-              <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain" />
+          <div className="h-16 w-56 relative overflow-hidden flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500">
+              <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-left" />
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-wrap justify-center gap-8">
+          <nav className="flex flex-wrap justify-center gap-12">
             {[
               { name: "About", link: "/#about" },
-              { name: "Services", link: "/#services" },
-              { name: "Promise", link: "/#promise" },
+              { name: "Services", link: "/services" },
               { name: "Contact", link: "/contact" },
               { name: "FAQ", link: "/#faq" }
             ].map((item) => (
               <a 
                 key={item.name} 
                 href={item.link} 
-                className="text-sm font-semibold text-white hover:text-neutral-400 transition-colors"
+                className="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 hover:text-white transition-all transform hover:scale-110"
               >
                 {item.name}
               </a>
@@ -36,20 +37,23 @@ export function Footer() {
           </nav>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-6">
-            <a href="https://www.facebook.com/share/1AHvaKahvD/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Facebook size={20} /></a>
-            <a href="https://www.instagram.com/admanics.io?igsh=MWxpOHRhd2dlOXZnYQ==" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Instagram size={20} /></a>
-            <a href="https://www.linkedin.com/company/admanics/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 transition-colors"><Linkedin size={20} /></a>
+          <div className="flex items-center gap-8">
+            <a href="https://www.facebook.com/share/1AHvaKahvD/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/5 bg-white/5 text-white hover:bg-white hover:text-black transition-all duration-300"><Facebook size={20} /></a>
+            <a href="https://www.instagram.com/admanics.io?igsh=MWxpOHRhd2dlOXZnYQ==" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/5 bg-white/5 text-white hover:bg-white hover:text-black transition-all duration-300"><Instagram size={20} /></a>
+            <a href="https://www.linkedin.com/company/admanics/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full border border-white/5 bg-white/5 text-white hover:bg-white hover:text-black transition-all duration-300"><Linkedin size={20} /></a>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-neutral-900 w-full mb-8" />
+        <div className="h-px bg-white/5 w-full mb-12" />
 
         {/* Bottom Row */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-sm text-neutral-500">
-            <span>&copy; 2025 Admanics. All rights reserved.</span>
-
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-600">
+            <span>&copy; 2025 Admanics System Architect.</span>
+            <div className="flex gap-8">
+                <span className="hover:text-neutral-400 cursor-pointer transition-colors">Privacy Protocal</span>
+                <span className="hover:text-neutral-400 cursor-pointer transition-colors">System Status: Optimal</span>
+            </div>
         </div>
 
       </div>

@@ -1,139 +1,167 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
 import { GradientText } from "@/components/ui/GradientText";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { services, pillarMetadata } from "@/constants/services";
-import { motion } from "framer-motion";
+import { services, Service, pillarMetadata } from "@/constants/services";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { useRef } from "react";
+import { ArrowRight, BarChart3, Clapperboard, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-import { 
-  BarChart3, 
-  ShieldCheck, 
-  Clapperboard, 
-  Layout, 
-  Monitor, 
-  Code, 
-  Sparkles, 
-  Mail,
-  PieChart,
-  Zap,
-  FileText,
-  Share2,
-  Search,
-  Video,
-  Lightbulb,
-  Volume2,
-  Fingerprint,
-  Eye,
-  MessageSquare
-} from "lucide-react";
-
-const iconMap: Record<string, any> = {
-  BarChart3,
-  ShieldCheck,
-  Clapperboard,
-  Layout,
-  Monitor,
-  Code,
-  Sparkles,
-  Mail,
-  PieChart,
-  Zap,
-  FileText,
-  Share2,
-  Search,
-  Video,
-  Lightbulb,
-  Volume2,
-  Fingerprint,
-  Eye,
-  MessageSquare
+const pillarIcons: Record<string, any> = {
+  Marketing: BarChart3,
+  Production: Clapperboard,
+  ORM: ShieldCheck
 };
 
 export function Services() {
-  const primaryServices = services.slice(0, 3);
+  const primaryServices = [
+    services.find(s => s.pillar === "Marketing"),
+    services.find(s => s.pillar === "Production"),
+    services.find(s => s.pillar === "ORM")
+  ].filter((s): s is Service => !!s);
 
   return (
-    <section id="services" className="bg-neutral-950 py-32 px-4 font-sans text-white overflow-hidden relative">
-      <div className="max-w-7xl mx-auto md:px-8 relative z-10">
+    <section id="services" className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col items-start text-left gap-6 mb-24">
-          <motion.span 
+        {/* Cinematic Header */}
+        <div className="flex flex-col items-start text-left gap-8 md:gap-10 mb-24 md:mb-48">
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-sm font-bold tracking-widest uppercase text-neutral-500"
+            className="flex flex-col items-start gap-4 md:gap-6"
           >
-            Capabilities
-          </motion.span>
-          <GradientText 
-            words="Our Intelligent Systems"
-            className="text-5xl md:text-7xl leading-tight"
-          />
-          <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed mt-4">
-            Custom-engineered modules designed to handle the complexity of global scale.
+             <div className="flex items-center gap-4">
+                <div className="w-8 md:w-12 h-px bg-blue-500" />
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-neutral-500">
+                  Engineering Capabilities
+                </span>
+             </div>
+             <GradientText 
+                words="Intelligent Systems"
+                className="text-4xl md:text-9xl font-bold tracking-tight"
+             />
+          </motion.div>
+          <p className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium">
+            Deploying high-impact modules engineered to handle the complexity of global scale. Infrastructure that converts attention to revenue.
           </p>
         </div>
 
-        {/* Primary 3 Pillars Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-32">
+        {/* Cinematic Pillar Flow - No Cards */}
+        <div className="space-y-0">
            {primaryServices.map((service, idx) => {
-             const Icon = iconMap[service.iconName] || BarChart3;
+             const Icon = pillarIcons[service.pillar] || BarChart3;
              return (
-               <motion.div
-                 key={service.slug}
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: idx * 0.1, duration: 0.8 }}
-                 className="relative group"
-               >
-                 <CardSpotlight className="p-10 rounded-[2.5rem] border border-white/10 bg-neutral-900/30 backdrop-blur-sm h-full flex flex-col items-start relative z-10">
-                    <div className="flex items-center justify-between w-full mb-10">
-                       <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-neutral-500">{service.category}</span>
-                       <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 tracking-wider uppercase">
-                          {service.outcome}
-                       </div>
-                    </div>
-                    
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-black mb-8 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-500">
-                       <Icon size={32} />
-                    </div>
-
-                    <h3 className="text-3xl font-bold mb-6 leading-tight group-hover:text-blue-400 transition-colors">
-                       {service.title}
-                    </h3>
-                    
-                    <p className="text-neutral-400 leading-relaxed mb-10 text-lg">
-                       {service.description}
-                    </p>
-
-                     <div className="mt-auto w-full pt-8 border-t border-white/5">
-                        <Link href={`/services/${pillarMetadata[service.pillar].slug}`} className="flex items-center justify-between w-full group/link">
-                           <span className="text-sm font-bold tracking-widest uppercase text-neutral-300 group-hover/link:text-white transition-colors">Explore Category</span>
-                           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover/link:bg-white group-hover/link:text-black transition-all">
-                              <ArrowRight size={18} />
-                           </div>
-                        </Link>
-                     </div>
-                 </CardSpotlight>
-               </motion.div>
+               <PillarModule 
+                key={service.slug}
+                service={service}
+                idx={idx}
+                Icon={Icon}
+               />
              )
            })}
         </div>
 
-        <div className="flex justify-center mt-12">
-            <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-12 py-8 text-xl font-bold shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105 transition-all">
-                  Initialize Deployment &rarr;
-              </Button>
-            </Link>
+        <div className="flex justify-center mt-24 md:mt-48">
+             <Link href="/contact" className="group w-full md:w-auto px-4">
+               <motion.button 
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.95 }}
+                 className="bg-white text-black px-10 py-6 md:px-16 md:py-8 rounded-full font-bold text-lg md:text-2xl shadow-2xl shadow-blue-500/20 transition-all w-full md:w-auto"
+               >
+                  Initialize System Deployment &rarr;
+               </motion.button>
+             </Link>
         </div>
       </div>
     </section>
   );
+}
+
+function PillarModule({ service, idx, Icon }: { service: Service, idx: number, Icon: any }) {
+  const sectionRef = useRef(null);
+  const metadata = pillarMetadata[service.pillar];
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+
+  return (
+    <div 
+      ref={sectionRef}
+      className="relative min-h-[50vh] md:min-h-[60vh] flex items-center py-20 md:py-32 border-t border-white/5 overflow-hidden"
+    >
+        {/* Typography Mask */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none">
+            <motion.span 
+              style={{ y }}
+              className="text-[30vw] md:text-[25vw] font-black text-white/[0.015] leading-none tracking-tighter uppercase whitespace-nowrap"
+            >
+              {service.pillar}
+            </motion.span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center w-full relative z-10 px-4">
+            <div className={cn(
+                "flex flex-col gap-6 md:gap-8",
+                idx % 2 !== 0 && "lg:order-2"
+            )}>
+                 <div className="flex items-center gap-4">
+                    <div className="w-8 h-px bg-blue-500" />
+                    <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-neutral-500">System Pillar {idx + 1}</span>
+                 </div>
+
+                 <h3 className="text-3xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                    {service.title}
+                 </h3>
+
+                 <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-xl">
+                    {service.description}
+                 </p>
+
+                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 pt-4">
+                    <div className="px-6 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] md:text-xs font-bold text-blue-400 tracking-widest uppercase">
+                        {service.outcome}
+                    </div>
+                    <Link href={`/services/${metadata.slug}`} className="group/link flex items-center gap-4 text-white hover:text-blue-500 transition-colors">
+                        <span className="text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase">Explore Infrastructure</span>
+                        <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                 </div>
+            </div>
+
+            <div className={cn(
+                "relative group",
+                idx % 2 !== 0 && "lg:order-1"
+            )}>
+                <div className="aspect-[16/10] bg-neutral-900 border border-white/10 rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden relative">
+                    <Image 
+                        src={metadata.image || "/images/services/marketing-v3.png"}
+                        alt={service.title}
+                        fill
+                        className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent group-hover:opacity-60 transition-opacity duration-700" />
+                    
+                    {/* Subtle Icon Overlay */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
+                         <div className="bg-neutral-950/40 backdrop-blur-md p-6 rounded-full border border-white/10">
+                            <Icon size={48} className="text-white" />
+                         </div>
+                    </div>
+
+                    <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 text-[8vw] font-black text-white/[0.1] pointer-events-none uppercase mix-blend-overlay">
+                        {service.pillar.slice(0, 3)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
 }

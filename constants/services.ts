@@ -18,21 +18,21 @@ export const pillarMetadata = {
     title: "Digital Marketing & Growth",
     description: "Our marketing systems are engineered for infinite scale. We deploy interconnected modules that track, nurture, and convert attention into predictable revenue.",
     outcome: "Revenue Acceleration",
-    image: "/images/services/marketing.png"
+    image: "/images/services/marketing-v3.png"
   },
   Production: {
     slug: "production",
     title: "Production & Media",
     description: "We treat content as infrastructure. High-impact visuals meeting strategic storytelling to elevate your brand's digital authority across all channels.",
     outcome: "Brand Authority",
-    image: "/images/services/product.png"
+    image: "/images/services/production-v3.png"
   },
   ORM: {
     slug: "orm",
     title: "ORM & Reputation",
     description: "Protect your most valuable asset. Our AI-driven reputation management systems safeguard your brand image while building trust at every digital touchpoint.",
     outcome: "Trust Security",
-    image: "/images/services/intelligence.png"
+    image: "/images/services/orm-v3.png"
   }
 };
 

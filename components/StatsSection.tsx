@@ -1,25 +1,25 @@
 "use client";
 
-import { motion, useSpring, useTransform, useInView } from "framer-motion";
+import { motion, useSpring, useTransform, useInView, useScroll } from "framer-motion";
 import { GradientText } from "@/components/ui/GradientText";
 import { useEffect, useRef } from "react";
 
 const stats = [
   {
     value: "50+",
-    label: "Happy Clients",
+    label: "HAPPY CLIENTS",
   },
   {
-    value: "1m+",
-    label: "Revenue Generated",
+    value: "$1M+",
+    label: "REVENUE GENERATED",
   },
   {
-    value: "1m+",
-    label: "Ad Spend",
+    value: "$1M+",
+    label: "AD SPEND",
   },
   {
-    value: "2",
-    label: "Years of Experience",
+    value: "02",
+    label: "YEARS OF EXPERIENCE",
   },
 ];
 
@@ -27,17 +27,14 @@ function Counter({ value, className }: { value: string; className?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
-  // Parse value
   const match = value.match(/^([^0-9]*)([0-9.,]+)(.*)$/);
   const prefix = match ? match[1] : "";
   const numberPart = match ? parseFloat(match[2].replace(/,/g, "")) : 0;
   const suffix = match ? match[3] : "";
   const decimalPlaces = (match?.[2].split('.')[1] || []).length;
 
-  // Smoother spring configuration
   const spring = useSpring(0, { mass: 1, stiffness: 50, damping: 30 });
   const display = useTransform(spring, (current) => {
-      // Format number with commas and correct decimal places
       const formatted = current.toLocaleString('en-US', { 
           minimumFractionDigits: decimalPlaces,
           maximumFractionDigits: decimalPlaces 
@@ -55,59 +52,73 @@ function Counter({ value, className }: { value: string; className?: string }) {
 }
 
 export function StatsSection() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+
   return (
-    <section className="bg-neutral-950 py-32 px-4 font-sans text-white border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex flex-col items-end text-right gap-6 mb-24">
+    <section ref={containerRef} className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 relative overflow-hidden">
+      {/* Cinematic Mask */}
+      <div className="absolute inset-0 z-0 flex items-start justify-center pt-32 pointer-events-none select-none px-4 text-center">
           <motion.span 
+            style={{ y }}
+            className="text-[40vw] md:text-[35vw] font-black text-white/[0.01] leading-none tracking-tighter uppercase whitespace-nowrap"
+          >
+            NUMBERS
+          </motion.span>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
+        <div className="flex flex-col items-center text-center gap-8 md:gap-10 mb-20 md:mb-32">
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
+            className="flex flex-col items-center gap-4 md:gap-6"
           >
-            Numbers
-          </motion.span>
+             <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-blue-500">
+               Market Presence
+             </span>
+             <GradientText 
+                words="Built for Performance"
+                className="text-4xl md:text-9xl font-bold tracking-tight"
+             />
+          </motion.div>
           
-          <div className="mb-6">
-              <GradientText 
-              words="Solving Problems"
-              className="text-4xl md:text-6xl font-bold leading-tight"
-              />
-          </div>
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed"
+            className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
           >
-            Years in the game. Proven systems. Results that speak.
+            Years in the game. Proven systems. Infrastructure that delivers results without the manual overhead.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-24 items-center">
-          {/* Right Content - Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-12 lg:gap-8">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 * idx }}
-                className="flex flex-col gap-2"
+                transition={{ delay: 0.1 * idx, duration: 1 }}
+                className="flex flex-col items-center group"
               >
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+                <div className="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-4 group-hover:text-blue-500 transition-colors">
                   <Counter value={stat.value} />
-                </h3>
-                <p className="text-neutral-400 text-sm md:text-base font-medium">
+                </div>
+                <div className="w-8 h-px bg-white/10 group-hover:w-16 group-hover:bg-blue-500 transition-all mb-4" />
+                <p className="text-neutral-500 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">
                   {stat.label}
                 </p>
               </motion.div>
             ))}
-          </div>
-
         </div>
       </div>
     </section>
