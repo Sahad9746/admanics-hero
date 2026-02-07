@@ -1,8 +1,8 @@
 import Hero from "@/components/Hero"
 import { BrandSlider } from "@/components/BrandSlider";
 import { AboutSection } from "@/components/AboutSection"
-import { Solutions } from "@/components/Solutions"
 import { Services } from "@/components/Services";
+import { ResultsSection } from "@/components/ResultsSection";
 import { StatsSection } from "@/components/StatsSection";
 import { ScrollFeatures } from "@/components/ScrollFeatures"
 import { FAQ } from "@/components/FAQ"
@@ -19,11 +19,11 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-950">
       <Hero />
       <BrandSlider />
-      <Solutions />
       <AboutSection />
       <StatsSection />
       <Services />
-      <ScrollFeatures />
+      <ResultsSection />
+      {/* <ScrollFeatures /> */}
       <FAQ />
       <Footer />
     </main>

@@ -73,23 +73,26 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-neutral-950 py-24 px-4 font-sans text-white">
-      <div className="max-w-3xl mx-auto px-4 md:px-8">
+    <section id="faq" className="bg-neutral-950 py-32 px-4 font-sans text-white border-t border-white/5">
+      <div className="max-w-4xl mx-auto px-4 md:px-8">
         
-        {/* Header - Center Aligned */}
-        <div className="mb-16 text-center">
-            <GradientText 
-                words="Questions"
-                className="text-3xl md:text-4xl lg:text-5xl mb-6"
-            />
-          <motion.p
+        {/* Header - Left Aligned */}
+        <div className="flex flex-col items-start text-left gap-6 mb-24">
+          <motion.span 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-lg text-neutral-400"
+            className="text-sm font-bold tracking-widest uppercase text-neutral-500"
           >
-            Everything you need to know about automated growth systems
-          </motion.p>
+            Support
+          </motion.span>
+          <GradientText 
+            words="Questions"
+            className="text-4xl md:text-6xl"
+          />
+          <p className="text-neutral-400 max-w-2xl text-lg mt-4 leading-relaxed">
+            Everything you need to know about automated growth systems.
+          </p>
         </div>
 
         {/* Q&A List */}

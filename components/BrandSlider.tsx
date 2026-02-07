@@ -50,7 +50,7 @@ const brands = [
 export function BrandSlider() {
   return (
     <div className="py-8 flex flex-col antialiased items-center justify-center relative overflow-hidden bg-neutral-950">
-        <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-neutral-600 mb-8 text-center">Trusted by industry leaders</h3>
+        <h3 className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-8 text-center">Trusted by industry leaders</h3>
         <InfiniteMovingCards
             items={brands}
             direction="left"

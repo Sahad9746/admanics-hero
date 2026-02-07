@@ -3,156 +3,133 @@
 import { Button } from "@/components/ui/Button";
 import { GradientText } from "@/components/ui/GradientText";
 import Image from "next/image";
-import { Megaphone, Monitor, Code, Target, Mail, Layout, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { services, pillarMetadata } from "@/constants/services";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 
-const services = [
-  {
-    icon: Target, // Representing Media Buys/Ads
-    title: "Media Buys",
-    description: "Maximize your reach with strategic ad placements that deliver measurable results and connect your brand with the right audience.",
-  },
-  {
-    icon: Layout, // Representing UI/UX
-    title: "UI/UX Design",
-    description: "From initial concepts to final delivery, we craft visually stunning, user-friendly designs that captivate audiences and elevate your brand.",
-  },
-  {
-    icon: Monitor, // Representing SEO
-    title: "SEO",
-    description: "Boost your online presence with tailored strategies that drive organic traffic, enhance visibility, and grow your brand.",
-  },
-  {
-    icon: Megaphone, // Representing Content Creation
-    title: "Content Creation",
-    description: "Captivating content tailored to your brand, designed to engage audiences and tell your story with authenticity.",
-    isLarge: true, // Example flag if we want one card to be taller or different, though grid suggests uniform size usually. But design might have one large card?
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop" // Optional image for "Content Creation" if design implies it. The uploaded image shows the last card has an image inside or is an image card? 
-    // Wait, looking at the user request image (Step 0):
-    // "Content Creation" card has an image at the bottom!
-    // And it spans 2 rows? Or is just taller? 
-    // It looks like a standard grid of 4 columns, 2 rows.
-    // Row 1: Media Buys, UI/UX, SEO, Content Creation
-    // Row 2: Web Dev, AI Automation, Email Marketing, (Empty? or Content Creation spans down?)
-    // Actually, looking at the image provided in Step 0:
-    // It's 4 columns.
-    // Top Row: Media Buys, UI/UX Design, SEO, Content Creation (Long card?)
-    // Bottom Row: Web Development, AI Automation, Email Marketing.
-    // The "Content Creation" card seems to be tall and spans 2 rows (row-span-2).
-  },
-  {
-    icon: Code,
-    title: "Web Development",
-    description: "Transform your vision into reality with scalable, cutting-edge websites that deliver seamless user experiences.",
-  },
-  {
-    icon: Sparkles, // AI Automation
-    title: "Ai Automation",
-    description: "Optimize your operations with AI-driven solutions that automate tasks, improve efficiency, and enhance decision-making.",
-  },
-  {
-    icon: Mail,
-    title: "Email Marketing",
-    description: "Build meaningful relationships with your audience through impactful email campaigns that drive engagement and conversions.",
-  },
-];
+import { 
+  BarChart3, 
+  ShieldCheck, 
+  Clapperboard, 
+  Layout, 
+  Monitor, 
+  Code, 
+  Sparkles, 
+  Mail,
+  PieChart,
+  Zap,
+  FileText,
+  Share2,
+  Search,
+  Video,
+  Lightbulb,
+  Volume2,
+  Fingerprint,
+  Eye,
+  MessageSquare
+} from "lucide-react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
+const iconMap: Record<string, any> = {
+  BarChart3,
+  ShieldCheck,
+  Clapperboard,
+  Layout,
+  Monitor,
+  Code,
+  Sparkles,
+  Mail,
+  PieChart,
+  Zap,
+  FileText,
+  Share2,
+  Search,
+  Video,
+  Lightbulb,
+  Volume2,
+  Fingerprint,
+  Eye,
+  MessageSquare
 };
 
 export function Services() {
+  const primaryServices = services.slice(0, 3);
+
   return (
-    <section id="services" className="bg-neutral-950 py-24 px-4 font-sans text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <section id="services" className="bg-neutral-950 py-32 px-4 font-sans text-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto md:px-8 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col items-start gap-8 mb-16">
+        <div className="flex flex-col items-start text-left gap-6 mb-24">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
+            className="text-sm font-bold tracking-widest uppercase text-neutral-500"
           >
-            Services
+            Capabilities
           </motion.span>
           <GradientText 
-            words="What We do"
-            className="text-5xl md:text-6xl"
+            words="Our Intelligent Systems"
+            className="text-5xl md:text-7xl leading-tight"
           />
+          <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed mt-4">
+            Custom-engineered modules designed to handle the complexity of global scale.
+          </p>
         </div>
 
-        {/* Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {services.map((service, idx) => {
-            const isContentCreation = service.title === "Content Creation";
-            
-            return (
-              <motion.div 
-                key={idx} 
-                variants={itemVariants}
-                className={`
-                  ${isContentCreation ? 'lg:row-span-2 lg:h-full' : 'h-full'}
-                `}
-              >
-                <CardSpotlight className={`
-                  p-8 rounded-2xl border-white/5 bg-neutral-900/50 flex flex-col items-start h-full
-                  ${isContentCreation ? 'justify-between' : ''}
-                `}>
-                  <div className="relative z-20">
-                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 text-black shrink-0">
-                      <service.icon size={24} strokeWidth={2} />
+        {/* Primary 3 Pillars Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-32">
+           {primaryServices.map((service, idx) => {
+             const Icon = iconMap[service.iconName] || BarChart3;
+             return (
+               <motion.div
+                 key={service.slug}
+                 initial={{ opacity: 0, y: 30 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: idx * 0.1, duration: 0.8 }}
+                 className="relative group"
+               >
+                 <CardSpotlight className="p-10 rounded-[2.5rem] border border-white/10 bg-neutral-900/30 backdrop-blur-sm h-full flex flex-col items-start relative z-10">
+                    <div className="flex items-center justify-between w-full mb-10">
+                       <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-neutral-500">{service.category}</span>
+                       <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 tracking-wider uppercase">
+                          {service.outcome}
+                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
-                    <p className="text-neutral-400 text-sm leading-relaxed mb-6">{service.description}</p>
-                  </div>
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-black mb-8 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-500">
+                       <Icon size={32} />
+                    </div>
 
-                  {isContentCreation && service.image && (
-                     <div className="w-full mt-auto pt-4 rounded-lg overflow-hidden h-48 md:h-64 lg:h-auto lg:grow relative z-20">
-                        <Image 
-                          src={service.image} 
-                          alt="Content Creation Studio" 
-                          fill
-                          className="object-cover rounded-lg opacity-80"
-                        />
+                    <h3 className="text-3xl font-bold mb-6 leading-tight group-hover:text-blue-400 transition-colors">
+                       {service.title}
+                    </h3>
+                    
+                    <p className="text-neutral-400 leading-relaxed mb-10 text-lg">
+                       {service.description}
+                    </p>
+
+                     <div className="mt-auto w-full pt-8 border-t border-white/5">
+                        <Link href={`/services/${pillarMetadata[service.pillar].slug}`} className="flex items-center justify-between w-full group/link">
+                           <span className="text-sm font-bold tracking-widest uppercase text-neutral-300 group-hover/link:text-white transition-colors">Explore Category</span>
+                           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover/link:bg-white group-hover/link:text-black transition-all">
+                              <ArrowRight size={18} />
+                           </div>
+                        </Link>
                      </div>
-                  )}
-                </CardSpotlight>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                 </CardSpotlight>
+               </motion.div>
+             )
+           })}
+        </div>
 
-        <div className="mt-12">
+        <div className="flex justify-center mt-12">
             <Link href="/contact">
-              <Button className="bg-neutral-100 text-neutral-950 hover:bg-white rounded-full px-8 py-6 text-lg font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                  Work with us
+              <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-12 py-8 text-xl font-bold shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105 transition-all">
+                  Initialize Deployment &rarr;
               </Button>
             </Link>
         </div>

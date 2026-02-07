@@ -56,41 +56,39 @@ function Counter({ value, className }: { value: string; className?: string }) {
 
 export function StatsSection() {
   return (
-    <section className="bg-neutral-950 py-24 px-4 font-sans text-white">
+    <section className="bg-neutral-950 py-32 px-4 font-sans text-white border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="flex flex-col items-end text-right gap-6 mb-24">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
+          >
+            Numbers
+          </motion.span>
           
-          {/* Left Content */}
-          <div className="flex flex-col items-start gap-8">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-sm font-bold tracking-widest uppercase text-neutral-500 mb-4 block"
-            >
-              Numbers
-            </motion.span>
-            
-            <div className="mb-6">
-                <GradientText 
-                words="Solving Problems"
-                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-                />
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-neutral-400 max-w-md leading-relaxed"
-            >
-              Years in the game. Proven systems. Results that speak.
-            </motion.p>
+          <div className="mb-6">
+              <GradientText 
+              words="Solving Problems"
+              className="text-4xl md:text-6xl font-bold leading-tight"
+              />
           </div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed"
+          >
+            Years in the game. Proven systems. Results that speak.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-24 items-center">
           {/* Right Content - Stats Grid */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 mt-12">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}

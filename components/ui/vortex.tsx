@@ -234,7 +234,21 @@ export const Vortex = (props: VortexProps) => {
   };
 
   useEffect(() => {
-    setup();
+    const setupLocal = () => {
+      const canvas = canvasRef.current;
+      const container = containerRef.current;
+      if (canvas && container) {
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+          resize(canvas, ctx);
+          initParticles();
+          draw(canvas, ctx);
+        }
+      }
+    };
+
+    setupLocal();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -243,7 +257,7 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, [handleResize]); // Added handleResize as dependency, setup is now internal to useEffect to avoid lint warning or could be wrapped in useCallback
 
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>
