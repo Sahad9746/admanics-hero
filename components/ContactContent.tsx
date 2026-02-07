@@ -1,33 +1,118 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowRight, Loader2, Send } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Loader2, Send, Search, ChevronDown, X } from "lucide-react";
 import { GradientText } from "@/components/ui/GradientText";
 import WorldMap from "@/components/ui/world-map";
 import { Footer } from "@/components/Footer";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { sendContactEmail } from "@/app/actions/contact";
 import { Button } from "@/components/ui/Button";
+import Lottie from "lottie-react";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import { AnimatePresence } from "framer-motion";
+
+interface Country {
+  name: string;
+  code: string;
+  flag: string;
+  dial_code: string;
+}
 
 export function ContactContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<Record<string, string> | null>(null);
+  const [successAnimation, setSuccessAnimation] = useState<any>(null);
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<string>("+1");
+  const [isCountryModalOpen, setIsCountryModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+
+  const selectedCountryData = useMemo(() => {
+    return countries.find(c => c.dial_code === selectedCountry) || countries[0];
+  }, [countries, selectedCountry]);
+
+  // Dynamic Max Length: Specific lengths for common regions, default to 15 (E.164 max)
+  const maxPhoneLength = useMemo(() => {
+    if (!selectedCountryData) return 15;
+    const code = selectedCountryData.code;
+    const lengths: Record<string, number> = {
+        'IN': 10, 'US': 10, 'GB': 10, 'AE': 9, 'SA': 10, 
+        'QA': 8, 'OM': 8, 'KW': 8, 'BH': 8, 'DE': 11, 'FR': 9, 'AU': 9
+    };
+    return lengths[code] || 15;
+  }, [selectedCountryData]);
+
+  const filteredCountries = useMemo(() => {
+    return countries.filter(c => 
+      c.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      c.dial_code.includes(searchQuery) ||
+      c.code.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [countries, searchQuery]);
+
+  useEffect(() => {
+    // 1. Fetch Blue Themed Lottie
+    fetch("https://lottie.host/9c204968-3868-4560-8041-e945c11030e4/gK5y28i6z1.json") 
+      .then(res => res.json())
+      .then(data => setSuccessAnimation(data))
+      .catch(() => null);
+
+    // 2. Fetch Countries from Public API
+    fetch("https://restcountries.com/v3.1/all?fields=name,cca2,flags,idd,flag")
+      .then(res => res.json())
+      .then((data: any[]) => {
+        const formattedCountries = data
+          .map((c: any) => ({
+            name: c.name.common,
+            code: c.cca2,
+            flag: c.flag || "🏳️", // Use emoji flag from API
+            dial_code: c.idd.root + (c.idd.suffixes ? c.idd.suffixes[0] : ""),
+          }))
+          .filter((c) => c.dial_code && !c.dial_code.includes("undefined"))
+          .sort((a, b) => a.name.localeCompare(b.name));
+        
+        setCountries(formattedCountries);
+      })
+      .catch(err => console.error("Failed to fetch countries", err));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError("");
+    setError(null);
     setSuccess(false);
 
     const formData = new FormData(e.currentTarget);
+    const phone = formData.get("phone") as string;
+    
+    // Combine dial code + phone for validation
+    const fullPhone = selectedCountry + phone;
+    
+    // Strict Validation: If phone is provided, check validity including length
+    if (phone && !isValidPhoneNumber(fullPhone)) {
+        setError({ phone: "Invalid phone number length for this country." });
+        setIsSubmitting(false);
+        return;
+    }
+    
+    formData.set("phone", fullPhone);
+    formData.set("countryCode", selectedCountry); // Ensure country code is sent correctly
+
     const result = await sendContactEmail(formData);
 
     if (result.success) {
       setSuccess(true);
       (e.target as HTMLFormElement).reset();
+      setPhoneValue(""); // Clear controlled phone state
     } else {
-      setError(result.error || "Something went wrong. Please try again.");
+        if (typeof result.errors === 'object') {
+            setError(result.errors);
+        } else {
+             setError({ form: result.error || "Something went wrong" });
+        }
     }
     setIsSubmitting(false);
   };
@@ -59,28 +144,47 @@ export function ContactContent() {
                         </p>
                     </div>
 
+
                     <form onSubmit={handleSubmit} className="space-y-6 max-w-lg relative">
-                        {/* Success Overlay */}
+                        {/* Success Overlay - Fixed Center Screen */}
                         {success && (
                             <motion.div 
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="absolute inset-0 bg-neutral-950/90 backdrop-blur-sm z-50 flex flex-col items-center justify-center text-center p-6 rounded-2xl border border-green-500/30"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-6"
                             >
-                                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-                                    <Send className="w-8 h-8 text-green-400" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                                <p className="text-neutral-400 mb-6">We&apos;ll be in touch with you shortly.</p>
-                                <Button 
-                                    type="button" 
-                                    onClick={() => setSuccess(false)}
-                                    className="bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-3 font-bold"
+                                <motion.div 
+                                    initial={{ scale: 0.9, y: 20 }}
+                                    animate={{ scale: 1, y: 0 }}
+                                    className="bg-neutral-900 border border-white/10 p-8 md:p-12 rounded-3xl max-w-md w-full flex flex-col items-center text-center shadow-2xl relative overflow-hidden"
                                 >
-                                    Send Another
-                                </Button>
+                                    {/* Blue Glow Effect */}
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-blue-500/20 blur-[100px] rounded-full pointing-events-none" />
+                                    
+                                    <div className="w-40 h-40 mb-6 relative z-10">
+                                        {successAnimation ? (
+                                            <Lottie animationData={successAnimation} loop={false} />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-blue-500/10 rounded-full">
+                                                <Send className="w-16 h-16 text-blue-400" />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <h3 className="text-3xl font-bold text-white mb-3 relative z-10">Message Sent</h3>
+                                    <p className="text-neutral-400 mb-8 relative z-10">
+                                        Our intelligence team has received your briefing. We will analyze your requirements and respond shortly.
+                                    </p>
+                                    <Button 
+                                        type="button" 
+                                        onClick={() => setSuccess(false)}
+                                        className="bg-white text-black hover:bg-neutral-200 rounded-full px-10 py-4 font-bold text-lg w-full relative z-10"
+                                    >
+                                        Close
+                                    </Button>
+                                </motion.div>
                             </motion.div>
                         )}
+
 
                         <div className="space-y-2">
                             <label htmlFor="name" className="text-sm font-bold uppercase tracking-widest text-neutral-500">Name</label>
@@ -90,22 +194,112 @@ export function ContactContent() {
                                 id="name"
                                 required
                                 disabled={isSubmitting}
-                                className="w-full bg-neutral-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-neutral-600 disabled:opacity-50"
+                                className={`w-full bg-neutral-900/50 border ${error?.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.name ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 disabled:opacity-50`}
                                 placeholder="Enter your name"
                             />
+                            {error?.name && <p className="text-red-400 text-xs mt-1">{error.name}</p>}
                         </div>
                         
                         <div className="space-y-2">
-                            <label htmlFor="phone" className="text-sm font-bold uppercase tracking-widest text-neutral-500">Phone</label>
-                            <input 
-                                type="tel" 
-                                name="phone" 
-                                id="phone"
-                                required
-                                disabled={isSubmitting}
-                                className="w-full bg-neutral-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-neutral-600 disabled:opacity-50"
-                                placeholder="Enter your phone number"
-                            />
+                            <label htmlFor="phone" className="text-sm font-bold uppercase tracking-widest text-neutral-500">Phone <span className="text-neutral-600 normal-case tracking-normal font-normal ml-1">(Optional)</span></label>
+                            <div className="flex gap-4 relative">
+                                {/* Custom Country Modal Trigger */}
+                                <div className="relative">
+                                    <button 
+                                        type="button"
+                                        onClick={() => setIsCountryModalOpen(true)}
+                                        className="flex items-center gap-2 bg-neutral-900/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all hover:bg-neutral-800/80 min-w-[120px]"
+                                    >
+                                        <span className="text-xl">{selectedCountryData?.flag || "🏳️"}</span>
+                                        <span className="font-medium">{selectedCountry}</span>
+                                        <ChevronDown className={`w-4 h-4 text-neutral-500 transition-transform ${isCountryModalOpen ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    
+                                    <AnimatePresence>
+                                        {isCountryModalOpen && (
+                                            <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+                                                <motion.div 
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    onClick={() => setIsCountryModalOpen(false)}
+                                                    className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                                                />
+                                                <motion.div 
+                                                    initial={{ scale: 0.95, opacity: 0, y: 10 }}
+                                                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                                                    exit={{ scale: 0.95, opacity: 0, y: 10 }}
+                                                    className="relative bg-neutral-900 border border-white/10 rounded-3xl w-full max-w-md overflow-hidden flex flex-col max-h-[80vh] shadow-2xl"
+                                                >
+                                                    <div className="p-4 border-b border-white/5 flex items-center gap-4 sticky top-0 bg-neutral-900 z-10">
+                                                        <Search className="w-5 h-5 text-neutral-500" />
+                                                        <input 
+                                                            type="text" 
+                                                            autoFocus
+                                                            placeholder="Search country or code..."
+                                                            value={searchQuery}
+                                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                                            className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-neutral-600 p-2"
+                                                        />
+                                                        <button 
+                                                            onClick={() => setIsCountryModalOpen(false)}
+                                                            className="p-2 hover:bg-white/5 rounded-full transition-colors"
+                                                        >
+                                                            <X className="w-5 h-5 text-neutral-500" />
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    <div className="flex-1 overflow-y-auto p-2 country-list-scrollbar">
+                                                        {filteredCountries.length > 0 ? (
+                                                            filteredCountries.map((country) => (
+                                                                <button
+                                                                    key={`${country.code}-${country.dial_code}`}
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        setSelectedCountry(country.dial_code);
+                                                                        setIsCountryModalOpen(false);
+                                                                        setSearchQuery("");
+                                                                    }}
+                                                                    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all ${selectedCountry === country.dial_code ? 'bg-blue-500/10 text-white' : 'hover:bg-white/5 text-neutral-400 hover:text-white'}`}
+                                                                >
+                                                                    <div className="flex items-center gap-4">
+                                                                        <span className="text-2xl">{country.flag}</span>
+                                                                        <span className="font-medium text-sm text-left">{country.name}</span>
+                                                                    </div>
+                                                                    <span className="text-neutral-500 font-mono text-sm">{country.dial_code}</span>
+                                                                </button>
+                                                            ))
+                                                        ) : (
+                                                            <div className="p-8 text-center text-neutral-600">
+                                                                <p>No results for &quot;{searchQuery}&quot;</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </motion.div>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                <input 
+                                    type="tel" 
+                                    name="phone" 
+                                    id="phone"
+                                    value={phoneValue}
+                                    onChange={(e) => {
+                                        // Numeric only
+                                        const val = e.target.value.replace(/\D/g, "");
+                                        if (val.length <= maxPhoneLength) {
+                                            setPhoneValue(val);
+                                        }
+                                    }}
+                                    inputMode="numeric"
+                                    disabled={isSubmitting}
+                                    className={`flex-1 bg-neutral-900/50 border ${error?.phone ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.phone ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 disabled:opacity-50`}
+                                    placeholder="Phone number"
+                                />
+                            </div>
+                            {error?.phone && <p className="text-red-400 text-xs mt-1">{error.phone}</p>}
                         </div>
 
                         <div className="space-y-2">
@@ -116,9 +310,10 @@ export function ContactContent() {
                                 id="email"
                                 required
                                 disabled={isSubmitting}
-                                className="w-full bg-neutral-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-neutral-600 disabled:opacity-50"
+                                className={`w-full bg-neutral-900/50 border ${error?.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.email ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 disabled:opacity-50`}
                                 placeholder="Enter your email"
                             />
+                            {error?.email && <p className="text-red-400 text-xs mt-1">{error.email}</p>}
                         </div>
 
                         <div className="space-y-2">
@@ -129,9 +324,10 @@ export function ContactContent() {
                                 required
                                 rows={4}
                                 disabled={isSubmitting}
-                                className="w-full bg-neutral-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-neutral-600 resize-none disabled:opacity-50"
+                                className={`w-full bg-neutral-900/50 border ${error?.message ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.message ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 resize-none disabled:opacity-50`}
                                 placeholder="Tell us about your project..."
                             />
+                            {error?.message && <p className="text-red-400 text-xs mt-1">{error.message}</p>}
                         </div>
 
                         <div className="pt-4">
@@ -152,7 +348,8 @@ export function ContactContent() {
                             </Button>
                         </div>
 
-                        {error && (
+                        {/* General Error (if any, separate from fields) */}
+                        {typeof error === 'string' && error && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}

@@ -6,7 +6,8 @@ import { z } from "zod";
 const ContactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  countryCode: z.string().optional(),
+  phone: z.string().optional(), // Phone is now optional
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -14,6 +15,7 @@ export async function sendContactEmail(formData: FormData) {
   const rawData = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
+    countryCode: formData.get("countryCode") as string,
     phone: formData.get("phone") as string,
     message: formData.get("message") as string,
   };
@@ -22,14 +24,18 @@ export async function sendContactEmail(formData: FormData) {
   const result = ContactSchema.safeParse(rawData);
 
   if (!result.success) {
-    let errorMessage = "";
+    // Return field-specific errors
+    const fieldErrors: Record<string, string> = {};
     result.error.issues.forEach((issue) => {
-        errorMessage += issue.message + ". ";
+      // Map error message to the specific path (field name)
+      if (issue.path[0]) {
+        fieldErrors[issue.path[0].toString()] = issue.message;
+      }
     });
-    return { success: false, error: errorMessage };
+    return { success: false, errors: fieldErrors };
   }
 
-  const { name, email, phone, message } = result.data;
+  const { name, email, countryCode, phone, message } = result.data;
 
   // Debug: Log the data (Private logging)
   console.log(`Email Request from: ${email}`);
