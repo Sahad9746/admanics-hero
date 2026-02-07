@@ -10,10 +10,6 @@ const brands = [
     logo: <Image src="/images/clients_logo/2.jpg" alt="Client 2" width={200} height={100} className="h-20 w-auto object-contain" />,
   },
   {
-    name: "Client 3",
-    logo: <Image src="/images/clients_logo/3.jpg" alt="Client 3" width={200} height={100} className="h-20 w-auto object-contain" />,
-  },
-  {
     name: "Client 4",
     logo: <Image src="/images/clients_logo/4.jpg" alt="Client 4" width={200} height={100} className="h-20 w-auto object-contain" />,
   },
