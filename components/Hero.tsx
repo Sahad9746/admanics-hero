@@ -28,14 +28,14 @@ export default function Hero() {
             Admanics / Intelligent Infrastructure
           </span>
 
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[1.1] mb-10 md:mb-16 flex flex-col items-center justify-center font-sans px-4">
+          <h1 className="text-4xl xs:text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[1.1] mb-10 md:mb-16 flex flex-col items-center justify-center font-sans px-2 md:px-4">
              <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mb-4 md:mb-6">
-                <span className="inline-flex items-center justify-center px-6 py-2 md:px-10 md:py-4 rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl">
-                  <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" className="text-5xl md:text-8xl lg:text-9xl" />
+                <span className="inline-flex items-center justify-center px-6 py-2 md:px-10 md:py-4 rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl w-auto max-w-full overflow-hidden">
+                  <LayoutTextFlip words={["Automated", "Intelligent", "Scalable"]} text="" className="text-4xl xs:text-5xl md:text-8xl lg:text-9xl" />
                 </span>
-                <span className="text-white">Growth</span>
+                <span className="text-white text-4xl xs:text-5xl md:text-8xl lg:text-9xl">Growth</span>
              </div>
-             <GradientText words="Systems that Scale" as="span" className="block px-2" />
+             <GradientText words="Systems that Scale" as="span" className="block px-2 text-4xl xs:text-5xl md:text-8xl lg:text-9xl text-center" />
           </h1>
 
           <p className="text-lg md:text-3xl text-neutral-400 max-w-3xl mx-auto mb-16 md:mb-20 leading-relaxed font-medium px-4">
@@ -49,7 +49,7 @@ export default function Hero() {
                whileTap={{ scale: 0.95 }}
                className="bg-white text-black px-10 py-5 md:px-12 md:py-6 rounded-full font-bold text-lg md:text-xl shadow-2xl shadow-blue-500/10 transition-all w-full sm:w-auto"
              >
-                Initializes Deployment
+                Initialize Deployment
              </motion.button>
              <motion.button 
                whileHover={{ scale: 1.05 }}

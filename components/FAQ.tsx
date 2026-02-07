@@ -122,8 +122,8 @@ export function FAQ() {
                 Reach out and let&apos;s talk about your specific infrastructure requirements.
             </p>
             <a href="/contact">
-                <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-10 py-5 md:px-12 md:py-6 text-lg md:text-xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl">
-                    Contact Us &rarr;
+                <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-4 md:px-12 md:py-6 text-lg md:text-xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl whitespace-nowrap">
+                    Book Consultation &rarr;
                 </Button>
             </a>
         </motion.div>

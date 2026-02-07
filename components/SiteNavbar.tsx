@@ -59,9 +59,9 @@ export function SiteNavbar() {
           <NavItems items={navItems.filter(item => item.name !== "Contact")} /> 
           <Link 
             href="/contact" 
-            className="hidden lg:block bg-white text-neutral-950 px-8 py-3 rounded-full font-bold text-base hover:bg-neutral-200 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] cursor-pointer relative z-50"
+            className="hidden lg:block bg-white text-neutral-950 px-8 py-3 rounded-full font-bold text-sm hover:bg-neutral-200 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] cursor-pointer relative z-50 whitespace-nowrap"
           >
-            Contact
+            Book Strategy
           </Link>
         </NavBody>
       </Navbar>

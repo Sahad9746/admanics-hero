@@ -168,95 +168,95 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
           
           <div className="max-w-7xl mx-auto relative z-10 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-12"
-            >
-              <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[1.1]">
-                Initialize Your <br />
-                <span className="text-blue-500 uppercase">{category} System</span>
-              </h2>
-              
-              <div className="flex flex-col items-center gap-12">
-                  <p className="text-xl md:text-2xl text-neutral-400 font-medium max-w-2xl">
-                    Deploy the infrastructure your brand deserves. Connect with an architect to begin your transformation.
-                  </p>
-                  
-                  <Link href="/contact">
-                    <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-16 py-10 text-2xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-blue-500/10">
-                      Deploy System &rarr;
-                    </Button>
-                  </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </div>
-    </div>
-  );
-}
-
-function ModuleSection({ service, idx, Icon, category }: { service: Service, idx: number, Icon: any, category: string }) {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
-  return (
-    <section 
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center py-16 md:py-32 overflow-hidden border-t border-white/5"
-    >
-      {/* ... */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
-        <div className={cn(
-          "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center",
-          idx % 2 !== 0 && "lg:flex-row-reverse"
-        )}>
-          {/* Content Side - Order 2 on Mobile (Bottom), Alternates on Desktop */}
-          <div className={cn(
-              "flex flex-col order-2", // Mobile: Always Bottom
-              idx % 2 === 0 ? "lg:order-1" : "lg:order-2" // Desktop: Alternates
-          )}>
-            <motion.div
-              initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <div className="flex items-center gap-4 mb-8">
-                  <div className="w-px h-12 bg-blue-500" />
-                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500">{service.tagline}</span>
-              </div>
-
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-10 tracking-tight leading-none text-white">
-                {service.title}
-              </h2>
-
-              <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed mb-8 md:mb-12 max-w-xl">
-                {service.detailedContent}
-              </p>
-
-              <div className="grid grid-cols-1 gap-4 md:gap-6 mb-10 md:mb-16">
-                 {service.features.map((feature, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-4 md:gap-6 group/item">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover/item:scale-150 transition-transform" />
-                        <span className="text-lg font-bold text-neutral-300 tracking-tight">{feature}</span>
-                    </div>
-                 ))}
-              </div>
-
-              <Link href="/contact">
-                <Button variant="outline" className="bg-transparent text-white rounded-full px-10 py-7 border-white/10 hover:border-white/40 hover:bg-white/5 text-lg font-bold transition-all group/btn">
-                  System Architecture <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </motion.div>
+               initial={{ opacity: 0, y: 40 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="space-y-12"
+             >
+               <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[1.1]">
+                 Scale Your <br />
+                 <span className="text-blue-500 uppercase">{category} System</span>
+               </h2>
+               
+               <div className="flex flex-col items-center gap-12">
+                   <p className="text-xl md:text-2xl text-neutral-400 font-medium max-w-2xl">
+                     Deploy the infrastructure your brand deserves. Connect with an architect to begin your transformation.
+                   </p>
+                   
+                   <Link href="/contact">
+                     <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-10 py-5 md:px-16 md:py-8 text-lg md:text-xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-blue-500/10 whitespace-nowrap">
+                       Book Consultation &rarr;
+                     </Button>
+                   </Link>
+               </div>
+             </motion.div>
+           </div>
+         </section>
+       </div>
+     </div>
+   );
+ }
+ 
+ function ModuleSection({ service, idx, Icon, category }: { service: Service, idx: number, Icon: any, category: string }) {
+   const sectionRef = useRef(null);
+   const { scrollYProgress } = useScroll({
+     target: sectionRef,
+     offset: ["start end", "end start"]
+   });
+ 
+   const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+ 
+   return (
+     <section 
+       ref={sectionRef}
+       className="relative min-h-screen flex items-center py-16 md:py-32 overflow-hidden border-t border-white/5"
+     >
+       {/* ... */}
+       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+         <div className={cn(
+           "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center",
+           idx % 2 !== 0 && "lg:flex-row-reverse"
+         )}>
+           {/* Content Side - Order 2 on Mobile (Bottom), Alternates on Desktop */}
+           <div className={cn(
+               "flex flex-col order-2", // Mobile: Always Bottom
+               idx % 2 === 0 ? "lg:order-1" : "lg:order-2" // Desktop: Alternates
+           )}>
+             <motion.div
+               initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true, margin: "-100px" }}
+               transition={{ duration: 1, ease: "easeOut" }}
+             >
+               <div className="flex items-center gap-4 mb-8">
+                   <div className="w-px h-12 bg-blue-500" />
+                   <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500">{service.tagline}</span>
+               </div>
+ 
+               <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-10 tracking-tight leading-none text-white">
+                 {service.title}
+               </h2>
+ 
+               <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed mb-8 md:mb-12 max-w-xl">
+                 {service.detailedContent}
+               </p>
+ 
+               <div className="grid grid-cols-1 gap-4 md:gap-6 mb-10 md:mb-16">
+                  {service.features.map((feature, fIdx) => (
+                     <div key={fIdx} className="flex items-center gap-4 md:gap-6 group/item">
+                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover/item:scale-150 transition-transform" />
+                         <span className="text-lg font-bold text-neutral-300 tracking-tight">{feature}</span>
+                     </div>
+                  ))}
+               </div>
+ 
+               <Link href="/contact">
+                 <Button variant="outline" className="bg-transparent text-white rounded-full px-10 py-7 border-white/10 hover:border-white/40 hover:bg-white/5 text-lg font-bold transition-all group/btn">
+                   Explore Architecture <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                 </Button>
+               </Link>
+             </motion.div>
           </div>
 
           {/* Cinematic Visual Side */}

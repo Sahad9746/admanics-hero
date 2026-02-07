@@ -23,11 +23,11 @@ export function Services() {
   ].filter((s): s is Service => !!s);
 
   return (
-    <section id="services" className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white overflow-hidden relative">
+     <section id="services" className="bg-neutral-950 py-16 md:py-32 px-6 md:px-12 font-sans text-white overflow-hidden relative">
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         
         {/* Cinematic Header */}
-        <div className="flex flex-col items-start text-left gap-8 md:gap-10 mb-24 md:mb-48">
+        <div className="flex flex-col items-start text-left gap-8 md:gap-10 mb-16 md:mb-32">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,15 +65,15 @@ export function Services() {
            })}
         </div>
 
-        <div className="flex justify-center mt-24 md:mt-48">
+        <div className="flex justify-center mt-16 md:mt-32">
              <Link href="/contact" className="group w-full md:w-auto px-4">
-               <motion.button 
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.95 }}
-                 className="bg-white text-black px-10 py-6 md:px-16 md:py-8 rounded-full font-bold text-lg md:text-2xl shadow-2xl shadow-blue-500/20 transition-all w-full md:w-auto"
-               >
-                  Initialize System Deployment &rarr;
-               </motion.button>
+                 <motion.button 
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   className="bg-white text-black px-8 py-4 md:px-12 md:py-6 rounded-full font-bold text-base md:text-xl shadow-2xl shadow-blue-500/20 transition-all w-full md:w-auto whitespace-nowrap"
+                 >
+                    Start Your Transformation &rarr;
+                 </motion.button>
              </Link>
         </div>
       </div>

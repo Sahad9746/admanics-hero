@@ -1,0 +1,79 @@
+"use server";
+
+import nodemailer from "nodemailer";
+import { z } from "zod";
+
+const ContactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+export async function sendContactEmail(formData: FormData) {
+  const rawData = {
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string,
+    message: formData.get("message") as string,
+  };
+
+  // Validate Input
+  const result = ContactSchema.safeParse(rawData);
+
+  if (!result.success) {
+    let errorMessage = "";
+    result.error.issues.forEach((issue) => {
+        errorMessage += issue.message + ". ";
+    });
+    return { success: false, error: errorMessage };
+  }
+
+  const { name, email, phone, message } = result.data;
+
+  // Debug: Log the data (Private logging)
+  console.log(`Email Request from: ${email}`);
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  try {
+    await transporter.verify(); // Verify connection config
+    
+    await transporter.sendMail({
+      from: `"${name}" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
+      replyTo: email,
+      subject: `New Lead: ${name} via Admanics`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 8px; padding: 20px;">
+            <h2 style="color: #2563EB; margin-bottom: 20px;">New Inquiry Received</h2>
+            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px;">
+                <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
+                <p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                <p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
+            </div>
+            <p style="margin-top: 20px;"><strong>Requirements:</strong></p>
+            <div style="background: #fff; padding: 15px; border-radius: 5px; border-left: 4px solid #2563EB; border: 1px solid #eee;">
+                ${message}
+            </div>
+            <hr style="margin: 30px 0 10px; border: 0; border-top: 1px solid #eee;" />
+            <p style="font-size: 12px; color: #888; text-align: center;">Secure message via Admanics Website</p>
+        </div>
+      `,
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Email Error:", error);
+    return { success: false, error: "Failed to send email. Please check server logs." };
+  }
+}

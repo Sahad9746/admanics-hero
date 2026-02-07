@@ -55,9 +55,9 @@ const tools = [
 
 export function ResultsSection() {
   return (
-    <section className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
+    <section className="bg-neutral-950 py-16 md:py-32 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex flex-col items-end text-right gap-8 md:gap-10 mb-20 md:mb-32">
+        <div className="flex flex-col items-end text-right gap-8 md:gap-10 mb-16 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ export function ResultsSection() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-32 md:mt-48 p-10 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-blue-500/10 to-transparent border border-white/10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 relative overflow-hidden group"
+            className="mt-20 md:mt-32 p-10 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-blue-500/10 to-transparent border border-white/10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(59,130,246,0.1),_transparent_70%)] pointer-events-none" />
           
@@ -117,8 +117,8 @@ export function ResultsSection() {
             <p className="text-lg md:text-xl text-neutral-400 font-medium">Join 50+ brands scaling with our Intelligent Systems.</p>
           </div>
           <Link href="/contact" className="w-full md:w-auto relative z-10">
-            <Button className="w-full md:w-auto bg-white text-black hover:bg-neutral-200 rounded-full px-12 py-6 md:px-16 md:py-10 text-lg md:text-2xl font-bold shadow-2xl transition-all hover:scale-105 active:scale-95">
-              Book a Strategy Call
+            <Button className="w-full md:w-auto bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-4 md:px-12 md:py-6 text-lg md:text-xl font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
+              Book Strategy Call
             </Button>
           </Link>
         </motion.div>
