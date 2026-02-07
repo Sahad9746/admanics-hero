@@ -54,8 +54,8 @@ export function ContactContent() {
   }, [countries, searchQuery]);
 
   useEffect(() => {
-    // 1. Fetch Blue Themed Lottie
-    fetch("https://lottie.host/9c204968-3868-4560-8041-e945c11030e4/gK5y28i6z1.json") 
+    // 1. Fetch Blue Themed Lottie (Stable Finsweet/Lottieflow CDN)
+    fetch("https://cdn.prod.website-files.com/5d829bf092d4644f5c42e0ea/5def871cca4d3b3d86d6ee1b_Success-Pack9-smooth.json") 
       .then(res => res.json())
       .then(data => setSuccessAnimation(data))
       .catch(() => null);

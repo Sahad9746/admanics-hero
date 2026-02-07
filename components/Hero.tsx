@@ -43,22 +43,6 @@ export default function Hero() {
             Replace manual complexity with connected intelligence.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center w-full px-4 md:px-0">
-             <motion.button 
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-               className="bg-white text-black px-10 py-5 md:px-12 md:py-6 rounded-full font-bold text-lg md:text-xl shadow-2xl shadow-blue-500/10 transition-all w-full sm:w-auto"
-             >
-                Initialize Deployment
-             </motion.button>
-             <motion.button 
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-               className="border border-white/10 bg-white/5 backdrop-blur-md text-white px-10 py-5 md:px-12 md:py-6 rounded-full font-bold text-lg md:text-xl hover:bg-white/10 transition-all w-full sm:w-auto"
-             >
-                Watch System Tour
-             </motion.button>
-          </div>
         </motion.div>
       </div>
       </Vortex>
