@@ -210,27 +210,18 @@ function ModuleSection({ service, idx, Icon, category }: { service: Service, idx
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen flex items-center py-32 overflow-hidden border-t border-white/5"
+      className="relative min-h-screen flex items-center py-16 md:py-32 overflow-hidden border-t border-white/5"
     >
-      {/* Typography Mask - Cinematic Identity */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <motion.span 
-            style={{ y }}
-            className="text-[35vw] font-black text-white/[0.02] leading-none tracking-tighter uppercase whitespace-nowrap"
-          >
-            {service.slug}
-          </motion.span>
-      </div>
-
+      {/* ... */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
         <div className={cn(
-          "grid grid-cols-1 lg:grid-cols-2 gap-24 items-center",
+          "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center",
           idx % 2 !== 0 && "lg:flex-row-reverse"
         )}>
-          {/* Content Side */}
+          {/* Content Side - Order 2 on Mobile (Bottom), Alternates on Desktop */}
           <div className={cn(
-              "flex flex-col",
-              idx % 2 !== 0 && "lg:order-2"
+              "flex flex-col order-2", // Mobile: Always Bottom
+              idx % 2 === 0 ? "lg:order-1" : "lg:order-2" // Desktop: Alternates
           )}>
             <motion.div
               initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
@@ -243,17 +234,17 @@ function ModuleSection({ service, idx, Icon, category }: { service: Service, idx
                   <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500">{service.tagline}</span>
               </div>
 
-              <h2 className="text-5xl md:text-7xl font-bold mb-10 tracking-tight leading-none text-white">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-10 tracking-tight leading-none text-white">
                 {service.title}
               </h2>
 
-              <p className="text-xl text-neutral-400 font-medium leading-relaxed mb-12 max-w-xl">
+              <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed mb-8 md:mb-12 max-w-xl">
                 {service.detailedContent}
               </p>
 
-              <div className="grid grid-cols-1 gap-6 mb-16">
+              <div className="grid grid-cols-1 gap-4 md:gap-6 mb-10 md:mb-16">
                  {service.features.map((feature, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-6 group/item">
+                    <div key={fIdx} className="flex items-center gap-4 md:gap-6 group/item">
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover/item:scale-150 transition-transform" />
                         <span className="text-lg font-bold text-neutral-300 tracking-tight">{feature}</span>
                     </div>
@@ -261,7 +252,7 @@ function ModuleSection({ service, idx, Icon, category }: { service: Service, idx
               </div>
 
               <Link href="/contact">
-                <Button variant="outline" className="rounded-full px-10 py-7 border-white/10 hover:border-white/40 text-lg font-bold transition-all group/btn">
+                <Button variant="outline" className="bg-transparent text-white rounded-full px-10 py-7 border-white/10 hover:border-white/40 hover:bg-white/5 text-lg font-bold transition-all group/btn">
                   System Architecture <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -279,13 +270,13 @@ function ModuleSection({ service, idx, Icon, category }: { service: Service, idx
                viewport={{ once: true }}
                transition={{ duration: 1.2, ease: "easeOut" }}
             >
-                <div className="relative aspect-[4/5] md:aspect-[16/10] overflow-hidden">
+                <div className="relative aspect-[2/1] md:aspect-[16/10] overflow-hidden rounded-3xl md:rounded-none border border-white/10 md:border-none mb-8 md:mb-0">
                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
                     <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(10,10,10,0.4)_100%)]" />
                     
                     {/* Floating Icon Ambient */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 opacity-20 group-hover:opacity-40 transition-opacity">
-                         <Icon size={320} strokeWidth={0.5} className="text-blue-400" />
+                         <Icon className="w-32 h-32 md:w-80 md:h-80 text-blue-400" strokeWidth={0.5} />
                     </div>
 
                     <div className="absolute top-8 right-8 z-30">

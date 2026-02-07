@@ -23,7 +23,7 @@ export function Services() {
   ].filter((s): s is Service => !!s);
 
   return (
-    <section id="services" className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white overflow-hidden relative">
+    <section id="services" className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white overflow-hidden relative">
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         
         {/* Cinematic Header */}

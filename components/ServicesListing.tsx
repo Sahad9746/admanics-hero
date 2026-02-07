@@ -54,11 +54,11 @@ export function ServicesListing() {
   const ormServices = services.filter(s => s.pillar === "ORM");
 
   return (
-    <div ref={containerRef} className="bg-neutral-950 min-h-screen text-white font-sans py-32 px-4 relative">
+    <div ref={containerRef} className="bg-neutral-950 min-h-screen text-white font-sans py-16 md:py-32 px-4 relative">
       <div className="max-w-7xl mx-auto md:px-8 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col items-start text-left gap-8 mb-40">
+        <div className="flex flex-col items-start text-left gap-8 mb-20 md:mb-40">
           <motion.span 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -83,7 +83,7 @@ export function ServicesListing() {
         </div>
 
         {/* Pillars Sections */}
-        <div className="space-y-60">
+        <div className="space-y-32 md:space-y-60">
           <PillarSection 
             pillar="Marketing" 
             services={marketingServices} 
@@ -106,7 +106,7 @@ export function ServicesListing() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-60 p-16 md:p-32 rounded-[4rem] bg-gradient-to-br from-neutral-900 via-neutral-950 to neutral-900 border border-white/5 text-center relative overflow-hidden"
+          className="mt-32 md:mt-60 p-8 md:p-16 lg:p-32 rounded-[2.5rem] md:rounded-[4rem] bg-gradient-to-br from-neutral-900 via-neutral-950 to neutral-900 border border-white/5 text-center relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to transparent pointer-events-none" />
           <h2 className="text-5xl md:text-7xl font-bold mb-8 relative z-10 leading-tight">Build Your Custom Engine.</h2>

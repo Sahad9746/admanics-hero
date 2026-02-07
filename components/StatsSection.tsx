@@ -61,7 +61,7 @@ export function StatsSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
 
   return (
-    <section ref={containerRef} className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 relative overflow-hidden">
+    <section ref={containerRef} className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 relative overflow-hidden">
       {/* Cinematic Mask */}
       <div className="absolute inset-0 z-0 flex items-start justify-center pt-32 pointer-events-none select-none px-4 text-center">
           <motion.span 

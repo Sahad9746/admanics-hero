@@ -55,7 +55,7 @@ const tools = [
 
 export function ResultsSection() {
   return (
-    <section className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
+    <section className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col items-end text-right gap-8 md:gap-10 mb-20 md:mb-32">
           <motion.div

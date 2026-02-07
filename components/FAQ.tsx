@@ -73,11 +73,11 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-neutral-950 py-32 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
+    <section id="faq" className="bg-neutral-950 py-16 md:py-64 px-6 md:px-12 font-sans text-white border-t border-white/5 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 md:px-8">
         
         {/* Header - Center Aligned for Cinematic Feel */}
-        <div className="flex flex-col items-center text-center gap-8 md:gap-10 mb-20 md:mb-32">
+        <div className="flex flex-col items-center text-center gap-8 md:gap-10 mb-10 md:mb-32">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export function FAQ() {
         </div>
 
         {/* Q&A List */}
-        <div className="space-y-4 md:space-y-6 mb-32 md:mb-48">
+        <div className="space-y-4 md:space-y-6 mb-16 md:mb-48">
             {faqs.map((faq, idx) => (
                 <FAQItem 
                     key={idx}
