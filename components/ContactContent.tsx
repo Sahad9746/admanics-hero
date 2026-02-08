@@ -60,23 +60,42 @@ export function ContactContent() {
       .then(data => setSuccessAnimation(data))
       .catch(() => null);
 
-    // 2. Fetch Countries from Public API
-    fetch("https://restcountries.com/v3.1/all?fields=name,cca2,flags,idd,flag")
-      .then(res => res.json())
-      .then((data: any[]) => {
+    // 2. Fetch Countries from Public API (Optimized fields)
+    const fetchCountries = async () => {
+      try {
+        const res = await fetch("https://restcountries.com/v3.1/all?fields=name,cca2,idd,flag");
+        const data = await res.json();
         const formattedCountries = data
           .map((c: any) => ({
             name: c.name.common,
             code: c.cca2,
-            flag: c.flag || "🏳️", // Use emoji flag from API
+            flag: c.flag || "🏳️",
             dial_code: c.idd.root + (c.idd.suffixes ? c.idd.suffixes[0] : ""),
           }))
-          .filter((c) => c.dial_code && !c.dial_code.includes("undefined"))
-          .sort((a, b) => a.name.localeCompare(b.name));
+          .filter((c: any) => c.dial_code && !c.dial_code.includes("undefined"))
+          .sort((a: any, b: any) => a.name.localeCompare(b.name));
         
         setCountries(formattedCountries);
-      })
-      .catch(err => console.error("Failed to fetch countries", err));
+
+        // 3. Detect User's Region (IP Based)
+        try {
+          const geoRes = await fetch("https://ipapi.co/json/");
+          const geoData = await geoRes.json();
+          if (geoData.country_code) {
+            const matched = formattedCountries.find(c => c.code === geoData.country_code);
+            if (matched) {
+              setSelectedCountry(matched.dial_code);
+            }
+          }
+        } catch (geoErr) {
+          console.error("Geo-detection failed, using default", geoErr);
+        }
+      } catch (err) {
+        console.error("Failed to fetch countries", err);
+      }
+    };
+
+    fetchCountries();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
