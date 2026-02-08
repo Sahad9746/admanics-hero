@@ -39,6 +39,11 @@ export async function sendContactEmail(formData: FormData) {
 
   // Debug: Log the data (Private logging)
   console.log(`Email Request from: ${email}`);
+  
+  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error("Missing SMTP Environment Variables on Vercel");
+    return { success: false, error: "Server Configuration Error: Email variables are missing." };
+  }
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -51,8 +56,6 @@ export async function sendContactEmail(formData: FormData) {
   });
 
   try {
-    await transporter.verify(); // Verify connection config
-    
     await transporter.sendMail({
       from: `"${name}" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
@@ -78,8 +81,11 @@ export async function sendContactEmail(formData: FormData) {
     });
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Email Error:", error);
-    return { success: false, error: "Failed to send email. Please check server logs." };
+    return { 
+      success: false, 
+      error: error.message || "Failed to send email. Please check server logs." 
+    };
   }
 }
