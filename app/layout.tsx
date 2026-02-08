@@ -16,11 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://admanics.com"),
   title: {
     default: "Admanics | Automated Growth Systems",
     template: "%s | Admanics"
   },
   description: "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
+  keywords: ["AI Marketing", "Automated Growth", "Business Infrastructure", "Admanics", "Marketing Automation"],
+  authors: [{ name: "Admanics Team" }],
+  creator: "Admanics",
+  publisher: "Admanics",
   openGraph: {
     title: "Admanics | Automated Growth Systems",
     description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
@@ -41,6 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Admanics | Automated Growth Systems",
     description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
+    creator: "@admanics",
     images: ["/og-image.png"],
   },
 
@@ -49,7 +55,6 @@ export const metadata: Metadata = {
     shortcut: "/icon.png?v=2",
     apple: "/icon.png?v=2",
   },
-  metadataBase: new URL("https://admanics.com"),
 };
 
 const jsonLd = {

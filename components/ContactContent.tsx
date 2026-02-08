@@ -445,7 +445,7 @@ export function ContactContent() {
                                     </div>
                                     <div>
                                         <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Office</h3>
-                                        <p className="text-sm text-white font-medium mb-1">Banglore India nn itta m madhi</p>
+                                        <p className="text-sm text-white font-medium mb-1">Banglore India</p>
                                         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1 uppercase tracking-wider mt-2">
                                             Get Directions <ArrowRight className="w-3 h-3" />
                                         </a>
