@@ -82,7 +82,7 @@ export function ContactContent() {
           const geoRes = await fetch("https://ipapi.co/json/");
           const geoData = await geoRes.json();
           if (geoData.country_code) {
-            const matched = formattedCountries.find(c => c.code === geoData.country_code);
+            const matched = formattedCountries.find((c: Country) => c.code === geoData.country_code);
             if (matched) {
               setSelectedCountry(matched.dial_code);
             }

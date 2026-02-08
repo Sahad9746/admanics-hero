@@ -16,7 +16,7 @@ export const GradientText = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px" });
   
-  const MotionComponent = useMemo(() => motion(Component), [Component]);
+  const MotionComponent = useMemo(() => motion.create(Component), [Component]);
 
   return (
     <MotionComponent
