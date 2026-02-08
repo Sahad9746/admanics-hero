@@ -40,7 +40,7 @@ export function AboutSection() {
           </motion.div>
           
           <GradientText 
-              words="More than an agency — an automated growth infrastructure."
+              words="Beyond an Agency Built for Automated Growth"
               className="text-4xl md:text-8xl font-bold leading-[1.1] tracking-tighter max-w-6xl"
           />
 

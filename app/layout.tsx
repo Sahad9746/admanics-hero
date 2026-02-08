@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     siteName: "Admanics",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop", // Using the building image as a placeholder/demo
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Admanics Office",
+        alt: "Admanics | Automated Growth Systems",
       },
     ],
     locale: "en_US",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Admanics | Automated Growth Systems",
     description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
-    images: ["https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"],
+    images: ["/og-image.png"],
   },
 
   icons: {
