@@ -10,11 +10,11 @@ const stats = [
     label: "HAPPY CLIENTS",
   },
   {
-    value: "$1M+",
+    value: "2M+",
     label: "REVENUE GENERATED",
   },
   {
-    value: "$1M+",
+    value: "1M+",
     label: "AD SPEND",
   },
   {
