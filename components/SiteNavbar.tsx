@@ -94,16 +94,18 @@ export function SiteNavbar() {
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
           headerContent={
-            <Link href="/" onClick={(e) => handleScroll(e, "/#")}>
-              <div className="h-14 w-44 relative overflow-hidden flex items-center justify-end">
-                <Image 
-                  src="/admanics-logo-v2.png" 
-                  alt="Admanics" 
-                  fill 
-                  className="object-contain object-right origin-right scale-[1.6]" 
-                />
-              </div>
-            </Link>
+            <div className="w-full flex items-center justify-center relative">
+              <Link href="/" onClick={(e) => handleScroll(e, "/#")}>
+                <div className="h-14 w-44 relative overflow-hidden flex items-center justify-center">
+                  <Image 
+                    src="/admanics-logo-v2.png" 
+                    alt="Admanics" 
+                    fill 
+                    className="object-contain object-center scale-[1.6]" 
+                  />
+                </div>
+              </Link>
+            </div>
           }
         >
             <div className="flex flex-col items-center gap-12 w-full">

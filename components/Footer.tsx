@@ -14,8 +14,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-20">
           
           {/* Logo */}
-          <div className="h-16 w-56 relative overflow-hidden flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500">
-              <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-left" />
+          <div className="h-16 w-56 relative overflow-hidden flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 mb-8 md:mb-0">
+              <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-center" />
           </div>
 
           {/* Navigation */}

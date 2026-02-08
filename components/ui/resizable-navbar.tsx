@@ -228,9 +228,9 @@ export const MobileNavMenu = ({
           )}
         >
           {headerContent && (
-            <div className="w-full pt-10 pb-6 flex items-center justify-between">
+            <div className="w-full pt-10 pb-6 flex items-center justify-center relative">
               {headerContent}
-              <IconX className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform" onClick={onClose} />
+              <IconX className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform absolute right-0" onClick={onClose} />
             </div>
           )}
           <div className="flex-1 flex flex-col items-center justify-center gap-8 w-full">

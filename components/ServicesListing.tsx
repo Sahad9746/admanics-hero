@@ -1,7 +1,7 @@
 "use client";
 
 import { services, Service, pillarMetadata } from "@/constants/services";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { GradientText } from "@/components/ui/GradientText";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export function ServicesListing() {
   const ormServices = services.filter(s => s.pillar === "ORM");
 
   return (
-    <div ref={containerRef} className="bg-neutral-950 min-h-screen text-white font-sans py-16 md:py-32 px-4 relative">
+    <div ref={containerRef} className="bg-neutral-950 min-h-screen text-white font-sans pt-32 md:pt-40 pb-16 md:pb-32 px-4 relative">
       <div className="max-w-7xl mx-auto md:px-8 relative z-10">
         
         {/* Header Section */}
@@ -105,7 +105,7 @@ export function ServicesListing() {
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           className="mt-32 md:mt-60 p-8 md:p-16 lg:p-32 rounded-[2.5rem] md:rounded-[4rem] bg-gradient-to-br from-neutral-900 via-neutral-950 to neutral-900 border border-white/5 text-center relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to transparent pointer-events-none" />
@@ -138,7 +138,7 @@ function PillarSection({ pillar, services: pillarServices, reverse }: { pillar: 
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="relative aspect-square rounded-[3rem] overflow-hidden group border border-white/5 bg-neutral-900 shadow-2xl shadow-blue-500/5"
         >
@@ -173,7 +173,7 @@ function PillarSection({ pillar, services: pillarServices, reverse }: { pillar: 
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-4xl md:text-6xl font-black mb-6 leading-[1.1] tracking-tighter">{details.title}</h2>
           <p className="text-neutral-400 text-lg md:text-xl leading-relaxed font-medium max-w-xl">
@@ -187,7 +187,7 @@ function PillarSection({ pillar, services: pillarServices, reverse }: { pillar: 
               key={service.slug}
               initial={{ opacity: 0, x: reverse ? 20 : -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.1 }}
             >
               <div className="group flex flex-col py-6 border-b border-white/5 hover:bg-white/[0.02] transition-all px-4 rounded-2xl -mx-4">

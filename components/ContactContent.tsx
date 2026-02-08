@@ -150,7 +150,7 @@ export function ContactContent() {
 
   return (
     <div className="bg-neutral-950 min-h-screen w-full text-white font-sans selection:bg-neutral-800 selection:text-white flex flex-col pt-24 md:pt-32">
-      <main className="flex-1 flex items-center justify-center py-12 px-6 md:px-12">
+      <main className="flex-1 flex items-center justify-center py-12 px-4 md:px-12">
         
         <div className="max-w-7xl w-full mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
@@ -167,7 +167,7 @@ export function ContactContent() {
                         
                         <GradientText
                             words="Start Your Transformation"
-                            className="text-4xl md:text-7xl font-bold tracking-tight leading-tight"
+                            className="text-3xl md:text-7xl font-bold tracking-tight leading-tight"
                             as="h1"
                         />
                         <p className="text-lg md:text-xl text-neutral-400 mt-4 max-w-lg leading-relaxed font-medium">
@@ -233,17 +233,17 @@ export function ContactContent() {
                         
                         <div className="space-y-2">
                             <label htmlFor="phone" className="text-sm font-bold uppercase tracking-widest text-neutral-500">Phone <span className="text-neutral-600 normal-case tracking-normal font-normal ml-1">(Optional)</span></label>
-                            <div className="flex gap-4 relative">
+                            <div className="flex gap-2 sm:gap-4 relative">
                                 {/* Custom Country Modal Trigger */}
                                 <div className="relative">
                                     <button 
                                         type="button"
                                         onClick={() => setIsCountryModalOpen(true)}
-                                        className="flex items-center gap-2 bg-neutral-900/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all hover:bg-neutral-800/80 min-w-[120px]"
+                                        className="flex items-center justify-between gap-1 bg-neutral-900/50 border border-white/10 rounded-xl px-3 py-4 text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all hover:bg-neutral-800/80 w-[100px] sm:w-[140px] shrink-0"
                                     >
-                                        <span className="text-xl">{selectedCountryData?.flag || "🏳️"}</span>
-                                        <span className="font-medium">{selectedCountry}</span>
-                                        <ChevronDown className={`w-4 h-4 text-neutral-500 transition-transform ${isCountryModalOpen ? 'rotate-180' : ''}`} />
+                                        <span className="text-xl sm:text-2xl">{selectedCountryData?.flag || "🏳️"}</span>
+                                        <span className="font-medium text-sm sm:text-base">{selectedCountry}</span>
+                                        <ChevronDown className={`w-3 h-3 sm:w-4 sm:h-4 text-neutral-500 transition-transform ${isCountryModalOpen ? 'rotate-180' : ''}`} />
                                     </button>
                                     
                                     <AnimatePresence>
@@ -326,7 +326,7 @@ export function ContactContent() {
                                     }}
                                     inputMode="numeric"
                                     disabled={isSubmitting}
-                                    className={`flex-1 bg-neutral-900/50 border ${error?.phone ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.phone ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 disabled:opacity-50`}
+                                    className={`flex-1 min-w-0 bg-neutral-900/50 border ${error?.phone ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl p-4 text-white focus:outline-none focus:ring-1 ${error?.phone ? 'focus:ring-red-500/50' : 'focus:ring-blue-500/50'} transition-all placeholder:text-neutral-600 disabled:opacity-50`}
                                     placeholder="Phone number"
                                 />
                             </div>
@@ -398,7 +398,7 @@ export function ContactContent() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2, duration: 0.8 }}
-                        className="w-full rounded-[2.5rem] overflow-hidden relative border border-white/5 bg-neutral-900/20 aspect-video lg:aspect-square flex items-center justify-center"
+                        className="w-full rounded-[2.5rem] overflow-hidden relative border border-white/5 bg-neutral-900/20 h-[500px] lg:h-auto lg:aspect-square flex items-center justify-center"
                     >
                          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-950/80 z-10 pointer-events-none" />
                         <WorldMap
@@ -411,7 +411,7 @@ export function ContactContent() {
                           lineColor="#3b82f6" 
                         />
                         <div className="absolute bottom-8 left-8 right-8 z-20">
-                            <div className="bg-neutral-950/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-white/10 space-y-6">
+                            <div className="bg-neutral-950/80 backdrop-blur-xl p-6 rounded-3xl border border-white/10 space-y-6">
                                 {/* Email */}
                                 <div className="group flex items-start gap-4">
                                     <div className="p-3 rounded-full bg-white/5 group-hover:bg-blue-500/20 transition-colors">
@@ -419,7 +419,7 @@ export function ContactContent() {
                                     </div>
                                     <div>
                                         <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Email</h3>
-                                        <a href="mailto:contact@admanics.com" className="text-lg font-bold text-white hover:text-blue-400 transition-colors block">
+                                        <a href="mailto:contact@admanics.com" className="text-base sm:text-lg font-bold text-white hover:text-blue-400 transition-colors block break-all sm:break-normal">
                                             contact@admanics.com
                                         </a>
                                     </div>
@@ -432,7 +432,7 @@ export function ContactContent() {
                                     </div>
                                     <div>
                                         <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">Phone</h3>
-                                        <a href="tel:9900454378" className="text-lg font-bold text-white hover:text-blue-400 transition-colors block">
+                                        <a href="tel:9900454378" className="text-base sm:text-lg font-bold text-white hover:text-blue-400 transition-colors block">
                                             9900454378
                                         </a>
                                     </div>

@@ -1,4 +1,5 @@
 import { ServicesListing } from "@/components/ServicesListing";
+import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,8 +9,9 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-neutral-950">
+    <main className="min-h-screen bg-neutral-950 relative">
       <ServicesListing />
+      <Footer />
     </main>
   );
 }
