@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -80,13 +80,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-950 overflow-x-hidden w-full relative`}
+        suppressHydrationWarning
       >
-        <SmoothScrolling>
-          <SiteNavbar />
-          <StickySocials />
-          {children}
-        </SmoothScrolling>
+        <div className="relative w-full overflow-x-hidden">
+          <SmoothScrolling>
+            <SiteNavbar />
+            {children}
+          </SmoothScrolling>
+        </div>
       </body>
     </html>
   );

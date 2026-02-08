@@ -42,24 +42,28 @@ export function SiteNavbar() {
   return (
     <>
       <Navbar className="hidden lg:flex fixed top-6 z-50">
-        <NavBody className="py-3 px-10">
-          <div className="flex items-center gap-2 relative z-50">
-            <Link href="/" className="hover:opacity-80 transition-opacity" onClick={(e) => handleScroll(e, "/#")}>
-              <div className="h-16 w-56 relative overflow-hidden flex items-center justify-start">
+        <NavBody className="py-2 px-10 flex items-center justify-between overflow-visible">
+          <div className="flex items-center gap-12">
+            <Link href="/" className="hover:opacity-80 transition-opacity flex items-center shrink-0" onClick={(e) => handleScroll(e, "/#")}>
+              <div className="h-10 w-48 relative flex items-center justify-start">
                 <Image 
                   src="/admanics-logo-v2.png" 
                   alt="Admanics" 
                   fill 
-                  className="object-contain object-left origin-left scale-125" 
+                  className="object-contain object-left origin-left scale-[1.7]" 
                   priority 
                 />
               </div>
             </Link>
+
           </div>
-          <NavItems items={navItems.filter(item => item.name !== "Contact")} /> 
+            <div className="flex items-center justify-start">
+               <NavItems items={navItems.filter(item => item.name !== "Contact")} className="relative !inset-0 !flex !justify-start !w-auto" /> 
+            </div>
+
           <Link 
             href="/contact" 
-            className="hidden lg:block bg-white text-neutral-950 px-8 py-3 rounded-full font-bold text-sm hover:bg-neutral-200 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] cursor-pointer relative z-50 whitespace-nowrap"
+            className="bg-white text-neutral-950 px-8 py-3 rounded-full font-bold text-sm hover:bg-neutral-200 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] cursor-pointer relative z-50 whitespace-nowrap leading-none flex items-center justify-center shrink-0"
           >
             Book Strategy
           </Link>
@@ -67,23 +71,40 @@ export function SiteNavbar() {
       </Navbar>
 
       {/* Mobile Navbar */}
-      <MobileNav className="lg:hidden">
-        <MobileNavHeader className="px-2">
-          <div className="flex items-center gap-2">
-            <Link href="/" onClick={(e) => handleScroll(e, "/#")}>
-              <div className="h-14 w-48 relative overflow-hidden flex items-center justify-start">
-                <Image src="/admanics-logo-v2.png" alt="Admanics" fill className="object-contain object-left origin-left scale-110" />
-              </div>
-            </Link>
-          </div>
+      <MobileNav className="lg:hidden !top-6 !inset-x-0 !max-w-full !p-0 overflow-hidden">
+        <MobileNavHeader className="px-6 md:px-12 py-4 flex items-center justify-between">
           <MobileNavToggle
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           />
+          <div className="flex items-center">
+            <Link href="/" onClick={(e) => handleScroll(e, "/#")}>
+              <div className="h-14 w-44 relative overflow-hidden flex items-center justify-end">
+                <Image 
+                  src="/admanics-logo-v2.png" 
+                  alt="Admanics" 
+                  fill 
+                  className="object-contain object-right origin-right scale-[1.6]" 
+                />
+              </div>
+            </Link>
+          </div>
         </MobileNavHeader>
         <MobileNavMenu
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
+          headerContent={
+            <Link href="/" onClick={(e) => handleScroll(e, "/#")}>
+              <div className="h-14 w-44 relative overflow-hidden flex items-center justify-end">
+                <Image 
+                  src="/admanics-logo-v2.png" 
+                  alt="Admanics" 
+                  fill 
+                  className="object-contain object-right origin-right scale-[1.6]" 
+                />
+              </div>
+            </Link>
+          }
         >
             <div className="flex flex-col items-center gap-12 w-full">
               {navItems.map((item, idx) => (

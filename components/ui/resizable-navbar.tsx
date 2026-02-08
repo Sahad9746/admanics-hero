@@ -46,6 +46,7 @@ interface MobileNavHeaderProps {
 interface MobileNavMenuProps {
   children: React.ReactNode;
   className?: string;
+  headerContent?: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -147,7 +148,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             transition={{ delay: idx * 0.1, duration: 0.5 }}
             onMouseEnter={() => setHovered(idx)}
             onClick={(e) => handleScroll(e, item.link)}
-            className="relative px-6 py-2 text-neutral-400 hover:text-white transition-colors duration-300"
+            className="relative px-6 py-3 text-neutral-400 hover:text-white transition-colors duration-300 flex items-center justify-center leading-none"
             href={item.link}
           >
             {hovered === idx && (
@@ -173,10 +174,6 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -185,8 +182,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "fixed top-4 inset-x-4 z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-2 lg:hidden",
-        visible && "bg-neutral-950/60 backdrop-blur-md border border-white/10 shadow-lg",
+        "fixed top-4 inset-x-4 z-50 mx-auto flex flex-col items-center justify-between bg-transparent py-2 lg:hidden transition-all duration-300",
+        visible && "bg-neutral-950/60 backdrop-blur-md border border-white/10 shadow-lg px-4 rounded-[2rem]",
         className,
       )}
     >
@@ -214,7 +211,9 @@ export const MobileNavHeader = ({
 export const MobileNavMenu = ({
   children,
   className,
+  headerContent,
   isOpen,
+  onClose,
 }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
@@ -224,11 +223,19 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           className={cn(
-            "fixed inset-0 top-0 left-0 z-[100] h-screen w-screen flex flex-col items-center justify-center gap-8 bg-neutral-950/95 backdrop-blur-2xl px-8 shadow-2xl overflow-hidden",
+            "fixed inset-0 top-0 left-0 z-[100] h-screen w-screen flex flex-col items-center bg-neutral-950/95 backdrop-blur-2xl px-8 shadow-2xl overflow-hidden",
             className,
           )}
         >
-          {children}
+          {headerContent && (
+            <div className="w-full pt-10 pb-6 flex items-center justify-between">
+              {headerContent}
+              <IconX className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform" onClick={onClose} />
+            </div>
+          )}
+          <div className="flex-1 flex flex-col items-center justify-center gap-8 w-full">
+            {children}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -77,9 +77,9 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
   }, [lenis, category]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-blue-500/30 overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-blue-500/30 overflow-x-hidden relative">
       {/* Background Ambience - Preserved and Enhanced */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-x-0 inset-y-0 z-0 pointer-events-none overflow-hidden container-glow">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_rgba(30,58,138,0.1),_transparent_70%)]" />
         <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-600/5 blur-[120px] rounded-full" />
         <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-600/5 blur-[120px] rounded-full" />
@@ -87,7 +87,7 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
 
       <div className="relative z-10">
         {/* Cinematic Header (Not Fixed to avoid clash) */}
-        <nav className="pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+        <nav className="pt-32 pb-4 px-6 md:px-12 max-w-7xl mx-auto">
           <Link href="/services" className="inline-flex items-center gap-3 text-neutral-500 hover:text-white transition-all group">
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             <span className="text-sm font-bold tracking-[0.3em] uppercase">Return to Systems</span>

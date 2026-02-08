@@ -98,6 +98,18 @@ export function ContactContent() {
     fetchCountries();
   }, []);
 
+  // Body Scroll Lock for Modal
+  useEffect(() => {
+    if (success || isCountryModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [success, isCountryModalOpen]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -182,7 +194,7 @@ export function ContactContent() {
                                     
                                     <div className="w-40 h-40 mb-6 relative z-10">
                                         {successAnimation ? (
-                                            <Lottie animationData={successAnimation} loop={false} />
+                                            <Lottie animationData={successAnimation} loop={true} />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center bg-blue-500/10 rounded-full">
                                                 <Send className="w-16 h-16 text-blue-400" />
