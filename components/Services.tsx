@@ -23,35 +23,49 @@ export function Services() {
   ].filter((s): s is Service => !!s);
 
   return (
-     <section id="services" className="bg-neutral-950 py-16 md:py-32 px-6 md:px-12 font-sans text-white overflow-hidden relative">
+     <section id="services" className="relative bg-neutral-950 py-16 md:py-32 px-6 md:px-12 font-sans text-white overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-8">
         
         {/* Cinematic Header */}
         <div className="flex flex-col items-start text-left gap-8 md:gap-10 mb-16 md:mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-start gap-4 md:gap-6"
-          >
-             <div className="flex items-center gap-4">
+          <div className="flex flex-col items-start gap-4 md:gap-6">
+             <motion.div 
+                className="flex items-center gap-4"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+             >
                 <div className="w-8 md:w-12 h-px bg-blue-500" />
                 <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-neutral-500">
                   Engineering Capabilities
                 </span>
-             </div>
-             <GradientText 
-                words="Intelligent Systems"
-                className="text-4xl md:text-9xl font-bold tracking-tight"
-             />
-          </motion.div>
-          <p className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium">
+             </motion.div>
+             <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+             >
+                <GradientText 
+                   words="Intelligent Systems"
+                   className="text-4xl md:text-9xl font-bold tracking-tight"
+                />
+             </motion.div>
+          </div>
+          <motion.p 
+            className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          >
             Deploying high-impact modules engineered to handle the complexity of global scale. Infrastructure that converts attention to revenue.
-          </p>
+          </motion.p>
         </div>
 
         {/* Cinematic Pillar Flow - No Cards */}
-        <div className="space-y-0">
+        <div className="relative space-y-0">
            {primaryServices.map((service, idx) => {
              const Icon = pillarIcons[service.pillar] || BarChart3;
              return (
@@ -65,7 +79,13 @@ export function Services() {
            })}
         </div>
 
-        <div className="flex justify-center mt-16 md:mt-32">
+        <motion.div 
+           className="flex justify-center mt-16 md:mt-32"
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={{ duration: 0.6, ease: "easeOut" }}
+        >
              <Link href="/contact" className="group w-full md:w-auto px-4">
                  <motion.button 
                    whileHover={{ scale: 1.05 }}
@@ -75,7 +95,7 @@ export function Services() {
                     Start Your Transformation &rarr;
                  </motion.button>
              </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -93,9 +113,13 @@ function PillarModule({ service, idx, Icon }: { service: Service, idx: number, I
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
-    <div 
+    <motion.div 
       ref={sectionRef}
       className="relative min-h-[50vh] md:min-h-[60vh] flex items-center py-20 md:py-32 border-t border-white/5 overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
         {/* Typography Mask */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none">
@@ -112,34 +136,67 @@ function PillarModule({ service, idx, Icon }: { service: Service, idx: number, I
                 "flex flex-col gap-6 md:gap-8",
                 idx % 2 !== 0 && "lg:order-2"
             )}>
-                 <div className="flex items-center gap-4">
+                 <motion.div 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                 >
                     <div className="w-8 h-px bg-blue-500" />
                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-neutral-500">System Pillar {idx + 1}</span>
-                 </div>
+                 </motion.div>
 
-                 <h3 className="text-3xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                 <motion.h3 
+                    className="text-3xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                 >
                     {service.title}
-                 </h3>
+                 </motion.h3>
 
-                 <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-xl">
+                 <motion.p 
+                    className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-xl"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                 >
                     {service.description}
-                 </p>
+                 </motion.p>
 
-                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 pt-4">
-                    <div className="px-6 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] md:text-xs font-bold text-blue-400 tracking-widest uppercase">
+                 <motion.div 
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 pt-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                 >
+                    <motion.div 
+                       className="px-6 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] md:text-xs font-bold text-blue-400 tracking-widest uppercase"
+                       whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                    >
                         {service.outcome}
-                    </div>
+                    </motion.div>
                     <Link href={`/services/${metadata.slug}`} className="group/link flex items-center gap-4 text-white hover:text-blue-500 transition-colors">
                         <span className="text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase">Explore Infrastructure</span>
-                        <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
+                        <ArrowRight size={18} className="group-hover/link:translate-x-2 transition-transform duration-300" />
                     </Link>
-                 </div>
+                 </motion.div>
             </div>
 
-            <div className={cn(
-                "relative group",
-                idx % 2 !== 0 && "lg:order-1"
-            )}>
+            <motion.div 
+               className={cn(
+                   "relative group",
+                   idx % 2 !== 0 && "lg:order-1"
+               )}
+               initial={{ opacity: 0, scale: 0.95 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true, margin: "-100px" }}
+               transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            >
                 <div className="aspect-[16/10] bg-neutral-900 border border-white/10 rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden relative">
                     <Image 
                         src={metadata.image || "/images/services/marketing-v3.png"}
@@ -160,8 +217,8 @@ function PillarModule({ service, idx, Icon }: { service: Service, idx: number, I
                         {service.pillar.slice(0, 3)}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
-    </div>
+    </motion.div>
   )
 }

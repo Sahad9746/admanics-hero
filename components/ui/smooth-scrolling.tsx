@@ -4,7 +4,7 @@ import { ReactLenis } from "lenis/react";
 export function SmoothScrolling({ children }: { children: React.ReactNode }) {
   return (
     <ReactLenis root options={{ 
-        duration: 1.5,
+        duration: 1.2,
         smoothWheel: true,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     }}>

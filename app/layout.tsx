@@ -33,7 +33,8 @@ export const metadata: Metadata = {
     siteName: "Admanics",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://admanics.com/og-admanics.jpg",
+        secureUrl: "https://admanics.com/og-admanics.jpg",
         width: 1200,
         height: 630,
         alt: "Admanics | Automated Growth Systems",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     title: "Admanics | Automated Growth Systems",
     description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
     creator: "@admanics",
-    images: ["/og-image.jpg"],
+    images: ["https://admanics.com/og-admanics.jpg"],
   },
 
   icons: {
@@ -58,7 +59,6 @@ export const metadata: Metadata = {
   },
   other: {
     "google-site-verification": "dummy-verification-code", // Placeholder for user
-    "itemprop": "image",
   },
 };
 
@@ -82,8 +82,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
       <head>
+        <meta itemprop="image" content="https://admanics.com/og-admanics.jpg" />
+        <link rel="image_src" href="https://admanics.com/og-admanics.jpg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

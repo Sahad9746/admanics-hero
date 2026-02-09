@@ -66,7 +66,7 @@ export function StatsSection() {
       <div className="absolute inset-0 z-0 flex items-start justify-center pt-32 pointer-events-none select-none px-4 text-center">
           <motion.span 
             style={{ y }}
-            className="text-[40vw] md:text-[35vw] font-black text-white/[0.01] leading-none tracking-tighter uppercase whitespace-nowrap"
+            className="text-[40vw] md:text-[35vw] font-black text-white/[0.01] leading-none tracking-tighter uppercase whitespace-nowrap will-change-transform"
           >
             NUMBERS
           </motion.span>
