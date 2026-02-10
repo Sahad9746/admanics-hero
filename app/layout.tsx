@@ -15,6 +15,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://admanics.com"),
   title: {
@@ -84,8 +86,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
       <head>
-        <meta itemprop="image" content="https://admanics.com/og-admanics.jpg" />
+        <meta itemProp="image" content="https://admanics.com/og-admanics.jpg" />
         <link rel="image_src" href="https://admanics.com/og-admanics.jpg" />
+        
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://cdn.prod.website-files.com" />
+        <link rel="preconnect" href="https://restcountries.com" />
+        <link rel="preconnect" href="https://ipapi.co" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -3,14 +3,20 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight, Loader2, Send, Search, ChevronDown, X } from "lucide-react";
 import { GradientText } from "@/components/ui/GradientText";
-import WorldMap from "@/components/ui/world-map";
 import { Footer } from "@/components/Footer";
+import dynamic from "next/dynamic";
 import { useState, useEffect, useMemo } from "react";
 import { sendContactEmail } from "@/app/actions/contact";
 import { Button } from "@/components/ui/Button";
-import Lottie from "lottie-react";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { AnimatePresence } from "framer-motion";
+
+const WorldMap = dynamic(() => import("@/components/ui/world-map"), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-neutral-900/20 animate-pulse rounded-[2.5rem]" />
+});
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface Country {
   name: string;
