@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SmoothScrolling } from "@/components/ui/smooth-scrolling";
 import { StickySocials } from "@/components/StickySocials";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -108,6 +109,7 @@ export default function RootLayout({
             {children}
           </SmoothScrolling>
         </div>
+        <Analytics />
       </body>
     </html>
   );

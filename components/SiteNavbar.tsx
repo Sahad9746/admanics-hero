@@ -34,7 +34,7 @@ export function SiteNavbar() {
 
     { name: "Services", link: "/services" },
     { name: "Contact", link: "/contact" },
-    { name: "FAQ", link: "/#faq" },
+    { name: "Blog", link: "/blog" },
   ];
 
   // ... (No change to desktop Render)
