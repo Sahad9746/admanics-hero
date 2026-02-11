@@ -85,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
       <head>
-        <meta itemprop="image" content="https://admanics.com/og-admanics.jpg" />
+        <meta itemProp="image" content="https://admanics.com/og-admanics.jpg" />
         <link rel="image_src" href="https://admanics.com/og-admanics.jpg" />
         <script
           type="application/ld+json"
