@@ -354,8 +354,8 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
                       </div>
                     )}
 
-                    <div className="absolute top-8 right-8 z-30">
-                         <span className="px-6 py-2 rounded-full border border-white/10 bg-neutral-950/60 backdrop-blur-xl text-[10px] font-bold tracking-[0.3em] uppercase text-blue-500">
+                    <div className="absolute top-4 md:top-8 right-4 md:right-8 z-30">
+                         <span className="px-4 md:px-6 py-1.5 md:py-2 rounded-full border border-white/10 bg-neutral-950/60 backdrop-blur-xl text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase text-blue-500">
                              {service.outcome}
                          </span>
                     </div>

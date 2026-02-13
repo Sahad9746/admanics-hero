@@ -17,21 +17,21 @@ export interface Service {
 export const pillarMetadata = {
   Marketing: {
     slug: "marketing",
-    title: "Digital Marketing & Growth",
+    title: "Growth Ecosystems",
     description: "Our marketing systems are engineered for infinite scale. We deploy interconnected modules that track, nurture, and convert attention into predictable revenue.",
     outcome: "Revenue Acceleration",
     image: "/images/services/marketing-v3.png"
   },
   Production: {
     slug: "production",
-    title: "Production & Media",
+    title: "Visual Infrastructure",
     description: "We treat content as infrastructure. High-impact visuals meeting strategic storytelling to elevate your brand's digital authority across all channels.",
     outcome: "Brand Authority",
     image: "/images/services/production-v3.png"
   },
   ORM: {
     slug: "orm",
-    title: "ORM & Reputation",
+    title: "Reputation Defense",
     description: "Protect your most valuable asset. Our AI-driven reputation management systems safeguard your brand image while building trust at every digital touchpoint.",
     outcome: "Trust Security",
     image: "/images/services/orm-v3.png"

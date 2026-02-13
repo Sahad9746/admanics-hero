@@ -127,8 +127,8 @@ const FloatingCard = ({ service, index, range }: { service: Service, index: numb
              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
              
              {/* Text Overlay */}
-             <div className="absolute -bottom-8 -left-8 z-20 bg-neutral-950 border border-white/10 p-6 md:p-8 max-w-sm shadow-2xl pointer-events-none">
-                 <h3 className="text-3xl font-bold text-white mb-2">{service.title}</h3>
+             <div className="absolute bottom-0 md:-bottom-8 left-0 md:-left-8 z-20 bg-neutral-950 border border-white/10 p-5 md:p-8 max-w-[90%] md:max-w-sm shadow-2xl pointer-events-none">
+                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{service.title}</h3>
                  <p className="text-sm text-neutral-400 line-clamp-2">{service.description}</p>
                  <div className="mt-4 flex gap-2">
                     {service.features.slice(0, 2).map((f, i) => (
