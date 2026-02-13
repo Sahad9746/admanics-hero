@@ -113,7 +113,7 @@ export function CategoryDetail({ category, services }: CategoryDetailProps) {
         </nav>
 
         {/* Hero Section - Typography First */}
-        <section className="relative pb-48 px-6 md:px-12 max-w-7xl mx-auto"> 
+        <section className="relative pt-32 md:pt-48 pb-48 px-6 md:px-12 max-w-7xl mx-auto"> 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
             <div className="max-w-4xl">
               <motion.div
