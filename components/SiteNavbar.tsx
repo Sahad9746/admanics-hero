@@ -35,7 +35,7 @@ export function SiteNavbar() {
     { name: "About", link: "/#about" },
     { name: "Services", link: "/services", hasMegaMenu: true },
     { name: "Contact", link: "/contact" },
-    { name: "FAQ", link: "/#faq" },
+    { name: "Blog", link: "/blog" },
   ];
 
   // ... (No change to desktop Render)
