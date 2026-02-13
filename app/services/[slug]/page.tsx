@@ -1,5 +1,6 @@
 import { services, pillarMetadata } from "@/constants/services";
 import { CategoryDetail } from "@/components/CategoryDetail";
+import { ServiceDetail } from "@/components/ServiceDetail";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -10,46 +11,82 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   
-  // Find pillar by slug
+  // 1. Check if it's a Pillar
   const activePillar = Object.entries(pillarMetadata).find(
     ([_, meta]) => meta.slug === slug.toLowerCase()
   );
 
-  if (!activePillar) return { title: "Category Not Found" };
+  if (activePillar) {
+    const [_, metadata] = activePillar;
+    return {
+      title: `${metadata.title} | Admanics`,
+      description: metadata.description,
+    };
+  }
 
-  const [_, metadata] = activePillar;
+  // 2. Check if it's a Service
+  const activeService = services.find((s) => s.slug === slug);
 
-  return {
-    title: `${metadata.title} | Admanics`,
-    description: metadata.description,
-  };
+  if (activeService) {
+    return {
+      title: `${activeService.title} | Admanics`,
+      description: activeService.description,
+    };
+  }
+
+  return { title: "Page Not Found" };
 }
 
-export default async function CategoryPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { slug } = await params;
 
-  // Find pillar by slug
+  // 1. Check if it's a Pillar
   const activePillarEntry = Object.entries(pillarMetadata).find(
     ([_, meta]) => meta.slug === slug.toLowerCase()
   );
 
-  if (!activePillarEntry) {
-    notFound();
+  if (activePillarEntry) {
+    const [pillarName] = activePillarEntry;
+    const filteredServices = services.filter((s) => s.pillar === pillarName);
+    
+    // Check if it's the "Production" pillar and render the specific ProductionDetail component
+    if (pillarName === "Production") {
+      const { ProductionDetail } = await import("@/components/ProductionDetail");
+      return (
+        <ProductionDetail
+          category="Production"
+          services={filteredServices}
+        />
+      );
+    }
+
+    return (
+      <CategoryDetail 
+        category={pillarName as "Marketing" | "Production" | "ORM"} 
+        services={filteredServices} 
+      />
+    );
   }
 
-  const [pillarName] = activePillarEntry;
-  const filteredServices = services.filter((s) => s.pillar === pillarName);
+  // 2. Check if it's a Service
+  const activeService = services.find((s) => s.slug === slug);
 
-  return (
-    <CategoryDetail 
-      category={pillarName as "Marketing" | "Production" | "ORM"} 
-      services={filteredServices} 
-    />
-  );
+  if (activeService) {
+    return <ServiceDetail service={activeService} />;
+  }
+
+  // 3. Not Found
+  notFound();
 }
 
 export async function generateStaticParams() {
-  return Object.values(pillarMetadata).map((meta) => ({
+  const pillarSlugs = Object.values(pillarMetadata).map((meta) => ({
     slug: meta.slug,
   }));
+
+  const serviceSlugs = services.map((service) => ({
+    slug: service.slug,
+  }));
+
+  return [...pillarSlugs, ...serviceSlugs];
 }

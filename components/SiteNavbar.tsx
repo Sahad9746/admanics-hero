@@ -8,16 +8,18 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useLenis } from "lenis/react";
 import { motion } from "framer-motion";
-
+import { MegaMenu } from "@/components/MegaMenu";
 
 import Link from "next/link";
 import Image from "next/image";
 
 export function SiteNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const isMenuHovered = useRef(false);
   const lenis = useLenis();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
@@ -31,8 +33,7 @@ export function SiteNavbar() {
 
   const navItems = [
     { name: "About", link: "/#about" },
-
-    { name: "Services", link: "/services" },
+    { name: "Services", link: "/services", hasMegaMenu: true },
     { name: "Contact", link: "/contact" },
     { name: "FAQ", link: "/#faq" },
   ];
@@ -57,8 +58,41 @@ export function SiteNavbar() {
             </Link>
 
           </div>
-            <div className="flex items-center justify-start">
-               <NavItems items={navItems.filter(item => item.name !== "Contact")} className="relative !inset-0 !flex !justify-start !w-auto" /> 
+            <div className="flex items-center justify-start gap-8">
+               {navItems.filter(item => item.name !== "Contact").map((item, idx) => (
+                 item.hasMegaMenu ? (
+                   <div
+                     key={idx}
+                     className="relative h-full flex items-center"
+                     onMouseEnter={() => {
+                        setIsMegaMenuOpen(true);
+                     }}
+                     onMouseLeave={() => {
+                        setTimeout(() => {
+                           if (!isMenuHovered.current) {
+                              setIsMegaMenuOpen(false);
+                           }
+                        }, 200);
+                     }}
+                   >
+                     <Link
+                       href={item.link}
+                       className="text-neutral-300 hover:text-white transition-colors text-sm font-medium px-4 py-2"
+                     >
+                       {item.name}
+                     </Link>
+                   </div>
+                 ) : (
+                   <Link
+                     key={idx}
+                     href={item.link}
+                     onClick={(e) => handleScroll(e, item.link)}
+                     className="text-neutral-300 hover:text-white transition-colors text-sm font-medium px-4 py-2"
+                   >
+                     {item.name}
+                   </Link>
+                 )
+               ))}
             </div>
 
           <Link 
@@ -69,6 +103,20 @@ export function SiteNavbar() {
           </Link>
         </NavBody>
       </Navbar>
+      
+      <div 
+        id="mega-menu-container"
+        onMouseEnter={() => {
+          setIsMegaMenuOpen(true);
+          isMenuHovered.current = true;
+        }}
+        onMouseLeave={() => {
+          setIsMegaMenuOpen(false);
+          isMenuHovered.current = false;
+        }}
+      >
+        <MegaMenu isOpen={isMegaMenuOpen} onClose={() => setIsMegaMenuOpen(false)} />
+      </div>
 
       {/* Mobile Navbar */}
       <MobileNav className="lg:hidden !top-6 !inset-x-0 !max-w-full !p-0 overflow-hidden">
