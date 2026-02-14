@@ -12,7 +12,7 @@ interface MegaMenuProps {
 }
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
-  const pillars = ["Marketing", "Production", "ORM"] as const;
+  const pillars = ["Marketing", "ORM" ,"Production"] as const;
 
   const getServicesByPillar = (pillar: typeof pillars[number]) => {
     return services.filter((service) => service.pillar === pillar);

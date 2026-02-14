@@ -255,15 +255,21 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
                   <motion.div style={{ opacity: overlayOpacity }} className="absolute inset-0 bg-neutral-950" />
               </div>
 
+              {/* Est. 2024 Badge (Fixed) */}
+              <div className="absolute top-32 z-10">
+                  <div className="inline-block border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full">
+                      <span className="text-xs font-bold uppercase tracking-[0.3em] text-white">Est. 2024</span>
+                  </div>
+              </div>
+
               {/* Zooming Text */}
               <motion.div 
                 style={{ scale: textScale, opacity: textOpacity }}
                 className="relative z-10 text-center origin-center px-4"
               >
-                 <div className="inline-block border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full mb-8">
-                     <span className="text-xs font-bold uppercase tracking-[0.3em] text-white">Est. 2024</span>
-                 </div>
-                 <h1 className="text-[12vw] font-black leading-none tracking-tighter text-white mix-blend-difference pointer-events-none">
+                 <h1 
+                   className="text-[12vw] font-bold leading-none tracking-tighter text-gradient pointer-events-none pb-4"
+                 >
                    PRODUCTION
                  </h1>
                  <p className="mt-8 text-xl text-neutral-400 font-light tracking-[0.5em] uppercase">
@@ -287,7 +293,7 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
       <section className="relative z-10 py-32 px-6 md:px-12 bg-neutral-950 shadow-[0_-50px_100px_rgba(0,0,0,1)]">
          <div className="max-w-7xl mx-auto">
              <div className="mb-32 text-center max-w-2xl mx-auto">
-                 <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Visual Architecture</h2>
+                 <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 text-gradient">Visual Architecture</h2>
                  <p className="text-lg text-neutral-400">
                     We don't just shoot video. We construct visual systems that elevate your brand's narrative across every dimension.
                  </p>
@@ -339,7 +345,7 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
          <div className="max-w-7xl mx-auto">
              <div className="mb-24">
                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 block">The Pipeline</span>
-                 <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white">The Blueprint.</h2>
+                 <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-gradient">The Blueprint.</h2>
                  <p className="text-xl text-neutral-400 mt-6 max-w-2xl">
                     Our cinematic workflow is a precision-engineered system designed to translate complex ideas into high-fidelity visual infrastructure.
                  </p>

@@ -48,7 +48,7 @@ export default async function PostPage(props: Props) {
                                     src={urlFor(post.author.image).url()}
                                     alt={post.author.name}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top"
                                 />
                             </div>
                          )}

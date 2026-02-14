@@ -16,8 +16,8 @@ interface Props {
 
 export default function BlogCard({ post }: Props) {
   // Extract a short excerpt from the body if available
-  const excerpt = post.body?.find((block) => block._type === "block" && block.children)?
-    .children[0]?.text.slice(0, 100) + "...";
+  const excerpt = post.body?.find((block) => block._type === "block" && block.children)
+    ?.children[0]?.text.slice(0, 100) + "...";
 
   return (
     <Link href={`/blog/${post.slug.current}`} className="group flex flex-col h-full bg-neutral-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
