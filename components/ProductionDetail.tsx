@@ -180,7 +180,7 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
     target: horizontalRef,
     offset: ["start start", "end end"]
   });
-  const x = useTransform(horizontalProgress, [0, 1], ["0%", "-85%"]); // Increased travel distance to show full archive card
+  const x = useTransform(horizontalProgress, [0, 1], ["0%", "-45%"]); // Adjusted travel distance after removing Archive cardfull archive card
 
   // Reel Collection Data
   const reelCollection = [
@@ -313,19 +313,24 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
       </section>
 
       {/* 3. HORIZONTAL REEL - "Reel Collection" */}
-      <section ref={horizontalRef} className="relative h-[150vh] bg-neutral-100 z-0 border-t border-neutral-200"> 
-         <div className="sticky top-0 h-screen overflow-hidden flex flex-col pt-48 border-t border-neutral-900/5">
+      <section ref={horizontalRef} className="relative h-[150vh] bg-neutral-950 z-0 border-t border-white/5"> 
+         <div className="sticky top-0 h-screen overflow-hidden flex flex-col pt-48 border-t border-white/5">
              
              <div className="absolute top-24 left-6 md:left-12 lg:left-24 z-20 pointer-events-none">
-                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-4 text-neutral-900/5">SHOWCASE</h2>
+                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-4 text-white/5">SHOWCASE</h2>
              </div>
              
              <div className="absolute top-44 left-6 md:left-12 lg:left-24 z-20">
-                 <h3 className="text-2xl font-bold text-neutral-900 mb-2">Reel Collection</h3>
-                 <p className="text-neutral-600 max-w-xs mb-8">Curated selection of our finest frames.</p>
-                 <p className="text-neutral-400 max-w-sm text-sm leading-relaxed hidden md:block">
+                 <h3 className="text-2xl font-bold text-white mb-2">Reel Collection</h3>
+                 <p className="text-neutral-400 max-w-xs mb-8">Curated selection of our finest frames.</p>
+                 <p className="text-neutral-500 max-w-sm text-sm leading-relaxed hidden md:block mb-8">
                     We craft visual narratives that transcend the ordinary. Each frame is a deliberate stroke of artistry, designed to evoke emotion and drive impact.
                  </p>
+                 <Link href="/work">
+                    <Button className="rounded-full px-8 py-3 text-sm font-bold bg-white text-black hover:bg-neutral-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        View Full Archive
+                    </Button>
+                 </Link>
              </div>
 
              <motion.div style={{ x }} className="flex pl-6 md:pl-24 gap-0 w-max items-center h-full">
@@ -333,45 +338,12 @@ export function ProductionDetail({ category, services }: ProductionDetailProps) 
                      <ReelCard key={idx} {...reel} />
                  ))}
                  
-                 {/* View All Card */}
-                 <div className="relative flex-shrink-0 w-[400px] md:w-[600px] aspect-[16/9] md:aspect-video bg-white border border-neutral-200 flex flex-col items-center justify-center text-center p-8 group hover:bg-neutral-50 transition-colors">
-                     <h3 className="text-4xl font-black mb-4 uppercase text-neutral-900">Archive</h3>
-                     <p className="text-neutral-600 mb-8 max-w-xs">Explore our full library of commercial work.</p>
-                     <Button variant="outline" className="rounded-full px-8 py-6 text-lg border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-white">View All Projects</Button>
-                 </div>
+
              </motion.div>
          </div>
       </section>
 
-      {/* 3.5. IMPACT SECTION (New) */}
-      <section className="py-32 px-6 md:px-12 bg-neutral-950 relative z-10 border-t border-neutral-900/50">
-          <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                  <div>
-                      <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white mb-8">
-                          More Than <br />
-                          <span className="text-neutral-500">Just Footage.</span>
-                      </h2>
-                      <p className="text-xl text-neutral-400 leading-relaxed max-w-md">
-                          We don't just capture moments; we architect visual assets designed to drive revenue, deepen engagement, and build lasting brand equity.
-                      </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-8">
-                      {[
-                          { label: "Engagement", value: "400%" },
-                          { label: "Brand Equity", value: "10x" },
-                          { label: "Conversion", value: "3x" },
-                          { label: "Retention", value: "85%" },
-                      ].map((stat, i) => (
-                          <div key={i} className="p-8 rounded-2xl bg-neutral-900/50 border border-white/5 hover:border-blue-500/20 transition-colors duration-500 group">
-                              <h4 className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-blue-500 transition-colors">{stat.value}</h4>
-                              <p className="text-xs font-bold uppercase tracking-widest text-neutral-500 group-hover:text-neutral-400 transition-colors">{stat.label}</p>
-                          </div>
-                      ))}
-                  </div>
-              </div>
-          </div>
-      </section>
+
 
       {/* 4. THE BLUEPRINT (Production Pipeline) */}
       <section className="relative py-32 px-6 md:px-12 bg-neutral-950 border-t border-white/5">
