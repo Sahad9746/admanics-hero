@@ -85,7 +85,7 @@ export function StatsSection() {
              </span>
              <GradientText 
                 words="Built for Performance"
-                className="text-4xl md:text-9xl font-bold tracking-tight"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
              />
           </motion.div>
           
@@ -94,7 +94,7 @@ export function StatsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
+            className="text-xl md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
           >
             Years in the game. Proven systems. Infrastructure that delivers results without the manual overhead.
           </motion.p>

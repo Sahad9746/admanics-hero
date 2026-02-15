@@ -89,10 +89,10 @@ export function FAQ() {
              </span>
              <GradientText 
                 words="Common Queries"
-                className="text-3xl md:text-9xl font-bold tracking-tight lowercase"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight lowercase"
              />
           </motion.div>
-          <p className="text-lg md:text-2xl text-neutral-400 max-w-2xl leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl leading-relaxed font-medium">
             Everything you need to know about deploying and managing your automated growth systems.
           </p>
         </div>

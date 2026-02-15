@@ -4,7 +4,8 @@ import author from './author'
 import category from './category'
 
 import team from './team'
+import work from './work'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, author, category, team],
+  types: [post, author, category, team, work],
 }

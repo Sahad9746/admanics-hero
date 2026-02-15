@@ -45,8 +45,18 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             className="fixed left-0 right-0 top-20 pt-8 z-40"
             onMouseLeave={onClose}
           >
-            <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-              <div className="bg-neutral-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden mt-2">
+             <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative">
+              <div className="bg-neutral-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden mt-2 relative">
+                
+                {/* Close Button */}
+                <button 
+                  onClick={onClose}
+                  className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-all cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <Icons.X className="w-5 h-5" />
+                </button>
+
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 p-8">
                   {/* Hero Section */}
                   <div className="lg:col-span-1 flex flex-col justify-center p-6 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl border border-white/5">

@@ -41,7 +41,7 @@ export function AboutSection() {
           
           <GradientText 
               words="Beyond an Agency Built for Automated Growth"
-              className="text-4xl md:text-8xl font-bold leading-[1.1] tracking-tighter max-w-6xl"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tighter max-w-6xl"
           />
 
           <motion.div
@@ -51,11 +51,11 @@ export function AboutSection() {
               transition={{ delay: 0.2 }}
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-8 md:mt-12"
           >
-              <p className="text-lg md:text-2xl text-neutral-400 leading-relaxed font-medium">
+              <p className="text-xl md:text-2xl text-neutral-400 leading-relaxed font-medium">
                 Admanics is an AI-driven marketing and technology agency built to eliminate manual complexity and drive predictable growth. 
                 We replace fragmented workflows and manual effort with intelligent, automated systems that connect your entire operation.
               </p>
-              <p className="text-lg md:text-2xl text-neutral-400 leading-relaxed font-medium">
+              <p className="text-xl md:text-2xl text-neutral-400 leading-relaxed font-medium">
                 By combining deep expertise in global markets with AI-powered tools, we build long-term growth infrastructure—not short-term campaigns—so your business can scale predictably and grow without operational chaos.
               </p>
           </motion.div>

@@ -69,10 +69,10 @@ export function ResultsSection() {
              </span>
              <GradientText 
                 words="Growth Systems"
-                className="text-4xl md:text-9xl font-bold tracking-tight"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
              />
           </motion.div>
-          <p className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium">
             We don&apos;t just use software; we build intelligent systems. Our stack is engineered to ensure every campaign is tracked, every brand is protected, and every piece of content converts.
           </p>
         </div>

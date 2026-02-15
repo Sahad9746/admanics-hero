@@ -49,12 +49,12 @@ export function Services() {
              >
                 <GradientText 
                    words="Intelligent Systems"
-                   className="text-4xl md:text-9xl font-bold tracking-tight"
+                   className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
                 />
              </motion.div>
           </div>
           <motion.p 
-            className="text-lg md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
+            className="text-xl md:text-2xl text-neutral-400 max-w-3xl leading-relaxed font-medium"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}

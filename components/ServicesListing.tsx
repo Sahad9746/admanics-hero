@@ -75,14 +75,14 @@ export function ServicesListing() {
           >
             <GradientText 
               words="Intelligent Growth Modules"
-              className="text-6xl md:text-8xl font-bold leading-[1.1] tracking-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
             />
           </motion.div>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-neutral-400 max-w-2xl text-xl leading-relaxed font-medium"
+            className="text-neutral-400 max-w-2xl text-xl md:text-2xl leading-relaxed font-medium"
           >
             We don&apos;t just provide services; we deploy interconnected growth infrastructure engineered for global scale and operational efficiency.
           </motion.p>

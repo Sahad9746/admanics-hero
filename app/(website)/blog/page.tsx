@@ -20,10 +20,10 @@ export default async function BlogPage() {
           <div className="relative">
             <GradientText 
               words="Latest Thinking & Strategies"
-              className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
             />
           </div>
-          <p className="text-neutral-400 max-w-2xl text-xl leading-relaxed font-medium">
+          <p className="text-neutral-400 max-w-2xl text-xl md:text-2xl leading-relaxed font-medium">
              Thoughts, strategies, and ideas from our team of digital experts.
           </p>
         </div>

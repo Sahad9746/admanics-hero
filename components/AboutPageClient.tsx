@@ -34,15 +34,15 @@ export function AboutPageClient({ teamSection }: { teamSection: React.ReactNode 
              <span className="text-blue-500 font-bold tracking-widest text-sm uppercase">
                About Admanics
              </span>
-             <h1 className="text-4xl xs:text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[1.1]">
+             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[1.1]">
                WHO KNOWS THE <br />
                <GradientText 
                  words="WEB BETTER?" 
-                 className="text-4xl xs:text-5xl md:text-8xl lg:text-9xl" 
+                 className="text-5xl md:text-7xl lg:text-8xl" 
                  as="span"
                />
              </h1>
-             <p className="text-lg md:text-3xl text-neutral-400 max-w-3xl mt-8 leading-relaxed font-medium">
+             <p className="text-xl md:text-2xl text-neutral-400 max-w-3xl mt-8 leading-relaxed font-medium">
                Enabling businesses to get a competitive edge in the digital era through intelligent automation and strategic infrastructure.
              </p>
           </motion.div>
