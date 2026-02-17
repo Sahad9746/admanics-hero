@@ -43,6 +43,7 @@ export function TeamGrid({ team }: { team: TeamMember[] }) {
                     alt={member.name}
                     fill
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    unoptimized
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

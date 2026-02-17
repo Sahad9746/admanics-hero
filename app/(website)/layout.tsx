@@ -90,6 +90,10 @@ const jsonLd = {
   },
 };
 
+import PageTransition from "@/components/ui/PageTransition";
+
+// ... (existing helper function hidden)
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -128,7 +132,9 @@ export default function RootLayout({
         <div className="relative w-full overflow-x-hidden">
           <SmoothScrolling>
             <SiteNavbar />
-            <div id="main-content">{children}</div>
+            <div id="main-content">
+              <PageTransition>{children}</PageTransition>
+            </div>
           </SmoothScrolling>
         </div>
         <Analytics />

@@ -41,18 +41,7 @@ const brands = [
       />
     ),
   },
-  {
-    name: "Client 6",
-    logo: (
-      <Image
-        src="/images/clients_logo/6.jpg"
-        alt="Client 6"
-        width={200}
-        height={100}
-        className="h-20 w-auto object-contain"
-      />
-    ),
-  },
+
   {
     name: "Client 7",
     logo: (

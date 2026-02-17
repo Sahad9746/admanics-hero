@@ -53,6 +53,7 @@ export default function WorkGrid({ works }: { works: WorkItem[] }) {
                     width={800}
                     height={isPortrait ? 1422 : 450} // Aspect ratio hints
                     className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    unoptimized
                   />
                 )}
 

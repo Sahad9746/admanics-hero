@@ -336,10 +336,10 @@ export function ProductionDetail({
             style={{ scale: textScale, opacity: textOpacity }}
             className="relative z-10 text-center origin-center px-4"
           >
-            <h1 className="text-heading-hero font-bold leading-none tracking-tighter text-white pointer-events-none pb-4">
+            <h1 className="text-heading-hero text-[12vw] font-bold leading-none tracking-tighter text-white pointer-events-none pb-4">
               PRODUCTION
             </h1>
-            <p className="mt-8 text-body-lg text-neutral-400 uppercase">
+            <p className="mt-8 text-xl md:text-3xl text-neutral-400 uppercase tracking-widest">
               Beyond The Frame
             </p>
           </motion.div>
