@@ -1,6 +1,6 @@
 "use client";
 
-import { Service, pillarMetadata } from "@/constants/services";
+import { GradientText } from "@/components/ui/GradientText";
 import {
   motion,
   useScroll,
@@ -8,6 +8,8 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
+import { Service, pillarMetadata } from "@/constants/services";
+
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
@@ -325,7 +327,7 @@ export function ProductionDetail({
           {/* Est. 2024 Badge (Fixed) */}
           <div className="absolute top-32 z-10">
             <div className="inline-block border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full">
-              <span className="text-label text-white">Est. 2024</span>
+              <span className="text-label text-blue-500">Est. 2024</span>
             </div>
           </div>
 
@@ -334,7 +336,7 @@ export function ProductionDetail({
             style={{ scale: textScale, opacity: textOpacity }}
             className="relative z-10 text-center origin-center px-4"
           >
-            <h1 className="text-heading-hero font-bold leading-none tracking-tighter text-gradient pointer-events-none pb-4">
+            <h1 className="text-heading-hero font-bold leading-none tracking-tighter text-white pointer-events-none pb-4">
               PRODUCTION
             </h1>
             <p className="mt-8 text-body-lg text-neutral-400 uppercase">
@@ -348,9 +350,7 @@ export function ProductionDetail({
             className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           >
             <MousePointer2 className="w-6 h-6 animate-bounce text-white/50" />
-            <span className="text-[10px] uppercase tracking-widest text-white/50">
-              Scroll to Enter
-            </span>
+            <span className="text-label text-white/50">Scroll to Enter</span>
           </motion.div>
         </div>
       </div>
@@ -359,9 +359,10 @@ export function ProductionDetail({
       <section className="relative z-10 py-32 px-6 md:px-12 bg-neutral-950 shadow-[0_-50px_100px_rgba(0,0,0,1)]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-32 text-center max-w-2xl mx-auto">
-            <h2 className="text-heading-lg text-gradient mb-6">
-              Visual Architecture
-            </h2>
+            <GradientText
+              words="Visual Architecture"
+              className="text-heading-hero mb-6 text-center"
+            />
             <p className="text-body-lg text-neutral-400">
               We don't just shoot video. We construct visual systems that
               elevate your brand's narrative across every dimension.
@@ -426,7 +427,10 @@ export function ProductionDetail({
             <span className="text-label text-blue-500 mb-4 block">
               The Pipeline
             </span>
-            <h2 className="text-heading-xl text-gradient">The Blueprint.</h2>
+            <GradientText
+              words="The Blueprint."
+              className="text-heading-hero"
+            />
             <p className="text-body-lg text-neutral-400 mt-6 max-w-2xl">
               Our cinematic workflow is a precision-engineered system designed
               to translate complex ideas into high-fidelity visual
