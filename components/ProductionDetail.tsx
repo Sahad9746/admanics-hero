@@ -1,6 +1,7 @@
 "use client";
 
 import { GradientText } from "@/components/ui/GradientText";
+import { CTA } from "@/components/CTA";
 import {
   motion,
   useScroll,
@@ -551,29 +552,12 @@ export function ProductionDetail({
       {/* 5. Footer CTA - GROWTH ACCELERATOR */}
       <section className="py-24 px-6 md:px-12 bg-neutral-950 relative overflow-hidden z-10">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-10 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-blue-500/10 to-transparent border border-white/10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 relative overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(59,130,246,0.1),_transparent_70%)] pointer-events-none" />
-
-            <div className="flex flex-col gap-4 md:gap-6 relative z-10 text-center md:text-left">
-              <h4 className="text-heading-lg">
-                Ready to automate <br className="hidden md:block" />
-                your growth?
-              </h4>
-              <p className="text-body-lg text-neutral-400">
-                Join 50+ brands scaling with our Intelligent Systems.
-              </p>
-            </div>
-            <Link href="/contact" className="w-full md:w-auto relative z-10">
-              <Button className="w-full md:w-auto bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-4 md:px-12 md:py-6 text-body-lg font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
-                Book Strategy Call
-              </Button>
-            </Link>
-          </motion.div>
+          <CTA
+            title="Ready to automate <br class='hidden md:block' /> your growth?"
+            description="Join 50+ brands scaling with our Intelligent Systems."
+            buttonText="Book Strategy Call"
+            buttonLink="/contact"
+          />
         </div>
       </section>
 

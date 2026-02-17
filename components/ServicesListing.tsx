@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronRight, Globe, Layers, Cpu } from "lucide-react";
+import { CTA } from "@/components/CTA";
 
 import { cn } from "@/lib/utils";
 
@@ -105,26 +106,16 @@ export function ServicesListing() {
         </div>
 
         {/* Final CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mt-32 md:mt-60 p-8 md:p-16 lg:p-32 rounded-[2.5rem] md:rounded-[4rem] bg-gradient-to-br from-neutral-900 via-neutral-950 to neutral-900 border border-white/5 text-center relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to transparent pointer-events-none" />
-          <h2 className="text-heading-xl mb-8 relative z-10">
-            Build Your Custom Engine.
-          </h2>
-          <p className="text-body-lg text-neutral-400 mb-12 max-w-2xl mx-auto relative z-10">
-            Contact our systems architects to audit your current operation and
-            deploy the Admanics modules best suited for your goals.
-          </p>
-          <Link href="/contact" className="relative z-10 inline-block">
-            <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-12 py-8 text-xl font-bold transition-all hover:scale-105 active:scale-95">
-              Initialize Deployment &rarr;
-            </Button>
-          </Link>
-        </motion.div>
+        {/* Final CTA */}
+        <div className="mt-32 md:mt-60">
+          <CTA
+            title="Build Your Custom Engine."
+            description="Contact our systems architects to audit your current operation and deploy the Admanics modules best suited for your goals."
+            buttonText="Initialize Deployment"
+            buttonLink="/contact"
+            className="bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900"
+          />
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { GradientText } from "@/components/ui/GradientText";
 import { StatsSection } from "@/components/StatsSection";
 import { BrandSlider } from "@/components/BrandSlider";
 import { useRef } from "react";
+import { CTA } from "@/components/CTA";
 
 export function AboutPageClient({
   teamSection,
@@ -173,6 +174,17 @@ export function AboutPageClient({
 
       {/* --- BRAND GRID SECTION --- */}
       <BrandSlider />
+
+      <section className="px-6 md:px-12 py-24 bg-neutral-950">
+        <div className="max-w-7xl mx-auto">
+          <CTA
+            title="Ready to join the <br class='hidden md:block' /> future of growth?"
+            description="Partner with the team that's redefining digital infrastructure."
+            buttonText="Work With Us"
+            buttonLink="/contact"
+          />
+        </div>
+      </section>
 
       {/* --- TEAM SECTION (Passed as specific prop or children) --- */}
       {teamSection}
