@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { urlFor } from '@/sanity/lib/image'
+import Image from "next/image";
+import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
 
 export const RichTextComponents = {
   types: {
@@ -14,7 +14,7 @@ export const RichTextComponents = {
             fill
           />
         </div>
-      )
+      );
     },
   },
   list: {
@@ -27,19 +27,21 @@ export const RichTextComponents = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-5xl py-10 font-bold text-white">{children}</h1>
+      <h1 className="text-heading-xl py-10 text-white">{children}</h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-4xl py-10 font-bold text-white">{children}</h2>
+      <h2 className="text-heading-lg py-10 text-white">{children}</h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-3xl py-10 font-bold text-white">{children}</h3>
+      <h3 className="text-heading-md py-10 text-white">{children}</h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-2xl py-10 font-bold text-white">{children}</h4>
+      <h4 className="text-body-xl py-10 text-white">{children}</h4>
     ),
     normal: ({ children }: any) => (
-      <p className="text-neutral-300 text-lg leading-relaxed mb-6">{children}</p>
+      <p className="text-neutral-300 text-lg leading-relaxed mb-6">
+        {children}
+      </p>
     ),
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-blue-500 border-l-4 pl-5 py-5 my-5 text-white italic bg-neutral-900/50">
@@ -49,9 +51,9 @@ export const RichTextComponents = {
   },
   marks: {
     link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith('/')
-        ? 'noreferrer noopener'
-        : undefined
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
 
       return (
         <Link
@@ -61,7 +63,7 @@ export const RichTextComponents = {
         >
           {children}
         </Link>
-      )
+      );
     },
   },
-}
+};

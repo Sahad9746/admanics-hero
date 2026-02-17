@@ -37,12 +37,15 @@ export async function sendContactEmail(formData: FormData) {
 
   const { name, email, countryCode, phone, message } = result.data;
 
-  // Debug: Log the data (Private logging)
-  console.log(`Email Request from: ${email}`);
-  
-  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.error("Missing SMTP Environment Variables on Vercel");
-    return { success: false, error: "Server Configuration Error: Email variables are missing." };
+  if (
+    !process.env.SMTP_HOST ||
+    !process.env.SMTP_USER ||
+    !process.env.SMTP_PASS
+  ) {
+    return {
+      success: false,
+      error: "Server Configuration Error: Email variables are missing.",
+    };
   }
 
   const transporter = nodemailer.createTransport({
@@ -82,10 +85,9 @@ export async function sendContactEmail(formData: FormData) {
 
     return { success: true };
   } catch (error: any) {
-    console.error("Email Error:", error);
-    return { 
-      success: false, 
-      error: error.message || "Failed to send email. Please check server logs." 
+    return {
+      success: false,
+      error: error.message || "Failed to send email. Please check server logs.",
     };
   }
 }

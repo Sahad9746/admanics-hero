@@ -1,4 +1,3 @@
-
 import { client } from "@/sanity/lib/client";
 import { NextResponse } from "next/server";
 
@@ -17,21 +16,21 @@ export async function GET() {
       _id: "category-marketing",
       _type: "category",
       title: "Marketing",
-      description: "Digital marketing strategies and insights."
+      description: "Digital marketing strategies and insights.",
     });
 
     const aiCat = await client.createOrReplace({
       _id: "category-ai-automation",
       _type: "category",
       title: "AI & Automation",
-      description: "Artificial Intelligence and automation trends."
+      description: "Artificial Intelligence and automation trends.",
     });
 
     const brandCat = await client.createOrReplace({
       _id: "category-branding",
       _type: "category",
       title: "Branding",
-      description: "Building strong brand identities."
+      description: "Building strong brand identities.",
     });
 
     // 3. Create Posts with Multiple Paragraphs, Headings, and Lists
@@ -41,7 +40,10 @@ export async function GET() {
       title: "The Future of AI in Digital Marketing",
       slug: { _type: "slug", current: "future-of-ai-in-digital-marketing" },
       author: { _type: "reference", _ref: author._id },
-      categories: [{ _type: "reference", _ref: aiCat._id }, { _type: "reference", _ref: marketingCat._id }],
+      categories: [
+        { _type: "reference", _ref: aiCat._id },
+        { _type: "reference", _ref: marketingCat._id },
+      ],
       publishedAt: new Date().toISOString(),
       body: [
         {
@@ -78,19 +80,34 @@ export async function GET() {
           _type: "block",
           listItem: "bullet",
           level: 1,
-          children: [{ _type: "span", text: "Predictive Analytics: Anticipate market trends before they happen." }],
+          children: [
+            {
+              _type: "span",
+              text: "Predictive Analytics: Anticipate market trends before they happen.",
+            },
+          ],
         },
         {
           _type: "block",
           listItem: "bullet",
           level: 1,
-          children: [{ _type: "span", text: "Chatbots & Assistants: 24/7 customer support without human intervention." }],
+          children: [
+            {
+              _type: "span",
+              text: "Chatbots & Assistants: 24/7 customer support without human intervention.",
+            },
+          ],
         },
         {
           _type: "block",
           listItem: "bullet",
           level: 1,
-          children: [{ _type: "span", text: "Content Generation: Scale content production with AI tools." }],
+          children: [
+            {
+              _type: "span",
+              text: "Content Generation: Scale content production with AI tools.",
+            },
+          ],
         },
       ],
     });
@@ -101,7 +118,10 @@ export async function GET() {
       title: "5 Strategies to Scale Your Business in 2026",
       slug: { _type: "slug", current: "5-strategies-to-scale-your-business" },
       author: { _type: "reference", _ref: author._id },
-      categories: [{ _type: "reference", _ref: marketingCat._id }, { _type: "reference", _ref: brandCat._id }],
+      categories: [
+        { _type: "reference", _ref: marketingCat._id },
+        { _type: "reference", _ref: brandCat._id },
+      ],
       publishedAt: new Date(Date.now() - 86400000).toISOString(), // Yesterday
       body: [
         {
@@ -122,7 +142,12 @@ export async function GET() {
         {
           _type: "block",
           style: "normal",
-          children: [{ _type: "span", text: "Identify repetitive tasks and implement automation tools. This not only saves time but reduces human error and allows your team to focus on high-value creative work." }],
+          children: [
+            {
+              _type: "span",
+              text: "Identify repetitive tasks and implement automation tools. This not only saves time but reduces human error and allows your team to focus on high-value creative work.",
+            },
+          ],
         },
         {
           _type: "block",
@@ -132,12 +157,22 @@ export async function GET() {
         {
           _type: "block",
           style: "normal",
-          children: [{ _type: "span", text: "It costs significantly less to retain an existing customer than to acquire a new one. Implement loyalty programs and personalized email marketing to keep your audience engaged." }],
+          children: [
+            {
+              _type: "span",
+              text: "It costs significantly less to retain an existing customer than to acquire a new one. Implement loyalty programs and personalized email marketing to keep your audience engaged.",
+            },
+          ],
         },
-         {
+        {
           _type: "block",
           style: "blockquote",
-          children: [{ _type: "span", text: "Growth is never by mere chance; it is the result of forces working together." }],
+          children: [
+            {
+              _type: "span",
+              text: "Growth is never by mere chance; it is the result of forces working together.",
+            },
+          ],
         },
       ],
     });
@@ -162,27 +197,32 @@ export async function GET() {
           ],
         },
         {
-           _type: "block",
-           style: "h2",
-           children: [{ _type: "span", text: "Consistency is Key" }],
+          _type: "block",
+          style: "h2",
+          children: [{ _type: "span", text: "Consistency is Key" }],
         },
         {
-           _type: "block",
-           style: "normal",
-           children: [{ _type: "span", text: "From your website to your social media profiles, your visual language and tone of voice must remain consistent. This builds trust and recognition." }],
+          _type: "block",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              text: "From your website to your social media profiles, your visual language and tone of voice must remain consistent. This builds trust and recognition.",
+            },
+          ],
         },
       ],
     });
 
-
-    return NextResponse.json({ 
-      success: true, 
-      message: "Rich demo data seeded successfully!", 
-      created: [post1.title, post2.title, post3.title] 
+    return NextResponse.json({
+      success: true,
+      message: "Rich demo data seeded successfully!",
+      created: [post1.title, post2.title, post3.title],
     });
-
   } catch (error) {
-    console.error("Seed error:", error);
-    return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: String(error) },
+      { status: 500 },
+    );
   }
 }

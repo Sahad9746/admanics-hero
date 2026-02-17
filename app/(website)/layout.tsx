@@ -16,22 +16,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
-
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://admanics.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || "https://admanics.com",
+  ),
   title: {
     default: "Admanics | Automated Growth Systems",
-    template: "%s | Admanics"
+    template: "%s | Admanics",
   },
-  description: "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
-  keywords: ["AI Marketing", "Automated Growth", "Business Infrastructure", "Admanics", "Marketing Automation"],
+  description:
+    "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
+  keywords: [
+    "AI Marketing",
+    "Automated Growth",
+    "Business Infrastructure",
+    "Admanics",
+    "Marketing Automation",
+  ],
   authors: [{ name: "Admanics Team" }],
   creator: "Admanics",
   publisher: "Admanics",
   openGraph: {
     title: "Admanics | Automated Growth Systems",
-    description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
+    description:
+      "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
     url: "https://admanics.com",
     siteName: "Admanics",
     images: [
@@ -50,7 +58,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Admanics | Automated Growth Systems",
-    description: "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
+    description:
+      "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
     creator: "@admanics",
     images: ["https://admanics.com/og-admanics.jpg"],
   },
@@ -61,22 +70,24 @@ export const metadata: Metadata = {
     apple: "/icon.png?v=2",
   },
   other: {
-    "google-site-verification": "dummy-verification-code", // Placeholder for user
+    "google-site-verification":
+      process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Admanics",
-  "alternateName": ["Admanics AI", "admanics.com"],
-  "url": "https://admanics.com",
-  "description": "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
-  "potentialAction": {
+  name: "Admanics",
+  alternateName: ["Admanics AI", "admanics.com"],
+  url: "https://admanics.com",
+  description:
+    "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
+  potentialAction: {
     "@type": "SearchAction",
-    "target": "https://admanics.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+    target: "https://admanics.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -85,11 +96,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
+    <html
+      lang="en"
+      className="dark"
+      suppressHydrationWarning
+      prefix="og: https://ogp.me/ns#"
+    >
       <head>
         <meta itemProp="image" content="https://admanics.com/og-admanics.jpg" />
         <link rel="image_src" href="https://admanics.com/og-admanics.jpg" />
-        
+
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://cdn.prod.website-files.com" />
         <link rel="preconnect" href="https://restcountries.com" />
@@ -103,10 +119,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-950 overflow-x-hidden w-full relative`}
         suppressHydrationWarning
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] bg-white text-black px-4 py-2 rounded-md font-bold"
+        >
+          Skip to content
+        </a>
         <div className="relative w-full overflow-x-hidden">
           <SmoothScrolling>
             <SiteNavbar />
-            {children}
+            <div id="main-content">{children}</div>
           </SmoothScrolling>
         </div>
         <Analytics />

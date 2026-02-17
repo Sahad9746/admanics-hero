@@ -12,9 +12,9 @@ interface MegaMenuProps {
 }
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
-  const pillars = ["Marketing", "ORM" ,"Production"] as const;
+  const pillars = ["Marketing", "ORM", "Production"] as const;
 
-  const getServicesByPillar = (pillar: typeof pillars[number]) => {
+  const getServicesByPillar = (pillar: (typeof pillars)[number]) => {
     return services.filter((service) => service.pillar === pillar);
   };
 
@@ -45,11 +45,10 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             className="fixed left-0 right-0 top-20 pt-8 z-40"
             onMouseLeave={onClose}
           >
-             <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative">
               <div className="bg-neutral-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden mt-2 relative">
-                
                 {/* Close Button */}
-                <button 
+                <button
                   onClick={onClose}
                   className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-all cursor-pointer"
                   aria-label="Close menu"
@@ -60,7 +59,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 p-8">
                   {/* Hero Section */}
                   <div className="lg:col-span-1 flex flex-col justify-center p-6 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl border border-white/5">
-                    <h3 className="text-3xl font-bold text-white mb-4 leading-tight">
+                    <h3 className="text-heading-md text-white mb-4">
                       Building Strong Capabilities to Empower Your Brand
                     </h3>
                     <Link
