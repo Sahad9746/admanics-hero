@@ -56,10 +56,20 @@ export default defineType({
     }),
     defineField({
       name: 'videoUrl',
-      title: 'Video URL',
+      title: 'Video URL (External)',
       type: 'url',
-      description: 'Direct link to the video file (mp4) or stream.',
-      validation: (Rule) => Rule.required(),
+      description: 'Direct link to the video file (mp4) or stream (YouTube/Vimeo).',
+      hidden: ({ document }: any) => !!document?.videoFile,
+    }),
+    defineField({
+      name: 'videoFile',
+      title: 'Video File (Raw)',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
+      description: 'Upload a raw video file (MP4/WebM).',
+      hidden: ({ document }: any) => !!document?.videoUrl,
     }),
     defineField({
       name: 'thumbnail',

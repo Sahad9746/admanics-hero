@@ -17,8 +17,14 @@ async function getWork() {
       client,
       category,
       videoUrl,
+      videoFile {
+        asset-> {
+          url
+        }
+      },
       thumbnail,
-      description
+      description,
+      orientation,
     }
   `;
   return client.fetch(query);

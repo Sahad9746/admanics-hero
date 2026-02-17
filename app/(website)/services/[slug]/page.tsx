@@ -51,11 +51,24 @@ export default async function Page({ params }: PageProps) {
     
     // Check if it's the "Production" pillar and render the specific ProductionDetail component
     if (pillarName === "Production") {
+      const { client } = await import("@/sanity/lib/client");
+      const reelsQuery = `*[_type == "work"] | order(_createdAt desc) [0...7] {
+        title,
+        category,
+        videoUrl,
+        "videoFileUrl": videoFile.asset->url,
+        thumbnail,
+        orientation
+      }`;
+      const reels = await client.fetch(reelsQuery);
+      console.log("SANITY FETCHED REELS:", JSON.stringify(reels, null, 2));
+
       const { ProductionDetail } = await import("@/components/ProductionDetail");
       return (
         <ProductionDetail
           category="Production"
           services={filteredServices}
+          reels={reels}
         />
       );
     }

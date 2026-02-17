@@ -14,7 +14,8 @@ interface WorkItem {
   slug: { current: string };
   client?: string;
   category?: string;
-  videoUrl: string;
+  videoUrl?: string;
+  videoFile?: any; // Sanity file asset
   thumbnail: any;
   description?: string;
   orientation?: "landscape" | "portrait";
@@ -22,6 +23,12 @@ interface WorkItem {
 
 export default function WorkGrid({ works }: { works: WorkItem[] }) {
   const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
+
+  const getVideoSource = (work: WorkItem) => {
+    if (work.videoUrl) return work.videoUrl;
+    if (work.videoFile?.asset?.url) return work.videoFile.asset.url;
+    return "";
+  };
 
   return (
     <>
@@ -75,7 +82,7 @@ export default function WorkGrid({ works }: { works: WorkItem[] }) {
                     {work.category || "Project"}
                   </span>
                 </div>
-                <h3 className="text-heading-md text-white leading-tight mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-neutral-400 transition-colors">
+                <h3 className="text-heading-md text-white capitalize leading-tight mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-neutral-400 transition-colors">
                   {work.title}
                 </h3>
                 {work.client && (
@@ -119,7 +126,7 @@ export default function WorkGrid({ works }: { works: WorkItem[] }) {
               onClick={(e) => e.stopPropagation()}
             >
               <CustomVideoPlayer
-                src={selectedWork.videoUrl}
+                src={getVideoSource(selectedWork)}
                 poster={
                   typeof selectedWork.thumbnail === "string"
                     ? selectedWork.thumbnail

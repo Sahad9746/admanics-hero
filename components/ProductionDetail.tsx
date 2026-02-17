@@ -6,6 +6,7 @@ import {
   useScroll,
   useTransform,
   useSpring,
+  useInView,
   MotionValue,
 } from "framer-motion";
 import { Service, pillarMetadata } from "@/constants/services";
@@ -14,6 +15,7 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { urlFor } from "@/sanity/lib/image";
 import {
   ArrowLeft,
   Play,
@@ -26,10 +28,27 @@ import {
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 
+interface Reel {
+  title: string;
+  category: string;
+  videoUrl?: string;
+  videoFileUrl?: string;
+  thumbnail: any;
+  orientation?: "horizontal" | "vertical";
+}
+
 interface ProductionDetailProps {
   category: "Production";
   services: Service[];
+  reels?: Reel[];
 }
+
+// Helper to get video source
+const getVideoSource = (reel: Reel) => {
+  if (reel.videoUrl) return reel.videoUrl;
+  if (reel.videoFileUrl) return reel.videoFileUrl;
+  return "";
+};
 
 // --- COMPONENTS ---
 // 1. Horizontal Scroll Reel Card (REFACTORED)
@@ -47,21 +66,38 @@ const ReelCard = ({
   poster: string;
   orientation?: "horizontal" | "vertical";
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const containerRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isInView = useInView(containerRef, { amount: 0.4, margin: "0px 0px -100px 0px" }); // Play when 40% visible, with some margin
   const [isReady, setIsReady] = useState(false);
 
   const isVertical = orientation === "vertical";
 
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isInView) {
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            // Silently catch autoplay errors if interaction is required
+            console.log("Autoplay prevented");
+          });
+        }
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isInView]);
+
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative flex-shrink-0 group cursor-pointer overflow-hidden border-r border-white/10 last:border-r-0 bg-neutral-900 transition-all duration-500",
         isVertical
           ? "w-[300px] md:w-[350px] aspect-[9/16]"
           : "w-[400px] md:w-[600px] aspect-[16/9]",
       )}
-      onMouseEnter={() => setIsPlaying(true)}
-      onMouseLeave={() => setIsPlaying(false)}
     >
       {/* Fallback Image */}
       <Image
@@ -73,21 +109,24 @@ const ReelCard = ({
 
       {/* Video Background */}
       <video
+        ref={videoRef}
         src={videoUrl}
         muted
         loop
         playsInline
         autoPlay={false}
-        onCanPlay={() => setIsReady(true)}
-        ref={(el) => {
-          if (el) {
-            if (isPlaying) el.play().catch(() => {});
-            else el.pause();
-          }
+        onClick={(e) => {
+           if (e.currentTarget.paused) {
+             e.currentTarget.play();
+           } else {
+             e.currentTarget.pause();
+           }
         }}
+        onCanPlay={() => setIsReady(true)}
         className={cn(
           "absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105",
-          isReady && isPlaying ? "opacity-100" : "opacity-0",
+          // Show video if ready AND (in view OR playing manually)
+          isReady ? "opacity-100" : "opacity-0", 
         )}
       />
 
@@ -102,7 +141,7 @@ const ReelCard = ({
         </div>
         <h3
           className={cn(
-            "font-black text-white uppercase tracking-tighter leading-none",
+            "font-black text-white capitalize tracking-tighter leading-none",
             isVertical ? "text-heading-md" : "text-heading-lg",
           )}
         >
@@ -204,10 +243,13 @@ const FloatingCard = ({
   );
 };
 
+
 export function ProductionDetail({
   category,
   services,
+  reels = [],
 }: ProductionDetailProps) {
+
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
@@ -240,14 +282,27 @@ export function ProductionDetail({
   });
   const x = useTransform(horizontalProgress, [0, 1], ["0%", "-45%"]); // Adjusted travel distance after removing Archive cardfull archive card
 
+  // --- REEL SORTING (Alternate Landscape / Portrait) ---
+  // Force alternate orientation based on index to ensure "Landscape -> Portrait -> Landscape" rhythm
+  // regardless of actual video metadata (as requested by user)
+  
   // Reel Collection Data
-  const reelCollection = [
+  // Map passed reels to the format ReelCard expects, or fallback to demo data
+  const reelCollection = reels.length > 0 ? reels.map((reel, idx) => ({
+    title: reel.title,
+    category: reel.category || "Showcase",
+    // Even index (0, 2...) -> Horizontal (Landscape)
+    // Odd index (1, 3...) -> Vertical (Portrait)
+    orientation: (idx % 2 === 0 ? "horizontal" : "vertical") as "horizontal" | "vertical",
+    videoUrl: getVideoSource(reel),
+    poster: reel.thumbnail ? urlFor(reel.thumbnail).url() : "/images/services/production-v3.png",
+  })) : [
     {
       title: "Neon Nights",
       category: "Automotive",
       orientation: "horizontal" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-driving-through-a-city-at-night-4523/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -255,7 +310,7 @@ export function ProductionDetail({
       category: "Lifestyle",
       orientation: "vertical" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-skateboarding-skills-959/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -263,7 +318,7 @@ export function ProductionDetail({
       category: "Food & Bev",
       orientation: "horizontal" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-pouring-wine-into-a-glass-5320/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -271,7 +326,7 @@ export function ProductionDetail({
       category: "Event",
       orientation: "vertical" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-model-walking-on-catwalk-2661/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -279,7 +334,7 @@ export function ProductionDetail({
       category: "Commercial",
       orientation: "horizontal" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-typing-on-computer-keyboard-4632/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -287,7 +342,7 @@ export function ProductionDetail({
       category: "Social Media",
       orientation: "vertical" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-dancing-in-a-neon-room-5423/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
       poster: "/images/services/production-v3.png",
     },
     {
@@ -295,7 +350,7 @@ export function ProductionDetail({
       category: "Documentary",
       orientation: "horizontal" as const,
       videoUrl:
-        "https://cdn.coverr.co/videos/coverr-drone-shot-of-a-forest-in-autumn-5315/1080p.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       poster: "/images/services/production-v3.png",
     },
   ];
