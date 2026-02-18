@@ -521,10 +521,10 @@ export function ContactContent() {
                           Email
                         </h3>
                         <a
-                          href="mailto:contact@admanics.com"
+                          href="mailto:growth@admanics.com"
                           className="text-base sm:text-lg font-bold text-white hover:text-blue-400 transition-colors block break-all sm:break-normal"
                         >
-                          contact@admanics.com
+                          growth@admanics.com
                         </a>
                       </div>
                     </div>
