@@ -7,7 +7,7 @@ async function getTeam() {
     role,
     image
   }`;
-  return client.fetch(query);
+  return client.fetch(query, {}, { next: { revalidate: 60 } });
 }
 
 export async function TeamSection() {
