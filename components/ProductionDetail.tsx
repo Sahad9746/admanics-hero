@@ -105,6 +105,8 @@ const ReelCard = ({
         src={poster || "/images/services/production-v3.png"}
         alt={title}
         fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
       />
 
@@ -115,6 +117,7 @@ const ReelCard = ({
         muted
         loop
         playsInline
+        preload="none"
         autoPlay={false}
         onClick={(e) => {
            if (e.currentTarget.paused) {
@@ -194,6 +197,8 @@ const FloatingCard = ({
             src={service.image || "/images/services/production-v3.png"}
             alt={service.title}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
             className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
           />
 
@@ -203,6 +208,7 @@ const FloatingCard = ({
               muted
               loop
               playsInline
+              preload="none"
               autoPlay
               onCanPlay={(e) => (e.currentTarget.style.opacity = "1")}
               className={cn(

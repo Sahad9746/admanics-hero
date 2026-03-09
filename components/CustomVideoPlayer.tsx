@@ -185,6 +185,7 @@ export function CustomVideoPlayer({
         ref={videoRef}
         src={src}
         poster={poster}
+        preload={autoPlay ? "auto" : "none"}
         className="w-full h-full object-contain"
         onTimeUpdate={handleTimeUpdate}
         onEnded={() => setIsPlaying(false)}

@@ -6,74 +6,86 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 const brands = [
   {
-    name: "Client 2",
+    name: "The Reborn Society",
     logo: (
       <Image
         src="/images/clients_logo/2.jpg"
-        alt="Client 2"
+        alt="The Reborn Society"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
   },
   {
-    name: "Client 4",
+    name: "Vyntage Horology",
     logo: (
       <Image
         src="/images/clients_logo/4.jpg"
-        alt="Client 4"
+        alt="Vyntage Horology"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
   },
   {
-    name: "Client 5",
+    name: "Peter England",
     logo: (
       <Image
         src="/images/clients_logo/5.jpg"
-        alt="Client 5"
+        alt="Peter England"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
   },
 
   {
-    name: "Client 7",
+    name: "Concord",
     logo: (
       <Image
         src="/images/clients_logo/7.jpg"
-        alt="Client 7"
+        alt="Concord"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
   },
   {
-    name: "Client 9",
+    name: "Adidas",
     logo: (
       <Image
         src="/images/clients_logo/9.jpg"
-        alt="Client 9"
+        alt="Adidas"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
   },
   {
-    name: "Client 10",
+    name: "BCBG",
     logo: (
       <Image
         src="/images/clients_logo/10.jpg"
-        alt="Client 10"
+        alt="BCBG"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
@@ -86,6 +98,8 @@ const brands = [
         alt="Client 11"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),
@@ -98,6 +112,8 @@ const brands = [
         alt="Client 12"
         width={200}
         height={100}
+        loading="lazy"
+        sizes="(max-width: 768px) 100px, 200px"
         className="h-20 w-auto object-contain"
       />
     ),

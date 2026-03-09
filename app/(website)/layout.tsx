@@ -21,34 +21,35 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_URL || "https://admanics.com",
   ),
   title: {
-    default: "Admanics | Automated Growth Systems",
-    template: "%s | Admanics",
+    default: "Admanics | AI Marketing Automation Agency",
+    template: "%s | Admanics - AI Marketing Automation",
   },
   description:
-    "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
+    "Admanics is a premier AI marketing automation agency. We build intelligent infrastructure and automated lead generation systems to scale your business predictably.",
   keywords: [
-    "AI Marketing",
-    "Automated Growth",
-    "Business Infrastructure",
+    "AI Marketing Automation Agency",
+    "Automated Lead Generation",
+    "AI Growth Infrastructure",
     "Admanics",
-    "Marketing Automation",
+    "Performance Marketing Automation",
+    "B2B Lead Generation Automation"
   ],
   authors: [{ name: "Admanics Team" }],
   creator: "Admanics",
   publisher: "Admanics",
   openGraph: {
-    title: "Admanics | Automated Growth Systems",
+    title: "Admanics | AI Marketing Automation Agency",
     description:
-      "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
+      "Transform your growth with Admanics. We deliver automated lead generation and intelligent AI marketing infrastructure to scale your revenue.",
     url: "https://admanics.com",
-    siteName: "Admanics",
+    siteName: "Admanics | AI Marketing Automation",
     images: [
       {
         url: "https://admanics.com/og-admanics.jpg",
         secureUrl: "https://admanics.com/og-admanics.jpg",
         width: 1200,
         height: 630,
-        alt: "Admanics | Automated Growth Systems",
+        alt: "Admanics | AI Marketing Automation Agency",
         type: "image/jpeg",
       },
     ],
@@ -57,9 +58,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Admanics | Automated Growth Systems",
+    title: "Admanics | AI Marketing Automation Agency",
     description:
-      "Replace fragmented processes with connected automation. We build the infrastructure your business needs to scale.",
+      "Transform your growth with Admanics. We deliver automated lead generation and intelligent AI marketing infrastructure to scale your revenue.",
     creator: "@admanics",
     images: ["https://admanics.com/og-admanics.jpg"],
   },
@@ -77,17 +78,33 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Admanics",
-  alternateName: ["Admanics AI", "admanics.com"],
-  url: "https://admanics.com",
-  description:
-    "Admanics builds the infrastructure your business needs to scale. Replace fragmented processes with connected automation.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://admanics.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://admanics.com/#website",
+      "url": "https://admanics.com",
+      "name": "Admanics",
+      "description": "Admanics is a premier AI marketing automation agency. We build intelligent infrastructure and automated lead generation systems.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://admanics.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://admanics.com/#organization",
+      "name": "Admanics",
+      "alternateName": ["Admanics AI"],
+      "url": "https://admanics.com",
+      "logo": "https://admanics.com/icon.png",
+      "image": "https://admanics.com/og-admanics.jpg",
+      "description": "AI Marketing Automation Agency specializing in automated lead generation and revenue pipelines.",
+      "sameAs": [
+        "https://twitter.com/admanics"
+      ]
+    }
+  ]
 };
 
 import PageTransition from "@/components/ui/PageTransition";

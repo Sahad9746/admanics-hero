@@ -227,6 +227,22 @@ html {
     animation: scroll var(--animation-duration, 40s)
       var(--animation-direction, forwards) linear infinite;
   }
+
+  .animate-page-transition {
+    animation: page-fade-in-up 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
+  }
+}
+
+@keyframes page-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scroll {
