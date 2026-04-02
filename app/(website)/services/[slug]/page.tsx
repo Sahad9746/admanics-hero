@@ -61,7 +61,6 @@ export default async function Page({ params }: PageProps) {
         orientation
       }`;
       const reels = await client.fetch(reelsQuery);
-      console.log("SANITY FETCHED REELS:", JSON.stringify(reels, null, 2));
 
       const { ProductionDetail } = await import("@/components/ProductionDetail");
       return (

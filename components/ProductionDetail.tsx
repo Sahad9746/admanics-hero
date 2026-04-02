@@ -81,7 +81,6 @@ const ReelCard = ({
         if (playPromise !== undefined) {
           playPromise.catch((error) => {
             // Silently catch autoplay errors if interaction is required
-            console.log("Autoplay prevented");
           });
         }
       } else {

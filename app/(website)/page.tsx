@@ -2,7 +2,6 @@ import Hero from "@/components/Hero"
 import { BrandSlider } from "@/components/BrandSlider";
 import { AboutSection } from "@/components/AboutSection"
 import { Services } from "@/components/Services";
-import { ResultsSection } from "@/components/ResultsSection";
 import { StatsSection } from "@/components/StatsSection";
 import { FAQ } from "@/components/FAQ"
 import { Footer } from "@/components/Footer"
@@ -15,7 +14,6 @@ export default function Home() {
       <AboutSection />
       <StatsSection />
       <Services />
-      <ResultsSection />
       <FAQ />
       <Footer />
     </main>
