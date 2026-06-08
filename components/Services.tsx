@@ -196,8 +196,9 @@ function PillarModule({
               {service.outcome}
             </motion.div>
             <Link
-              href={`/services/${metadata.slug}`}
+              href={metadata.slug === "production" ? "https://thensanemedia.com/" : `/services/${metadata.slug}`}
               className="group/link flex items-center gap-4 text-white hover:text-blue-500 transition-colors"
+              {...(metadata.slug === "production" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               <span className="text-label">Explore Infrastructure</span>
               <ArrowRight

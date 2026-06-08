@@ -1,7 +1,7 @@
 import { services, pillarMetadata } from "@/constants/services";
 import { CategoryDetail } from "@/components/CategoryDetail";
 import { ServiceDetail } from "@/components/ServiceDetail";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Metadata } from "next";
 
 interface PageProps {
@@ -49,27 +49,9 @@ export default async function Page({ params }: PageProps) {
     const [pillarName] = activePillarEntry;
     const filteredServices = services.filter((s) => s.pillar === pillarName);
     
-    // Check if it's the "Production" pillar and render the specific ProductionDetail component
+    // Check if it's the "Production" pillar and redirect to the new agency site
     if (pillarName === "Production") {
-      const { client } = await import("@/sanity/lib/client");
-      const reelsQuery = `*[_type == "work"] | order(_createdAt desc) [0...7] {
-        title,
-        category,
-        videoUrl,
-        "videoFileUrl": videoFile.asset->url,
-        thumbnail,
-        orientation
-      }`;
-      const reels = await client.fetch(reelsQuery);
-
-      const { ProductionDetail } = await import("@/components/ProductionDetail");
-      return (
-        <ProductionDetail
-          category="Production"
-          services={filteredServices}
-          reels={reels}
-        />
-      );
+      redirect("https://thensanemedia.com/");
     }
 
     return (
@@ -84,6 +66,9 @@ export default async function Page({ params }: PageProps) {
   const activeService = services.find((s) => s.slug === slug);
 
   if (activeService) {
+    if (activeService.pillar === "Production") {
+      redirect("https://thensanemedia.com/");
+    }
     return <ServiceDetail service={activeService} />;
   }
 

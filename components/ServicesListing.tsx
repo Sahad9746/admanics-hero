@@ -133,6 +133,7 @@ function PillarSection({
   const details = pillarDetails[pillar];
   const metadata = pillarMetadata[pillar];
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isProduction = pillar === "Production";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -241,33 +242,45 @@ function PillarSection({
         </motion.div>
 
         <div className="flex flex-col gap-2">
-          {pillarServices.map((service, idx) => (
-            <motion.div
-              key={service.slug}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ margin: "-100px" }}
-              transition={{ delay: idx * 0.05, duration: 0.4 }}
-            >
-              <div className="group flex flex-col py-6 border-b border-white/5 hover:bg-white/[0.04] transition-all px-6 rounded-2xl -mx-6 cursor-default hover:pl-8">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-heading-md transition-colors text-neutral-400 group-hover:text-white">
-                    {service.title}
-                  </span>
-                  <ChevronRight className="w-5 h-5 text-neutral-700 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all" />
-                </div>
-                <div className="flex items-center gap-3 overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 pt-2">
-                    {service.tagline}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {pillarServices.map((service, idx) => {
+            const serviceHref = isProduction ? "https://thensanemedia.com/" : `/services/${service.slug}`;
+            return (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ margin: "-100px" }}
+                transition={{ delay: idx * 0.05, duration: 0.4 }}
+              >
+                <Link
+                  href={serviceHref}
+                  className="block"
+                  {...(isProduction ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  <div className="group flex flex-col py-6 border-b border-white/5 hover:bg-white/[0.04] transition-all px-6 rounded-2xl -mx-6 cursor-pointer hover:pl-8">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-heading-md transition-colors text-neutral-400 group-hover:text-white">
+                        {service.title}
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-neutral-700 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all" />
+                    </div>
+                    <div className="flex items-center gap-3 overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 pt-2">
+                        {service.tagline}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="pt-12">
-          <Link href={`/services/${metadata.slug}`}>
+          <Link 
+            href={isProduction ? "https://thensanemedia.com/" : `/services/${metadata.slug}`}
+            {...(isProduction ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

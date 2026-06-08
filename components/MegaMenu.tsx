@@ -77,15 +77,18 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     {pillars.map((pillar) => {
                       const pillarServices = getServicesByPillar(pillar);
                       const metadata = pillarMetadata[pillar];
+                      const isProduction = pillar === "Production";
+                      const pillarHref = isProduction ? "https://thensanemedia.com/" : `/services/${metadata.slug}`;
 
                       return (
                         <div key={pillar} className="space-y-4">
                           {/* Pillar Header */}
                           <div className="pb-3 border-b border-white/10">
                             <Link
-                              href={`/services/${metadata.slug}`}
+                              href={pillarHref}
                               onClick={onClose}
                               className="group"
+                              {...(isProduction ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             >
                               <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center gap-2">
                                 {pillar}
@@ -101,12 +104,14 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                           <ul className="space-y-3">
                             {pillarServices.map((service) => {
                               const Icon = getIcon(service.iconName);
+                              const serviceHref = isProduction ? "https://thensanemedia.com/" : `/services/${service.slug}`;
                               return (
                                 <li key={service.slug}>
                                   <Link
-                                    href={`/services/${service.slug}`}
+                                    href={serviceHref}
                                     onClick={onClose}
                                     className="group flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors"
+                                    {...(isProduction ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                   >
                                     <div className="mt-0.5 text-blue-400/70 group-hover:text-blue-400 transition-colors">
                                       <Icon className="w-4 h-4" />
